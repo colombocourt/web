@@ -1,0 +1,1573 @@
+/* =============================================================
+   Colombo Court Hotel & Spa  ·  subpages
+   Loaded after styles.css, which owns the tokens, the header, the
+   footer, the buttons and the type scale. Nothing here redefines a
+   token; everything here is a shape the homepage does not need.
+
+   The idea on the Rooms page: hierarchy is spatial before it is
+   typographic. A category's rank is how much page it gets. The two
+   suites at the top take a full band each, the pair below share a
+   row, and the two entry rooms are a band the height of one
+   photograph. You feel the ladder before you read a single price.
+   ============================================================= */
+
+/* ---------- 1. Page hero ------------------------------------- */
+/* Shorter than the homepage hero on purpose: a landing page has to
+   show what it is about above the fold, not hold a single image. */
+.phero{
+  position:relative;isolation:isolate;overflow:hidden;
+  display:flex;align-items:flex-end;
+  min-height:min(78vh,720px);
+}
+.phero__media{position:absolute;inset:0;z-index:-1}
+.phero__img{width:100%;height:100%;object-fit:cover}
+.phero__scrim{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(to bottom,rgba(10,12,8,.62) 0%,rgba(10,12,8,.3) 14%,rgba(10,12,8,0) 30%),
+    linear-gradient(to top,rgba(10,12,8,.84) 0%,rgba(10,12,8,.6) 34%,rgba(10,12,8,.12) 72%,rgba(10,12,8,0) 100%);
+}
+.phero__in{
+  position:relative;z-index:2;width:100%;
+  max-width:var(--max);margin-inline:auto;
+  padding:clamp(8rem,16vh,11rem) var(--gut) clamp(2.75rem,6vh,4.5rem);
+  color:#FFF;text-shadow:0 1px 2px rgba(5,5,10,.5),0 4px 22px rgba(5,5,10,.45);
+}
+.crumb{font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.78);margin-bottom:1.4rem}
+.crumb a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:.1em}
+.crumb a:hover{border-bottom-color:#FFF}
+.crumb span{margin-inline:.5rem;opacity:.55}
+.phero__title{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(2.4rem,5.4vw,4.5rem);line-height:1.03;letter-spacing:-.02em;
+  margin-bottom:1.1rem;
+}
+.phero__sub{font-size:clamp(1.02rem,1.4vw,1.2rem);font-weight:300;line-height:1.6;max-width:44ch;color:#F2EDE5;margin-bottom:2rem}
+.phero__cta{display:flex;flex-wrap:wrap;gap:.8rem}
+/* A wash across the whole frame, the way the homepage hero is lit, for a
+   photograph whose foreground is bright rather than dark. */
+.phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(10,12,8,.6) 0%,rgba(10,12,8,.42) 12%,rgba(10,12,8,.24) 26%,rgba(10,12,8,.3) 46%,rgba(10,12,8,.58) 72%,rgba(10,12,8,.72) 100%),
+    linear-gradient(to right,rgba(10,12,8,.5) 0%,rgba(10,12,8,.24) 46%,rgba(10,12,8,.1) 100%);
+}
+
+/* ---------- 2. How they differ ------------------------------- */
+.sec--intro{background:#FFF;padding-block:var(--sec-y) calc(var(--sec-y) * .6)}
+.intro{display:grid;gap:clamp(1.5rem,3vw,2.5rem)}
+.intro .h2{max-width:18ch}
+.intro__cols{display:grid;gap:1.1rem}
+.intro__cols p{max-width:58ch}
+/* Four numbers, set as data rather than as a stat-card row: no boxes,
+   no borders, no shadows. The rule under each is the only chrome. */
+.intro__facts{
+  display:grid;grid-template-columns:1fr;gap:1rem 2.5rem;
+  margin-top:.75rem;font-size:.9rem;color:var(--stone);
+}
+.intro__facts li{border-top:1px solid var(--rule);padding-top:.7rem}
+.intro__n{
+  display:block;font-family:var(--f-display);font-size:clamp(1.6rem,3vw,2.3rem);
+  line-height:1;color:var(--ink);margin-bottom:.3rem;
+  font-variant-numeric:tabular-nums lining-nums;
+}
+
+/* ---------- 3. Tier one: a band each ------------------------- */
+.sec--room{background:#FFF;padding-block:calc(var(--sec-y) * .8)}
+.room--lead + .room--lead{padding-top:0}
+.room2{display:grid;grid-template-columns:1fr;gap:clamp(1.75rem,3.5vw,3rem);align-items:start}
+.room2>*{min-width:0}
+.room2__lead{overflow:hidden;background:var(--sand);aspect-ratio:4/5}
+.room2__lead img{width:100%;height:100%;object-fit:cover}
+.room2__body .h2{margin-bottom:.7rem;max-width:14ch}
+.room2__lede{
+  font-family:var(--f-display);font-style:italic;
+  font-size:clamp(1.15rem,1.9vw,1.5rem);line-height:1.35;margin-bottom:1.1rem;max-width:30ch;
+}
+.room2__body p{max-width:52ch}
+.room2__body p + p{margin-top:.9em}
+
+/* The specs are running data, not a table: a row of value-and-label
+   pairs that wraps. A table here would read as a spreadsheet. */
+.specs{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:.9rem 1.5rem;
+  margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--rule);
+  font-size:.86rem;color:var(--stone);
+}
+.specs>*{min-width:0}
+.specs b{display:block;font-weight:500;color:var(--ink);font-size:1rem;margin-bottom:.1rem}
+.specs--inline{grid-template-columns:repeat(3,auto);justify-content:start;gap:.7rem 2rem;margin-top:1.2rem;padding-top:.9rem}
+
+/* Two details at unequal widths. Equal halves read as a gallery;
+   3fr / 2fr reads as a spread. */
+.room2__pair{display:grid;grid-template-columns:3fr 2fr;gap:clamp(.6rem,1.2vw,.9rem);margin-top:1.5rem}
+.room2__pair>*{min-width:0}
+.room2__det{overflow:hidden;background:var(--sand);aspect-ratio:4/3}
+.room2__det img{width:100%;height:100%;object-fit:cover}
+
+.room2__act{display:flex;flex-wrap:wrap;align-items:center;gap:.9rem 1.5rem;margin-top:1.75rem}
+.room2__more{font-size:.82rem;letter-spacing:.06em;color:var(--stone)}
+.room2__more:hover{color:var(--crimson)}
+
+/* ---------- 4. Tier two: a shared pair ----------------------- */
+.sec--rooms2{background:#FFF;padding-block:calc(var(--sec-y) * .8)}
+.pair{display:grid;grid-template-columns:1fr;gap:clamp(2.5rem,5vw,3.5rem)}
+.pair>*{min-width:0}
+.rcard{display:grid;gap:clamp(.9rem,1.8vw,1.3rem);align-content:start}
+.rcard__lead{overflow:hidden;background:var(--sand);aspect-ratio:4/5}
+.rcard__lead img{width:100%;height:100%;object-fit:cover}
+.rcard__head .h2{margin-bottom:0}
+.rcard__body p{max-width:50ch}
+.rcard__body p + p{margin-top:.9em}
+.rcard__pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.6rem,1.2vw,.9rem)}
+.rcard__pair>*{min-width:0}
+.rcard .specs{margin-top:0}
+.rcard .room2__act{margin-top:0}
+
+/* ---------- 5. Tier three: one photograph high --------------- */
+.sec--rooms3{background:#FFF;padding-block:calc(var(--sec-y) * .8)}
+.rband{display:grid;grid-template-columns:1fr;gap:clamp(1.25rem,2.5vw,2rem);align-items:center}
+.rband>*{min-width:0}
+.rband + .rband{margin-top:clamp(2rem,4vw,3rem);padding-top:clamp(2rem,4vw,3rem);border-top:1px solid var(--rule)}
+.rband__img{overflow:hidden;background:var(--sand);aspect-ratio:3/2}
+.rband__img img{width:100%;height:100%;object-fit:cover}
+.rband__head{display:grid;gap:.4rem;margin-bottom:.9rem}
+.rband__head .stamp{margin-bottom:0}
+.rband__body p{max-width:60ch}
+
+/* ---------- 6. Offers ---------------------------------------- */
+/* The one warm band on a white page, so the offers read as an aside
+   rather than as another room. */
+.sec--offers{padding-block:var(--sec-y)}
+.offers{display:grid;grid-template-columns:1fr;gap:clamp(1.75rem,3.5vw,2.5rem);margin-top:clamp(2rem,4vw,3rem)}
+.offers>*{min-width:0}
+.offer{display:grid;gap:1.1rem;align-content:start}
+.offer__img{overflow:hidden;background:var(--sand);aspect-ratio:3/2}
+.offer__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--e-out)}
+@media (hover:hover){.offer:hover .offer__img img{transform:scale(1.03)}}
+.offer__body .h4{margin-bottom:.5rem}
+.offer__body p{font-size:.95rem;max-width:44ch}
+.offer__terms{margin-top:.6rem;font-size:.82rem;color:var(--stone)}
+.offer .link{margin-top:1rem;display:inline-block}
+
+/* ---------- 7. In every room --------------------------------- */
+.sec--every{background:#FFF;padding-block:var(--sec-y)}
+.every__note{
+  margin-top:clamp(2rem,4vw,3rem);padding-top:1.4rem;border-top:1px solid var(--rule);
+  font-size:.92rem;color:var(--stone);max-width:74ch;
+}
+
+/* ---------- 8. Lightbox -------------------------------------- */
+/* Opened from any category. The frames live in a <template> inside
+   each room, so adding a photograph is one more <img> and no code. */
+.lbx{
+  position:fixed;inset:0;z-index:200;
+  display:grid;grid-template-columns:auto 1fr auto;align-items:center;
+  gap:clamp(.5rem,2vw,1.5rem);padding:clamp(1rem,4vw,3rem);
+  background:rgba(12,10,9,.97);
+}
+.lbx__stage{display:grid;place-items:center;min-width:0;height:100%}
+.lbx__stage img{max-width:100%;max-height:82vh;object-fit:contain;background:var(--espresso)}
+.lbx__close{
+  position:absolute;top:clamp(.75rem,2vw,1.5rem);right:clamp(.75rem,2vw,1.5rem);
+  width:2.75rem;height:2.75rem;display:grid;place-items:center;
+  background:none;border:1px solid rgba(255,255,255,.28);color:#FFF;cursor:pointer;font-size:1rem;
+  transition:background-color .35s var(--e-out),border-color .35s var(--e-out);
+}
+.lbx__close:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5)}
+.lbx__nav{
+  width:3rem;height:3rem;display:grid;place-items:center;flex:none;
+  background:none;border:1px solid rgba(255,255,255,.28);color:#FFF;cursor:pointer;font-size:1.05rem;
+  transition:background-color .35s var(--e-out),border-color .35s var(--e-out);
+}
+.lbx__nav:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5)}
+.lbx__count{
+  position:absolute;left:0;right:0;bottom:clamp(.75rem,2vw,1.5rem);
+  text-align:center;font-size:.78rem;letter-spacing:.14em;color:rgba(255,255,255,.7);
+}
+html.lbx-open,body.lbx-open{overflow:hidden}
+
+/* ---------- 9. Utility --------------------------------------- */
+.sr-only{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+
+/* =============================================================
+   Breakpoints
+   ============================================================= */
+@media (min-width:560px){
+  .intro__facts{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (min-width:760px){
+  .pair{grid-template-columns:1fr 1fr;grid-template-rows:auto auto auto auto auto auto}
+  .rcard{grid-row:span 6;grid-template-rows:subgrid}
+  .offers{grid-template-columns:repeat(3,1fr)}
+}
+
+@media (min-width:900px){
+  .intro{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start}
+  .intro .h2{grid-column:1;grid-row:1}
+  .intro__cols{grid-column:2;grid-row:1}
+  .intro__facts{grid-column:1/-1;grid-template-columns:repeat(4,1fr)}
+
+  .room2{grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:clamp(2.5rem,5vw,4.5rem);align-items:center}
+  /* the second suite mirrors the first, so the page alternates rather
+     than repeating one composition twice */
+  .room--flip .room2__lead{order:2}
+  .room--flip .room2__body{order:1}
+
+  .rband{grid-template-columns:minmax(0,.62fr) minmax(0,1fr);gap:clamp(2rem,4vw,3.5rem)}
+  .rband__head{grid-template-columns:1fr auto;align-items:baseline;gap:1.5rem}
+  .specs{grid-template-columns:repeat(4,1fr)}
+  .rcard .specs{grid-template-columns:repeat(2,1fr)}
+}
+
+@media (max-width:759px){
+  .phero{min-height:min(74vh,620px)}
+  .phero__cta .btn{width:100%}
+  .room2__act .btn{width:100%}
+  .lbx{grid-template-columns:1fr;grid-template-rows:1fr auto}
+  .lbx__stage{grid-row:1}
+  .lbx__nav{grid-row:2}
+  .lbx__nav--prev{justify-self:start}
+  .lbx__nav--next{justify-self:end;grid-column:1;grid-row:2}
+  .lbx__count{bottom:auto;top:clamp(.75rem,2vw,1.5rem);text-align:left;padding-left:1rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .offer:hover .offer__img img{transform:none}
+}
+
+/* =============================================================
+   Eat & Drink
+   The page runs through one day. Amber Poolside sits on white
+   because it is the daytime room; Cloud Café sits on near-black
+   because it is the evening one. That is the only reason for the
+   dark band, and it is also why the kitchen photography, all shot
+   on dark grounds, can only live down there.
+   ============================================================= */
+
+/* ---------- The day ------------------------------------------ */
+.sec--day{background:#FFF;padding-block:var(--sec-y) calc(var(--sec-y) * .7)}
+.day{display:grid;gap:clamp(1.5rem,3vw,2.5rem)}
+.day .h2{max-width:16ch}
+.day__cols{display:grid;gap:1.1rem}
+.day__cols p{max-width:58ch}
+/* A clock, not a numbered list: the hour is the information, so it
+   leads, and the rule above each entry is the only chrome. */
+.clock{display:grid;grid-template-columns:1fr;gap:.9rem 2rem;margin-top:.5rem;font-size:.95rem;color:var(--ink-soft)}
+.clock li{display:grid;grid-template-columns:5.5rem 1fr;gap:1rem;align-items:baseline;border-top:1px solid var(--rule);padding-top:.7rem}
+.clock b{
+  font-family:var(--f-display);font-size:1.35rem;font-weight:400;color:var(--ink);
+  font-variant-numeric:tabular-nums lining-nums;
+}
+
+/* ---------- A venue band ------------------------------------- */
+.sec--venue{padding-block:var(--sec-y)}
+.venue--light{background:#FFF}
+.venue--dark{background:var(--espresso);color:#E9E2D8}
+.venue--dark .h2,.venue--dark .h4{color:#FFF}
+.venue--dark .stamp{color:rgba(255,255,255,.72)}
+.venue--dark .stamp__t{color:#FFF;border-right-color:rgba(255,255,255,.3)}
+.venue--dark .vhead__lede{color:#F1EAE1}
+.venue--dark p{color:#D9D1C6}
+.venue--dark .tags li{border-color:rgba(255,255,255,.22);color:#C8C0B5}
+.venue--dark .btn--line{--fg:#F1EAE1;--bd:rgba(252,250,246,.36)}
+.venue--dark .btn--line:hover{--bg:var(--cream);--fg:var(--ink);--bd:var(--cream)}
+
+.vhead{max-width:52rem;margin-bottom:clamp(1.75rem,3.5vw,2.5rem)}
+.vhead .h2{margin-bottom:.6rem}
+.vhead__lede{
+  font-family:var(--f-display);font-style:italic;
+  font-size:clamp(1.15rem,2vw,1.55rem);line-height:1.35;max-width:38ch;
+}
+
+/* the 16:9 film across the top of each venue */
+.vfilm{position:relative;overflow:hidden;background:var(--sand);aspect-ratio:16/9;margin-bottom:clamp(1.5rem,3vw,2.25rem)}
+.venue--dark .vfilm{background:#1A1714}
+
+.vgrid{display:grid;grid-template-columns:1fr;gap:clamp(1.75rem,3.5vw,3rem);align-items:start}
+.vgrid>*{min-width:0}
+.vgrid__copy p{max-width:52ch}
+.vgrid__copy p + p{margin-top:.9em}
+.vact{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:1.75rem}
+
+/* ---------- The mosaic --------------------------------------- */
+/* Six frames in three shapes. Equal thumbnails read as a gallery;
+   unequal ones read as a spread, which is the difference between
+   looking at a menu of pictures and looking at a place. */
+.mosaic{display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(.5rem,1vw,.8rem)}
+.mosaic>*{min-width:0;overflow:hidden;background:var(--sand)}
+.venue--dark .mosaic>*{background:#1A1714}
+.mosaic img{width:100%;height:100%;object-fit:cover;display:block}
+.mosaic__a{grid-column:span 6;aspect-ratio:4/3}
+.mosaic__b,.mosaic__c{grid-column:span 3;aspect-ratio:1}
+.mosaic__d,.mosaic__e,.mosaic__f{grid-column:span 2;aspect-ratio:3/2}
+
+/* ---------- The dish and drinks slider ----------------------- */
+/* It advances on its own, which is a thing to do carefully: it stops on
+   hover, on focus, when it scrolls out of view, when the tab is hidden,
+   for six seconds after anyone touches it, and never starts at all under
+   prefers-reduced-motion. The arrows are the real control. */
+.dishes{margin-top:clamp(2.5rem,5vw,4rem);padding-top:clamp(1.75rem,3.5vw,2.5rem);border-top:1px solid var(--rule)}
+.dishes__head{display:flex;align-items:baseline;justify-content:space-between;gap:1.5rem;margin-bottom:1.25rem}
+.dishes__head .h4{margin-bottom:0}
+.slidenav{display:flex;gap:.5rem;flex:none}
+.slidenav button{
+  width:2.4rem;height:2.4rem;display:grid;place-items:center;
+  background:transparent;color:var(--ink);border:1px solid rgba(38,34,30,.28);
+  cursor:pointer;transition:background .3s var(--e-out),color .3s var(--e-out),border-color .3s var(--e-out);
+}
+.slidenav button:hover{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.slidenav button[disabled]{opacity:.35;cursor:default}
+.slidenav button[disabled]:hover{background:transparent;color:var(--ink);border-color:rgba(38,34,30,.28)}
+.slidenav svg{width:14px;height:14px;display:block}
+.dishes__row{
+  display:grid;grid-auto-flow:column;grid-auto-columns:minmax(9.5rem,1fr);
+  gap:clamp(.6rem,1.2vw,1rem);overflow-x:auto;overscroll-behavior-x:contain;
+  scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;
+  padding-bottom:.25rem;
+}
+.dishes__row::-webkit-scrollbar{display:none}
+.dishes__row figure{display:grid;gap:.6rem}
+.dishes__row img{width:100%;aspect-ratio:1;object-fit:cover;background:var(--sand)}
+.dishes__row figcaption{font-size:.78rem;letter-spacing:.03em;color:var(--stone)}
+
+/* the same slider on the near-black band */
+.venue--dark .dishes{border-top-color:rgba(255,255,255,.14)}
+.venue--dark .dishes__row img{background:#1A1714}
+.venue--dark .dishes__row figcaption{color:#B8AFA3}
+.venue--dark .slidenav button{color:#E8E1D7;border-color:rgba(255,255,255,.28)}
+.venue--dark .slidenav button:hover{background:#E8E1D7;color:#1A1714;border-color:#E8E1D7}
+.venue--dark .slidenav button[disabled]:hover{background:transparent;color:#E8E1D7;border-color:rgba(255,255,255,.28)}
+
+/* ---------- What is on --------------------------------------- */
+.sec--whats{padding-block:var(--sec-y)}
+.whats{display:grid;grid-template-columns:1fr;gap:clamp(1.75rem,3.5vw,2.25rem);margin-top:clamp(2rem,4vw,3rem)}
+.whats>*{min-width:0}
+.what{display:grid;gap:1rem;align-content:start}
+.what__img{overflow:hidden;background:var(--sand);aspect-ratio:3/2}
+.what__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--e-out)}
+@media (hover:hover){.what:hover .what__img img{transform:scale(1.03)}}
+/* the day is what a visitor is scanning for, so it leads */
+.what__when{
+  font-size:.72rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--crimson);margin-bottom:.45rem;
+}
+/* The day leads and the room sits under it, because a visitor scanning for
+   a deal reads the day first. On one column they fit on a single line. */
+.what__when span{display:block;color:var(--stone);font-weight:400;margin-top:.15rem}
+.what__price{margin-top:.7rem;font-size:.95rem;font-weight:500;color:var(--ink)}
+.what__body .h4{margin-bottom:.3rem}
+.what__body p{font-size:.94rem;max-width:40ch}
+.what__terms{margin-top:.6rem;font-size:.82rem;color:var(--stone)}
+.whats__note{
+  margin-top:clamp(2rem,4vw,2.75rem);padding-top:1.3rem;border-top:1px solid var(--rule);
+  font-size:.92rem;color:var(--stone);
+}
+
+/* ---------- Reserve ------------------------------------------ */
+.sec--reserve{background:#FFF;padding-block:var(--sec-y)}
+.reserve{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3.5rem);align-items:start}
+.reserve>*{min-width:0}
+.reserve__text .h2{margin-bottom:1rem;max-width:12ch}
+.reserve__text p{max-width:46ch}
+.reserve__alt{margin-top:1.5rem;font-size:.92rem;color:var(--stone)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1.05rem}
+.field-row>*{min-width:0}
+.field select{
+  width:100%;background:transparent;color:inherit;
+  border:0;border-bottom:1px solid var(--rule);
+  padding:.55rem 0;font-size:1rem;border-radius:0;
+  -webkit-appearance:none;appearance:none;padding-right:1.6rem;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%2326221E' stroke-width='1.4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right .15rem center;background-size:.75rem auto;
+}
+.form-card .field select{color:var(--cream);border-bottom-color:rgba(252,250,246,.3);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23FCFAF6' stroke-width='1.4'/%3E%3C/svg%3E")}
+.form-card .field select option{background:var(--espresso);color:var(--cream)}
+.form-card .field input[type="date"],.form-card .field input[type="time"]{color-scheme:dark}
+/* iOS draws an empty date or time field shorter than the others, with the
+   value centred. Only iOS matches this test. */
+@supports (-webkit-touch-callout:none){
+  .field input[type="date"],.field input[type="time"]{-webkit-appearance:none;appearance:none;min-height:2.65rem;text-align:left}
+  .field input::-webkit-date-and-time-value{text-align:left}
+}
+
+/* ---------- The menu reader ---------------------------------- */
+.mnu{
+  position:fixed;inset:0;z-index:200;display:grid;
+  grid-template-rows:auto minmax(0,1fr);
+  grid-template-columns:minmax(0,min(58rem,94vw));
+  justify-content:center;align-content:center;
+  padding-block:clamp(1rem,4vh,2.5rem);
+  background:rgba(10,10,9,.86);
+  -webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+}
+.mnu__bar{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.85rem clamp(.9rem,2vw,1.4rem);
+  background:#1E1E1B;border-bottom:1px solid rgba(255,255,255,.14);
+}
+.mnu__title{font-family:var(--f-display);font-weight:400;font-size:clamp(1.1rem,2vw,1.5rem);color:#FFF}
+.mnu__act{display:flex;align-items:center;gap:.7rem}
+.mnu__open{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#C6BCB0;text-decoration:none}
+.mnu__open:hover{color:#FFF}
+/* the download sits with the title, where a reader looks first */
+.mnu__dl{
+  display:inline-flex;align-items:center;gap:.45rem;flex:none;
+  padding:.5rem .95rem;border:1px solid rgba(255,255,255,.45);
+  color:#FFF;text-decoration:none;
+  font-size:.7rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;
+  transition:background-color .3s var(--e-out),border-color .3s var(--e-out),color .3s var(--e-out);
+}
+.mnu__dl:hover{background:#FFF;color:#1A1A16;border-color:#FFF}
+.mnu__dl svg{width:14px;height:14px;display:block}
+.mnu__close{
+  width:2.6rem;height:2.6rem;display:grid;place-items:center;flex:none;
+  background:none;border:1px solid rgba(255,255,255,.28);color:#FFF;cursor:pointer;
+  transition:background-color .35s var(--e-out),border-color .35s var(--e-out);
+}
+.mnu__close:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.5)}
+.mnu__body{position:relative;overflow:hidden;background:#141412}
+.mnu__body iframe{width:100%;height:100%;border:0;background:#FFF;display:block}
+.mnu__miss{max-width:34rem;margin:clamp(2.5rem,8vh,4.5rem) auto;padding-inline:1.5rem;text-align:center;color:#E9E2D8}
+.mnu__miss .h3{color:#FFF;margin-bottom:.75rem}
+.mnu__miss p{color:#C8C0B5;margin-bottom:1.6rem}
+html.mnu-open,body.mnu-open{overflow:hidden}
+
+/* =============================================================
+   Breakpoints, Eat & Drink
+   ============================================================= */
+@media (min-width:560px){
+  .whats{grid-template-columns:1fr 1fr}
+}
+
+@media (min-width:760px){
+  /* the lead frame takes two rows so the two squares stack beside it and
+     the three wide frames fill one row underneath: no orphan tile */
+  .mosaic__a{grid-column:span 4;grid-row:span 2;aspect-ratio:auto}
+  .mosaic__b,.mosaic__c{grid-column:span 2}
+  .reserve{grid-template-columns:minmax(0,.85fr) minmax(0,1fr)}
+}
+
+@media (min-width:900px){
+  /* Four across, and every card on the same five rails: picture, day,
+     name, description, price. Two levels of subgrid, because the body is a
+     wrapper. Without it the price lines sit at four different heights and
+     the row reads as four unrelated cards rather than one set of offers.
+     Row spacing becomes margins, since the shared rails carry no gap. */
+  .whats{grid-template-columns:repeat(4,1fr)}
+  /* without subgrid the cards simply sit side by side, picture first */
+  @supports (grid-template-rows:subgrid){
+    .whats{grid-template-rows:auto auto auto 1fr auto;row-gap:0}
+    .what{grid-row:1/-1;display:grid;grid-template-rows:subgrid;gap:0}
+    .what__body{grid-row:2/-1;display:grid;grid-template-rows:subgrid;gap:0}
+  }
+  .what__img{margin-bottom:1rem}
+  .what__price{align-self:end}
+  .day{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);align-items:start}
+  .day .h2{grid-column:1;grid-row:1}
+  .day__cols{grid-column:2;grid-row:1}
+  .clock{grid-column:1/-1}
+
+  .vgrid{grid-template-columns:minmax(0,.8fr) minmax(0,1fr);gap:clamp(2.5rem,5vw,4rem)}
+  .vgrid--flip .vgrid__copy{order:2}
+  .vgrid--flip .mosaic{order:1}
+}
+
+@media (min-width:1180px){
+  /* Five across only once each column is wide enough to hold its line
+     in two rows. Below this the clock is a list with the hour in its
+     own column, which aligns by construction. */
+  .clock{grid-template-columns:repeat(5,1fr)}
+  .clock li{grid-template-columns:1fr;gap:.35rem}
+}
+
+@media (max-width:759px){
+  .vact .btn{width:100%}
+  .field-row{grid-template-columns:1fr}
+  /* the chip lists repeat what the paragraph above already says, and on a
+     phone that is two more rows to scroll past */
+  .page--wellness .tags,.page--eat .tags{display:none}
+}
+
+@media (max-width:559px){
+  .what__when span{display:inline;margin-top:0}
+  .what__when span::before{content:"\2013";margin-right:.3em}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .what:hover .what__img img{transform:none}
+}
+
+/* =============================================================
+   Wellness
+   The page walks through one treatment, in order, because that is
+   the thing people are actually unsure about. A treatment really
+   is a sequence, which is the one place on this site where an
+   ordered list is the honest shape for the content.
+
+   The ground here is the warm canvas rather than white: Stay is
+   white, Eat & Drink is white and near-black, and this one is the
+   calm one. Three pages, three grounds.
+   ============================================================= */
+
+.page--wellness .sec--ritual{padding-block:var(--sec-y)}
+
+/* The step names lead. No 01 / 02 / 03 markers: the name is the
+   information and the order is already carried by the <ol>. */
+.ritual{
+  display:grid;grid-template-columns:1fr;
+  gap:clamp(2rem,4vw,2.75rem);margin-top:clamp(2rem,4vw,3rem);
+  counter-reset:none;
+}
+.ritual>*{min-width:0}
+.step{display:grid;gap:.9rem;align-content:start}
+.step__img{overflow:hidden;background:var(--sand);aspect-ratio:1}
+.step__img img{width:100%;height:100%;object-fit:cover}
+.step__t{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.2;
+  padding-top:.55rem;border-top:1px solid var(--rule);
+}
+.step p{font-size:.94rem;color:var(--ink-soft);max-width:38ch}
+
+/* ---------- The rooms and the oils --------------------------- */
+.page--wellness .sec--spa{background:#FFF;padding-block:var(--sec-y)}
+/* one line, not two: the sentence is the whole claim */
+.page--wellness .vhead__lede{max-width:none}
+
+/* ---------- Afterwards --------------------------------------- */
+.sec--after{padding-block:var(--sec-y)}
+.afters{display:grid;grid-template-columns:1fr;gap:clamp(1.75rem,3.5vw,2.5rem);margin-top:clamp(2rem,4vw,3rem)}
+.afters>*{min-width:0}
+.after{display:grid;gap:1.1rem;align-content:start}
+.after__img{overflow:hidden;background:var(--sand);aspect-ratio:3/2}
+.after__img img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--e-out)}
+@media (hover:hover){.after:hover .after__img img{transform:scale(1.03)}}
+.after__body .h4{margin-bottom:.5rem}
+.after__body p{font-size:.95rem;max-width:44ch}
+
+/* ---------- Good to know ------------------------------------- */
+.page--wellness .sec--faq,.page--eat .sec--faq{background:#FFF}
+
+@media (min-width:560px){
+  .ritual{grid-template-columns:1fr 1fr}
+  .afters{grid-template-columns:1fr 1fr}
+}
+
+@media (min-width:760px){
+  .ritual{grid-template-columns:repeat(4,1fr);gap:clamp(1.25rem,2.5vw,2rem)}
+}
+
+@media (min-width:1000px){
+  /* Four across, on shared rails so the picture, the name and the
+     paragraph line up whatever their lengths. Same device as the offers
+     on the Eat & Drink page, for the same reason. */
+  .afters{grid-template-columns:repeat(4,1fr)}
+  @supports (grid-template-rows:subgrid){
+    .afters{grid-template-rows:auto auto 1fr;row-gap:0}
+    .after{grid-row:1/-1;display:grid;grid-template-rows:subgrid;gap:0}
+    .after__body{grid-row:2/-1;display:grid;grid-template-rows:subgrid;gap:0}
+  }
+  .after__img{margin-bottom:1.1rem}
+}
+
+/* ---------- The request, run wide ---------------------------- */
+/* Beside the text this form was a tall narrow stack with half the band
+   left empty. Across the full width it is three short rows, and the dark
+   panel reads as a band rather than a card floating in white. */
+.reserve--wide{grid-template-columns:1fr;gap:clamp(1.6rem,3vw,2.4rem)}
+.reserve--wide .reserve__text .h2{max-width:none;margin-bottom:.8rem}
+.reserve--wide .reserve__text p{max-width:58ch}
+.eform--wide{gap:1.15rem}
+.f-send .btn{width:100%}
+
+@media (min-width:560px){
+  .eform--wide{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem 1.5rem}
+  .eform--wide .f-msg,.eform--wide .f-send,.eform--wide .form-card__legal{grid-column:1/-1}
+}
+@media (min-width:900px){
+  .eform--wide{grid-template-columns:repeat(4,minmax(0,1fr));gap:1.35rem 1.75rem}
+  .eform--wide .f-msg{grid-column:span 3}
+  .eform--wide .f-send{grid-column:span 1;align-self:end}
+  .eform--wide .form-card__legal{grid-column:1/-1;margin-top:.3rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .after:hover .after__img img{transform:none}
+}
+
+
+/* On a phone the bar was wrapping to three rows. The title truncates, the
+   download stays, and "open full size" goes: on a phone the browser's own
+   PDF view is what a download opens anyway, so it was the same tap twice. */
+@media (max-width:559px){
+  .mnu{padding-block:.75rem;grid-template-columns:minmax(0,96vw)}
+  .mnu__bar{padding:.7rem .85rem;gap:.6rem}
+  .mnu__title{font-size:1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+  .mnu__open{display:none}
+  .mnu__dl{padding:.45rem .7rem;font-size:.64rem;letter-spacing:.08em}
+  .mnu__close{width:2.2rem;height:2.2rem}
+}
+
+/* =============================================================
+   The Rooms page: two components added when the fact sheet
+   arrived. Both are plain structure, so they survive a rollback
+   to version one; the version-two shapes live in v2.css.
+   ============================================================= */
+
+/* ---------- The amenity grid --------------------------------- */
+/* Fifteen cells with one hairline between them, rather than fifteen
+   floating cards. Five across on a desktop and three on a tablet,
+   both of which divide fifteen exactly, so no cell is ever orphaned.
+
+   Each cell is its own two-row grid: the icon on the first row, the
+   words on the second. That is what makes the set look evenly spaced
+   when the labels run from one word to five. Left-aligning them put
+   "Minibar" adrift in a wide cell and let a wrapped label push its
+   icon out of line with its neighbours. */
+.amen{
+  display:grid;grid-template-columns:1fr;
+  margin-top:clamp(2rem,4vh,3rem);
+  border-top:1px solid var(--rule);border-left:1px solid var(--rule);
+}
+.amen__i{
+  display:grid;grid-template-rows:auto 1fr;
+  justify-items:center;align-content:start;
+  gap:.9rem;padding:1.75rem 1rem 1.6rem;text-align:center;
+  border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);
+}
+.amen__ico{width:2rem;height:2rem;color:var(--brass-ink)}
+.amen__ico svg{width:100%;height:100%;display:block}
+.amen__t{font-size:.95rem;line-height:1.4;color:var(--ink);max-width:15ch;text-wrap:balance}
+
+@media (min-width:700px){ .amen{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (min-width:1100px){ .amen{grid-template-columns:repeat(5,minmax(0,1fr))} }
+
+/* ---------- The film in a room's lead frame ------------------ */
+.rfilm{position:relative}
+
+/* ---------- A note that runs the whole band ------------------ */
+.wide-note{
+  margin-top:clamp(1.5rem,3vw,2.25rem);
+  font-size:.92rem;line-height:1.6;color:var(--stone);max-width:none;
+}
+.wide-note--rule{padding-top:1.4rem;border-top:1px solid var(--rule)}
+
+/* ---------- Which room is yours ------------------------------ */
+/* Six radios in one group, six panels, and CSS to show the panel
+   whose radio is checked. No script: it works with JavaScript off,
+   arrow keys move between the choices because that is what radios
+   do, and there is nothing to break. The inputs are taken off the
+   screen rather than set to display:none, which would take them out
+   of the tab order along with everything else. */
+.pick{margin-top:clamp(1.75rem,3.5vh,2.75rem)}
+.pick__in{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+.pick__opts{display:grid;grid-template-columns:1fr;gap:.6rem}
+.pick__opt{
+  display:block;cursor:pointer;
+  padding:.85rem 1.1rem;
+  border:1px solid var(--rule);background:transparent;
+  font-size:.97rem;line-height:1.3;color:var(--ink-soft);
+  transition:border-color .3s var(--e-out),background .3s var(--e-out),color .3s var(--e-out);
+}
+.pick__opt:hover{border-color:var(--ink);color:var(--ink)}
+/* the panels: one shown, the rest kept out of the page entirely */
+.pick__panels{margin-top:clamp(1.5rem,3vw,2.25rem)}
+.pick__p{display:none}
+.pick__k{
+  margin:0 0 .35rem;font-size:.82rem;letter-spacing:.06em;color:var(--stone);
+}
+.pick__n{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.5rem,3vw,2.15rem);line-height:1.15;margin:0 0 .8rem;color:var(--ink);
+}
+/* body copy, not a footnote: the band is sand, so it needs the
+   darker grey to clear the minimum comfortably rather than scrape it */
+.pick__p p{max-width:60ch;color:var(--ink-soft)}
+.pick__act{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.5rem;margin-top:1.4rem}
+
+/* one selector per choice: the checked radio, then its panel by position */
+.pick__in:nth-of-type(1):checked ~ .pick__opts .pick__opt:nth-child(1),
+.pick__in:nth-of-type(2):checked ~ .pick__opts .pick__opt:nth-child(2),
+.pick__in:nth-of-type(3):checked ~ .pick__opts .pick__opt:nth-child(3),
+.pick__in:nth-of-type(4):checked ~ .pick__opts .pick__opt:nth-child(4),
+.pick__in:nth-of-type(5):checked ~ .pick__opts .pick__opt:nth-child(5),
+.pick__in:nth-of-type(6):checked ~ .pick__opts .pick__opt:nth-child(6){
+  background:var(--ink);border-color:var(--ink);color:var(--cream);
+}
+.pick__in:nth-of-type(1):checked ~ .pick__panels .pick__p:nth-child(1),
+.pick__in:nth-of-type(2):checked ~ .pick__panels .pick__p:nth-child(2),
+.pick__in:nth-of-type(3):checked ~ .pick__panels .pick__p:nth-child(3),
+.pick__in:nth-of-type(4):checked ~ .pick__panels .pick__p:nth-child(4),
+.pick__in:nth-of-type(5):checked ~ .pick__panels .pick__p:nth-child(5),
+.pick__in:nth-of-type(6):checked ~ .pick__panels .pick__p:nth-child(6){
+  display:block;
+}
+/* a visible ring when the choice is reached by keyboard */
+.pick__in:focus-visible:nth-of-type(1) ~ .pick__opts .pick__opt:nth-child(1),
+.pick__in:focus-visible:nth-of-type(2) ~ .pick__opts .pick__opt:nth-child(2),
+.pick__in:focus-visible:nth-of-type(3) ~ .pick__opts .pick__opt:nth-child(3),
+.pick__in:focus-visible:nth-of-type(4) ~ .pick__opts .pick__opt:nth-child(4),
+.pick__in:focus-visible:nth-of-type(5) ~ .pick__opts .pick__opt:nth-child(5),
+.pick__in:focus-visible:nth-of-type(6) ~ .pick__opts .pick__opt:nth-child(6){
+  outline:2px solid var(--crimson);outline-offset:3px;
+}
+
+/* with the stylesheet off, or a browser that cannot do any of this,
+   every panel is simply visible, which is the correct fallback */
+@media (min-width:820px){
+  .pick{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(2rem,4vw,3.5rem);align-items:start}
+  .pick__opts{grid-column:1}
+  .pick__panels{grid-column:2;margin-top:0}
+}
+
+/* =============================================================
+   THE JOURNAL  ·  /blog/ and /blog/<slug>/
+   The listing, the entry, and the panel an entry opens in.
+   ============================================================= */
+
+/* ---------- Find something ----------------------------------- */
+/* The form is `hidden` in the markup and revealed by blog.js, so a
+   visitor with no JavaScript is never shown controls that cannot do
+   anything. The entries below are all in the page either way. */
+.sec--find{padding-block:clamp(2rem,4vw,3rem) 0}
+.find__row{display:grid;grid-template-columns:1fr;gap:1rem}
+.find__state{
+  display:flex;align-items:baseline;gap:1rem;
+  min-height:1.5rem;margin-top:.9rem;
+  font-size:.9rem;color:var(--stone);
+}
+
+@media (min-width:760px){
+  .find__row{grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:1.25rem}
+}
+
+/* ---------- The entries -------------------------------------- */
+.sec--posts{padding-block:clamp(1.75rem,3.5vw,2.5rem) var(--sec-y)}
+.posts{display:grid;grid-template-columns:1fr;gap:clamp(1.75rem,3.5vw,2.75rem)}
+.posts>*{min-width:0}
+
+.pcard{background:#FFF;border:1px solid var(--rule)}
+.pcard__link{
+  display:grid;grid-template-rows:auto auto auto 1fr auto;
+  height:100%;color:inherit;text-decoration:none;
+}
+.pcard__img{overflow:hidden;background:var(--sand);aspect-ratio:16/9}
+.pcard__img img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.1s var(--e-out);
+}
+@media (hover:hover){.pcard__link:hover .pcard__img img{transform:scale(1.04)}}
+.pcard__meta{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem .9rem;
+  margin:1.15rem 1.25rem .5rem;font-size:.84rem;color:var(--stone);
+}
+.pcard__topic{color:var(--crimson)}
+.pcard__h{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.2rem,1.6vw,1.42rem);line-height:1.25;
+  margin:0 1.25rem .6rem;color:var(--ink);
+}
+.pcard__link:hover .pcard__h{color:var(--crimson)}
+.pcard__sum{margin:0 1.25rem 1.1rem;font-size:.95rem;line-height:1.6;color:var(--ink-soft)}
+.pcard__more{
+  display:block;margin:0 1.25rem 1.25rem;padding-top:.9rem;
+  border-top:1px solid var(--rule);
+  font-size:.82rem;letter-spacing:.08em;color:var(--ink);
+}
+.pcard__more span::before{content:"\2192";margin-left:.5em}
+
+.posts__none{margin-top:1rem;color:var(--ink-soft)}
+.posts__more{margin-top:clamp(2rem,4vw,3rem);text-align:center}
+
+@media (min-width:700px){ .posts{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1100px){ .posts{grid-template-columns:repeat(3,minmax(0,1fr))} }
+
+/* ---------- One post ----------------------------------------- */
+/* The title block sits in a hero over the picture, the same shape the
+   rest of the site opens with. Two problems went with it: the fixed
+   navigation had nothing dark to be readable against, and a post used
+   to begin halfway down a white page with nothing holding it. */
+/* The measure is the text, not the box. .wrap adds a gutter each side,
+   so the cap has to carry it or the words end up a hundred pixels
+   narrower than intended, which is what made a post feel cramped. */
+.post__col{max-width:calc(44rem + var(--gut) * 2)}
+/* The full page has room the panel does not, so it takes more of it.
+   The panel keeps the value above: widening a column inside a 56rem
+   box would only push it against the edges. */
+.page--post .post__col{max-width:calc(54rem + var(--gut) * 2)}
+.post__meta{
+  display:flex;flex-wrap:wrap;align-items:baseline;gap:.5rem 1.4rem;
+  margin:1.6rem 0 0;font-size:.9rem;color:rgba(255,255,255,.82);
+}
+.post__meta time,.post__meta span{color:rgba(255,255,255,.82)}
+.post__topic{color:#FFF;text-decoration:underline;text-underline-offset:.22em}
+.post__topic:hover{color:#FFF;text-decoration-thickness:2px}
+
+.post__body{padding-block:clamp(2.25rem,4.5vw,3.5rem)}
+.post__body p{margin:0 0 1.15em;color:var(--ink-soft)}
+.post__body h2{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.4rem,2.4vw,1.85rem);line-height:1.2;
+  margin:2.2em 0 .7em;color:var(--ink);
+}
+.post__body h2:first-child{margin-top:0}
+.post__body strong{font-weight:500;color:var(--ink)}
+.post__body a{color:var(--crimson);text-decoration:underline;text-underline-offset:.18em}
+.post__body a:hover{color:var(--crimson-d)}
+/* a picture inside an entry breaks out of the measure a little */
+/* A picture breaks out past the measure, but only where there is
+   room for it to: below 1000px it stays inside the column. */
+.post__body figure{margin:2.4em 0;width:auto}
+@media (min-width:1000px){
+  .post__body figure{margin-inline:-3.5rem}
+  .page--post .post__body figure{margin-inline:-3rem}
+}
+.post__body figure img{width:100%;height:auto;display:block;background:var(--sand)}
+.post__body figcaption{
+  margin-top:.7rem;font-size:.86rem;line-height:1.5;color:var(--stone);
+}
+
+.post__foot{padding-bottom:clamp(3rem,6vw,5rem)}
+.post__back{margin:clamp(2rem,4vw,3rem) 0 0;text-align:center}
+
+/* what to read next: two cards rather than two lines of small print,
+   because this is the last thing on the page that can keep somebody
+   reading, and it was the smallest */
+.post__pn{display:grid;grid-template-columns:1fr;gap:clamp(.9rem,2vw,1.25rem)}
+.post__pn a{
+  display:grid;gap:.5rem;align-content:start;
+  padding:clamp(1.25rem,2.5vw,1.75rem);
+  background:#FFF;border:1px solid var(--rule);
+  color:inherit;text-decoration:none;
+  transition:border-color .35s var(--e-out),transform .35s var(--e-out);
+}
+.post__pn a:hover{border-color:var(--ink);transform:translateY(-2px)}
+.post__pn span{
+  display:flex;align-items:center;gap:.5rem;
+  font-size:.8rem;letter-spacing:.09em;color:var(--crimson);
+}
+.post__pn__l span::before{content:"\2190"}
+.post__pn__r span::after{content:"\2192"}
+.post__pn b{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.1rem,1.5vw,1.28rem);line-height:1.28;color:var(--ink);
+}
+.post__pn__r{text-align:right}
+.post__pn__r span{justify-content:flex-end}
+
+@media (min-width:760px){
+  .post__pn{grid-template-columns:1fr 1fr}
+  .post__pn__l:only-child{grid-column:1}
+  .post__pn__r:only-child{grid-column:2}
+}
+
+/* ---------- The panel an entry opens in ---------------------- */
+/* It is a panel rather than a full screen for the same reason the
+   menu reader is: a column of text stretched across 1920px is not
+   something anyone wants to read. */
+.reader{
+  position:fixed;inset:0;z-index:200;
+  display:grid;grid-template-rows:auto minmax(0,1fr);
+  grid-template-columns:minmax(0,min(56rem,94vw));
+  justify-content:center;align-content:center;
+  padding-block:clamp(1rem,4vh,2.5rem);
+  background:rgba(10,10,9,.86);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);
+}
+.reader__bar{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.7rem .9rem .7rem 1.15rem;
+  background:#1E1E1B;border-bottom:1px solid rgba(255,255,255,.14);
+}
+.reader__label{
+  margin:0;min-width:0;color:#FFF;font-size:.94rem;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.reader__act{display:flex;align-items:center;gap:.9rem;flex:none}
+.reader__open{color:#D9D9D0;font-size:.86rem}
+.reader__open:hover{color:#FFF}
+.reader__close{
+  width:2rem;height:2rem;display:grid;place-items:center;flex:none;
+  background:transparent;border:0;color:#FFF;font-size:1rem;cursor:pointer;
+}
+.reader__body{
+  overflow-y:auto;-webkit-overflow-scrolling:touch;
+  background:var(--linen);
+}
+.reader__body:focus-visible{outline:2px solid var(--crimson);outline-offset:-3px}
+/* Inside the panel the header is shorter still. The panel already has
+   a bar with the title in it, and the fixed navigation is behind the
+   backdrop rather than over the picture, so the header here is doing
+   only one job instead of three. */
+/* The listing sets .page--journal .phero{min-height:100vh;min-height:100svh}, and the
+   post injected into this panel is inside that page, so it inherited a
+   full screen of header. These have to out-rank it, hence the extra
+   .page--journal on the front rather than a bare .reader__body. */
+.page--journal .reader__body .phero--post{min-height:min(46vh,26rem);min-height:min(46svh,26rem)}
+.page--journal .reader__body .phero--post .phero__in{padding-block:clamp(2rem,5vh,3rem) clamp(1.75rem,4vh,2.5rem)}
+.page--journal .reader__body .crumb{display:none}
+.page--journal .reader__body .post__body{padding-block:clamp(1.75rem,3.5vw,2.75rem)}
+.page--journal .reader__body .post__pn{grid-template-columns:minmax(0,1fr)}
+/* on the wide page a lone "Older" card sits in the right-hand column;
+   in a one-column panel that would make an empty track beside it */
+.page--journal .reader__body .post__pn__l:only-child,
+.page--journal .reader__body .post__pn__r:only-child{grid-column:auto}
+.page--journal .reader__body .post__pn__r{text-align:left}
+.page--journal .reader__body .post__pn__r span{justify-content:flex-start}
+.reader.is-waiting .reader__body::after{
+  content:"";display:block;height:40vh;
+}
+
+@media (max-width:559px){
+  .reader__open{display:none}
+}
+
+/* =============================================================
+   THE EVENTS PAGE  ·  /events/
+   ============================================================= */
+
+/* ---------- The argument ------------------------------------- */
+.why{display:grid;gap:clamp(1.5rem,3vw,2.5rem)}
+.why .h2{max-width:14ch}
+/* the events heading is a sentence, not a label, so it runs to the
+   width of the band and stays on one line where there is room */
+.page--events .why .h2{max-width:none}
+.why__cols{display:grid;gap:1.1rem}
+.why__facts{
+  display:grid;grid-template-columns:1fr;gap:.9rem 2rem;
+  margin-top:.5rem;font-size:.95rem;color:var(--ink-soft);
+}
+.why__facts li{border-top:1px solid var(--rule);padding-top:.8rem}
+.why__n{
+  display:block;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.9rem,3vw,2.6rem);line-height:1;color:var(--ink);
+  margin-bottom:.25rem;font-variant-numeric:lining-nums;
+}
+
+/* ---------- One courtyard, three Saturdays ------------------- */
+/* The page's one loud moment. Three portraits of the same forty feet
+   of garden, dressed three ways with nothing in common. No hover
+   effect and no caption floating over a picture: the argument is the
+   three being side by side, and anything else is noise. */
+.three{
+  display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3rem);
+  list-style:none;margin:clamp(1.75rem,3.5vh,2.75rem) 0 0;padding:0;
+}
+.three__i>*{min-width:0}
+.three__f{overflow:hidden;background:var(--sand);aspect-ratio:4/5;margin:0 0 1.1rem}
+.three__f img{width:100%;height:100%;object-fit:cover;display:block}
+.three__h{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.3rem,2vw,1.6rem);line-height:1.2;
+  margin:0 0 .5rem;color:var(--ink);
+}
+.three__i p{margin:0;color:var(--ink-soft);font-size:.97rem;line-height:1.6}
+.three__note{
+  margin-top:clamp(2rem,4vw,3rem);padding-top:1.4rem;
+  border-top:1px solid var(--rule);
+  font-size:.95rem;line-height:1.65;color:var(--ink-soft);
+}
+
+@media (min-width:760px){ .three{grid-template-columns:repeat(3,minmax(0,1fr))} }
+
+/* ---------- The six spaces ----------------------------------- */
+.spaces{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3rem);margin-top:clamp(1.75rem,3.5vh,2.75rem)}
+.spaces>*{min-width:0}
+.space{display:grid;gap:clamp(1rem,2vw,1.5rem);align-content:start}
+.space__img{overflow:hidden;background:var(--sand);aspect-ratio:3/2}
+.space__img img{width:100%;height:100%;object-fit:cover;display:block}
+.space__body>*+*{margin-top:.75rem}
+.space__body p{color:var(--ink-soft)}
+.space__lede{
+  font-family:var(--f-display);font-style:italic;
+  font-size:clamp(1.1rem,1.6vw,1.32rem);line-height:1.35;color:var(--ink-soft);
+}
+.caps{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.8rem 1.5rem;
+  margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--rule);
+  font-size:.88rem;color:var(--stone);
+}
+.caps b{
+  display:block;font-family:var(--f-display);font-weight:400;
+  font-size:1.35rem;line-height:1.1;color:var(--ink);margin-bottom:.1rem;
+  font-variant-numeric:lining-nums tabular-nums;
+}
+.caps--inline{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+@media (min-width:900px){
+  .spaces{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .space--lead{grid-column:1/-1;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(2rem,4vw,3.5rem)}
+  .space--lead .caps{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (min-width:1200px){
+  .spaces{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .space--lead{grid-column:1/-1}
+}
+
+/* ---------- The reel wall ------------------------------------ */
+/* Six vertical films, which is the shape they were shot in. Each tile
+   is a poster and a button until it is pressed; the film is created
+   and fetched then, and taken away again when it stops. That is what
+   lets the page carry six of them and still load in a moment. */
+.reels{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(.6rem,1.5vw,1rem);
+  list-style:none;margin:clamp(1.75rem,3.5vh,2.75rem) 0 0;padding:0;
+}
+.reel9{position:relative;overflow:hidden;background:#141412;aspect-ratio:9/16}
+.reel9__go{
+  position:absolute;inset:0;width:100%;height:100%;padding:0;
+  border:0;background:transparent;cursor:pointer;display:block;
+}
+.reel9__go img{width:100%;height:100%;object-fit:cover;display:block}
+/* the play mark, drawn rather than fetched */
+.reel9__go::after{
+  content:"";position:absolute;top:50%;left:50%;
+  width:0;height:0;
+  border-left:1.15rem solid #FFF;
+  border-top:.72rem solid transparent;
+  border-bottom:.72rem solid transparent;
+  transform:translate(-38%,-50%);
+  filter:drop-shadow(0 2px 10px rgba(0,0,0,.55));
+  transition:transform .3s var(--e-out);
+}
+.reel9__go:hover::after{transform:translate(-38%,-50%) scale(1.12)}
+.reel9__go:focus-visible{outline:2px solid #FFF;outline-offset:-4px}
+.reel9__t{
+  position:absolute;left:0;right:0;bottom:0;
+  padding:2.5rem .8rem .8rem;
+  background:linear-gradient(to top,rgba(6,6,5,.9) 0%,rgba(6,6,5,.62) 45%,rgba(6,6,5,0) 100%);
+  color:#FFF;font-size:.86rem;line-height:1.35;text-align:left;
+}
+.reel9__v{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#141412;z-index:2}
+.reel9.is-on .reel9__go{opacity:0;pointer-events:none}
+
+@media (min-width:700px){ .reels{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (min-width:1100px){ .reels{grid-template-columns:repeat(6,minmax(0,1fr))} }
+
+/* ---------- What we will change ------------------------------ */
+.change{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3.5rem);align-items:start}
+.change>*{min-width:0}
+.change__text>*+*{margin-top:1.1rem}
+.change__text p{color:var(--ink-soft)}
+.change__last{
+  padding-top:1.2rem;border-top:1px solid var(--rule);
+  font-family:var(--f-display);font-style:italic;
+  font-size:clamp(1.1rem,1.6vw,1.3rem);line-height:1.45;color:var(--ink);
+}
+.change__img{overflow:hidden;background:var(--sand);aspect-ratio:3/2}
+.change__img img{width:100%;height:100%;object-fit:cover;display:block}
+
+@media (min-width:900px){
+  .change{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)}
+  /* the whole picture block travels, not the big picture on its own:
+     sticky on the big one alone slid it down over the pair */
+  .change__pics{position:sticky;top:6.5rem}
+}
+
+/* ---------- Private or corporate ----------------------------- */
+/* The enquiry card is dark, and its labels already have a colour for
+   that. These two were written for a light ground and measured 2.85:1
+   on it, so they take the card colour rather than a new one. */
+.field__legend{display:block;font-size:.8rem;letter-spacing:.05em;color:var(--stone);margin-bottom:.45rem}
+.form-card .field__legend,
+.form-card .hint{color:#A6A69C}
+.kind{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.kind__o{position:relative;display:block;margin:0}
+.kind__o input{position:absolute;opacity:0;width:0;height:0}
+.kind__o span{
+  display:block;text-align:center;cursor:pointer;
+  padding:.7rem .6rem;border:1px solid var(--rule);
+  font-size:.94rem;color:var(--ink-soft);
+  transition:border-color .3s var(--e-out),background .3s var(--e-out),color .3s var(--e-out);
+}
+.kind__o input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.kind__o input:focus-visible + span{outline:2px solid var(--crimson);outline-offset:3px}
+.hint{margin:.35rem 0 0;font-size:.84rem;color:var(--stone)}
+
+/* ---------- The three occasions, made clickable -------------- */
+/* Each of the three now goes to the space it was photographed in,
+   so the hover has to say so. Same move as the blog cards: the
+   picture creeps forward, the heading takes the red. */
+.three__a{display:block;color:inherit;text-decoration:none}
+.three__a .three__f img{transition:transform 1.1s var(--e-out)}
+.three__a:hover .three__f img,
+.three__a:focus-visible .three__f img{transform:scale(1.04)}
+.three__a:hover .three__h,
+.three__a:focus-visible .three__h{color:var(--crimson)}
+.three__a:focus-visible{outline:2px solid var(--crimson);outline-offset:6px}
+.three__p{margin:0;color:var(--ink-soft);font-size:.97rem;line-height:1.6}
+
+/* ---------- How many of you ---------------------------------- */
+/* This was four buttons and a paragraph that appeared when one was
+   pressed, which left most of a screen empty while somebody worked
+   out which button to press. All four answers are on screen now,
+   each with the room it is talking about, so it can be read rather
+   than operated. No script and nothing to click. */
+/* The gap here is columns only. Row gap has to stay at nothing,
+   because the cards are laid on a subgrid and a row gap would open
+   between the picture, the number, the label and the paragraph of
+   every card, not just between the cards. */
+.sizes{
+  display:grid;grid-template-columns:1fr;
+  column-gap:clamp(1.5rem,2.5vw,2.5rem);row-gap:clamp(2.25rem,4vw,3rem);
+  list-style:none;margin:0;padding:0;
+}
+.size{display:grid;align-content:start;min-width:0}
+.size__f{overflow:hidden;background:var(--sand);aspect-ratio:3/2;margin:0 0 1rem}
+.size__f img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.1s var(--e-out);
+}
+@media (hover:hover){.size:hover .size__f img,
+.size:focus-within .size__f img{transform:scale(1.05)}}
+.size__n{
+  margin:0 0 .3rem;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.55rem,2.4vw,2rem);line-height:1;color:var(--ink);
+  font-variant-numeric:lining-nums;
+}
+.size__h{
+  margin:0 0 .45rem;font-family:var(--f-body);font-weight:500;
+  font-size:.88rem;letter-spacing:.05em;line-height:1.4;color:#5C5C55;
+}
+.size__p{margin:0;color:var(--ink-soft);font-size:.95rem;line-height:1.65}
+
+@media (min-width:700px){ .sizes{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1100px){ .sizes{grid-template-columns:repeat(4,minmax(0,1fr))} }
+
+/* ---------- More photographs of a space ---------------------- */
+.space__act{margin-top:1.1rem}
+.space__more{font-size:.82rem;letter-spacing:.06em;color:var(--stone)}
+.space__more:hover{color:var(--crimson)}
+.space__more:focus-visible{outline:2px solid var(--crimson);outline-offset:4px}
+
+/* ---------- What we will change, in pictures ----------------- */
+/* One large picture and two smaller ones under it, at the same
+   height as each other so the block ends on a straight line. */
+.change__pics{display:grid;gap:clamp(.6rem,1.4vw,1rem)}
+.change__pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.6rem,1.4vw,1rem)}
+.change__small{overflow:hidden;background:var(--sand);aspect-ratio:3/2;margin:0}
+.change__small img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ---------- The two documents -------------------------------- */
+/* Two cards rather than two paragraphs: a rule down the left, the
+   kind of document over its name, and one paragraph each of the same
+   length so the pair reads as a pair. Both open in the reader panel
+   the restaurant and spa menus use, so nobody is handed a download
+   they did not ask for. */
+.docs{
+  display:grid;grid-template-columns:1fr;gap:clamp(1.75rem,3vw,2.5rem);
+  margin-top:clamp(2rem,4vw,3rem);padding-top:clamp(1.75rem,3.5vw,2.5rem);
+  border-top:1px solid var(--rule);
+}
+.doc{
+  display:flex;flex-direction:column;min-width:0;
+  padding-left:clamp(1.1rem,2vw,1.6rem);
+  border-left:2px solid var(--crimson);
+}
+.doc__kind{
+  margin:0 0 .5rem;font-size:.7rem;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:#5C5C55;
+}
+.doc__h{
+  margin:0 0 .6rem;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.35rem,2.1vw,1.7rem);line-height:1.2;color:var(--ink);
+}
+.doc__p{margin:0 0 1.4rem;font-size:.97rem;line-height:1.7;color:var(--ink-soft)}
+.doc .btn{align-self:start;margin-top:auto}
+.docs__note{margin:0;font-size:.95rem;line-height:1.65;color:var(--ink-soft)}
+
+@media (min-width:820px){
+  .docs{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:clamp(2rem,4vw,3.5rem)}
+  .docs__note{grid-column:1/-1;padding-top:1.4rem;border-top:1px solid var(--rule)}
+}
+
+/* ---------- The film player ---------------------------------- */
+/* One film at a time over the page, with the next and the previous
+   one a press away. The film is built when it is opened and thrown
+   away when it is closed, so nothing keeps downloading behind a
+   panel nobody is looking at. */
+.rplay{
+  position:fixed;inset:0;z-index:120;
+  display:grid;grid-template-rows:auto minmax(0,1fr) auto;
+  background:rgba(12,12,10,.94);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+}
+.rplay[hidden]{display:none}
+.rplay__bar{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:1rem clamp(1rem,4vw,2rem);
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.rplay__t{
+  margin:0;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.2;color:#FFF;
+}
+.rplay__x{
+  flex:none;width:2.5rem;height:2.5rem;border-radius:50%;cursor:pointer;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.3);
+  color:#FFF;font-size:1rem;line-height:1;
+  transition:background-color .3s var(--e-out),border-color .3s var(--e-out);
+}
+.rplay__x:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.55)}
+/* the arrows sit either side of the film rather than under it, so it
+   is obvious from the first frame that there are five more behind it.
+   The middle column is auto, so it takes exactly the width the film
+   works out to at the height of the row, and the arrows land beside
+   the picture rather than out at the edges of the screen. */
+.rplay__mid{
+  display:grid;grid-template-columns:auto auto auto;
+  justify-content:center;align-items:stretch;
+  gap:clamp(.5rem,2vw,1.5rem);
+  min-height:0;padding-inline:clamp(.5rem,2vw,1.5rem);
+}
+.rplay__arw{
+  align-self:center;
+  width:clamp(2.5rem,4vw,3.25rem);height:clamp(2.5rem,4vw,3.25rem);
+  display:grid;place-items:center;border-radius:50%;cursor:pointer;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.32);
+  color:#FFF;padding:0;
+  transition:background-color .3s var(--e-out),border-color .3s var(--e-out),transform .3s var(--e-out);
+}
+.rplay__arw svg{width:1.15rem;height:1.15rem;display:block}
+.rplay__arw:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.6)}
+.rplay__arw--prev:hover{transform:translateX(-2px)}
+.rplay__arw--next:hover{transform:translateX(2px)}
+.rplay__stage{
+  display:grid;place-items:center;height:100%;min-height:0;min-width:0;
+  padding-block:clamp(.5rem,1.5vw,1rem);
+}
+.rplay__stage video{
+  height:100%;width:auto;max-width:100%;max-height:100%;
+  aspect-ratio:9/16;object-fit:contain;background:#141412;display:block;
+}
+.rplay__nav{
+  display:flex;align-items:center;justify-content:center;
+  padding:.85rem clamp(1rem,4vw,2rem) calc(.9rem + env(safe-area-inset-bottom));
+  border-top:1px solid rgba(255,255,255,.14);
+}
+.rplay__n{
+  margin:0;text-align:center;
+  font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#D9D9D0;
+  font-variant-numeric:lining-nums tabular-nums;
+}
+.rplay__x:focus-visible,
+.rplay__arw:focus-visible{outline:2px solid #FFF;outline-offset:3px}
+.reels__note{
+  margin-top:clamp(1.5rem,3vw,2.25rem);padding-top:1.3rem;
+  border-top:1px solid rgba(255,255,255,.16);
+  font-size:.95rem;line-height:1.65;color:#C9C9BE;
+}
+.reels__note a{color:#FFF;text-decoration:underline;text-underline-offset:.25em}
+
+/* The four cards carry headings of one line and of two, so left alone
+   their paragraphs start at different heights and the row reads
+   ragged. Subgrid puts the number, the heading and the paragraph on
+   the same three lines across all four. Browsers without it get the
+   ragged version, which is only untidy. */
+@supports (grid-template-rows:subgrid){
+  @media (min-width:700px){
+    /* the row gap has to go to nothing here: a subgrid inherits its
+       parent's row gap, so the gap meant for the space between cards
+       was opening between the picture, the number, the label and the
+       paragraph of every card as well, four times over. */
+    .sizes{row-gap:0}
+    .size{grid-row:span 4;grid-template-rows:subgrid}
+  }
+  /* two rows of two, so the space between them comes back as padding */
+  @media (min-width:700px) and (max-width:1099px){
+    .size{padding-bottom:clamp(2rem,4vw,3rem)}
+  }
+}
+
+/* ---------- The three smaller space cards -------------------- */
+/* The Loft, Grape Expectations and the library sit in one row, and
+   their paragraphs run to different lengths, so the capacity figures
+   used to land at three different heights. The body fills the card
+   and the paragraph takes the slack, which puts the figures on one
+   line across all three however the copy reflows. */
+.space:not(.space--lead){grid-template-rows:auto minmax(0,1fr);align-content:stretch}
+.space:not(.space--lead) .space__body{display:flex;flex-direction:column;height:100%}
+.space:not(.space--lead) .space__body>*+*{margin-top:.75rem}
+.space:not(.space--lead) .space__body p{flex:1 0 auto}
+.space:not(.space--lead) .caps{margin-top:1.25rem}
+
+
+/* On a phone the film is nearly the width of the screen, so there is
+   no room for arrows beside it. They go over its edges instead, where
+   they still clear the video's own controls at the bottom. */
+@media (max-width:639px){
+  .rplay__mid{position:relative;grid-template-columns:1fr;padding-inline:0}
+  .rplay__arw{
+    position:absolute;top:50%;transform:translateY(-50%);z-index:2;
+    background:rgba(12,12,10,.55);border-color:rgba(255,255,255,.4);
+  }
+  .rplay__arw--prev{left:.5rem}
+  .rplay__arw--next{right:.5rem}
+  .rplay__arw--prev:hover{transform:translateY(-50%) translateX(-2px)}
+  .rplay__arw--next:hover{transform:translateY(-50%) translateX(2px)}
+}
+
+/* ============================================================
+   THE OUR STORY PAGE
+   A page that is read rather than scanned, so the type does most
+   of the work and the structure stays out of the way. Six numbered
+   chapters, each one a screen, each one advancing the same idea:
+   the hotel is made of things that were kept.
+   ============================================================ */
+
+/* ---------- the chapter number ------------------------------- */
+/* Numbered because this genuinely is a sequence: six chapters read
+   in order. That is the only reason to number anything. */
+.chap__mark{
+  margin:0 0 .9rem;font-family:var(--f-display);font-style:italic;
+  font-size:1.05rem;line-height:1;color:var(--crimson);
+}
+
+/* ---------- a full-width chapter ----------------------------- */
+.chap{display:grid;gap:clamp(1.5rem,3vw,2.5rem)}
+.chap .h2{max-width:20ch}
+.chap__cols{display:grid;gap:1.15rem}
+.chap__cols p{color:var(--ink-soft)}
+.chap__pull{
+  margin:.4rem 0 0;font-family:var(--f-display);font-style:italic;
+  font-size:clamp(1.2rem,1.9vw,1.5rem);line-height:1.4;color:var(--ink);
+  padding-left:clamp(1rem,2vw,1.5rem);border-left:2px solid var(--crimson);
+}
+.chap__facts{
+  display:grid;grid-template-columns:1fr;gap:.9rem 2rem;
+  margin:.4rem 0 0;padding:0;list-style:none;
+  font-size:.95rem;color:var(--ink-soft);
+}
+.chap__facts li{border-top:1px solid var(--rule);padding-top:.8rem}
+.chap__num{
+  display:block;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.9rem,3vw,2.6rem);line-height:1;color:var(--ink);
+  margin-bottom:.25rem;font-variant-numeric:lining-nums;
+}
+.chap__note{
+  margin:0;padding-top:1.4rem;border-top:1px solid var(--rule);
+  font-size:.95rem;line-height:1.65;color:var(--ink-soft);
+}
+.chap__cta{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.6rem}
+
+@media (min-width:820px){
+  .chap__cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(2rem,4vw,3.5rem)}
+  .chap__facts{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+
+/* ---------- a chapter with a picture beside it --------------- */
+.split{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3.5rem);align-items:center}
+.split>*{min-width:0}
+.split__text>*+*{margin-top:1.15rem}
+.split__text p{color:var(--ink-soft)}
+.split__text .h2{margin-top:0;max-width:18ch}
+.split__shot{margin:0}
+.split__shot img{width:100%;height:auto;display:block;background:var(--sand)}
+.split__shot figcaption{
+  margin-top:.8rem;font-size:.84rem;line-height:1.5;color:#5C5C55;
+}
+
+@media (min-width:900px){
+  .split{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+  .split--flip .split__text{order:2}
+}
+
+/* ---------- what it is made of ------------------------------- */
+.made{
+  display:grid;grid-template-columns:1fr;
+  column-gap:clamp(1.5rem,2.5vw,2.5rem);row-gap:clamp(2.25rem,4vw,3rem);
+  list-style:none;margin:0;padding:0;
+}
+.made__i{display:grid;align-content:start;min-width:0}
+.made__f{overflow:hidden;background:var(--sand);aspect-ratio:3/2;margin:0 0 1.1rem}
+.made__f img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.1s var(--e-out);
+}
+@media (hover:hover){.made__i:hover .made__f img{transform:scale(1.05)}}
+.made__h{
+  margin:0 0 .55rem;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.25rem,1.9vw,1.5rem);line-height:1.25;color:var(--ink);
+}
+.made__i p{margin:0;font-size:.95rem;line-height:1.65;color:var(--ink-soft)}
+
+@media (min-width:760px){ .made{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@supports (grid-template-rows:subgrid){
+  @media (min-width:760px){
+    .made{row-gap:0}
+    .made__i{grid-row:span 3;grid-template-rows:subgrid}
+  }
+}
+
+/* ---------- the sculpture, two frames ------------------------ */
+.art__pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(.6rem,1.4vw,1rem)}
+.art__f{margin:0;overflow:hidden;background:#141412;aspect-ratio:4/5}
+.art__f img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* ============================================================
+   THE FACILITIES PAGE
+   Reads in the order a stay happens: arriving, settling in, the
+   mornings, the quiet hours, the practical things, then a plain
+   reference list for the moment you need an answer rather than a
+   story. Shares the chapter styles with Our Story.
+   ============================================================ */
+
+/* ---------- facts beside a picture: two across, not four ------ */
+.chap__facts.chap__facts--two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.split__text .chap__facts{margin-top:1.6rem}
+.chap__note a{color:inherit;text-underline-offset:.22em}
+
+/* ---------- what is in every room ---------------------------- */
+/* A plain list, not icons: /stay/ already has the icon grid. */
+.kit{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:clamp(1.5rem,3vw,2.5rem);
+}
+.kit li{padding:.7rem 0;border-top:1px solid var(--rule);font-size:.95rem;line-height:1.4;color:var(--ink)}
+@media (min-width:760px){ .kit{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@media (min-width:1100px){ .kit{grid-template-columns:repeat(4,minmax(0,1fr))} }
+
+/* ---------- the pools and the gym ---------------------------- */
+.facil{
+  display:grid;grid-template-columns:1fr;
+  column-gap:clamp(1.5rem,2.5vw,2.5rem);row-gap:clamp(2.25rem,4vw,3rem);
+  list-style:none;margin:0;padding:0;
+}
+.facil__i{display:grid;align-content:start;min-width:0}
+.facil__f{overflow:hidden;background:var(--sand);aspect-ratio:4/5;margin:0 0 1rem}
+.facil__f img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform 1.1s var(--e-out);
+}
+.facil__i:hover .facil__f img{transform:scale(1.05)}
+.facil__t{
+  margin:0 0 .35rem;font-size:.74rem;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:#5C5C55;font-variant-numeric:lining-nums tabular-nums;
+}
+.facil__h{
+  margin:0 0 .5rem;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.3rem,2vw,1.6rem);line-height:1.2;color:var(--ink);
+}
+.facil__p{margin:0;font-size:.95rem;line-height:1.65;color:var(--ink-soft)}
+@media (min-width:700px){ .facil{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1100px){ .facil{grid-template-columns:repeat(4,minmax(0,1fr))} }
+/* The same subgrid as the size cards on /events/: the time, the name
+   and the paragraph sit on one line across all four. Row gap has to
+   be nothing under a subgrid, or it opens inside every card too. */
+@supports (grid-template-rows:subgrid){
+  @media (min-width:700px){
+    .facil{row-gap:0}
+    .facil__i{grid-row:span 4;grid-template-rows:subgrid}
+  }
+  @media (min-width:700px) and (max-width:1099px){
+    .facil__i{padding-bottom:clamp(2rem,4vw,3rem)}
+  }
+}
+
+/* ---------- a portrait beside the text ----------------------- */
+.split__shot--tall{max-width:26rem;width:100%;justify-self:center}
+.split__shot--tall img{aspect-ratio:4/5;object-fit:cover}
+
+/* ---------- the practical things ----------------------------- */
+.svc{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:1fr;
+  column-gap:clamp(2rem,4vw,3.5rem);row-gap:0;
+}
+.svc__i{display:grid;align-content:start;min-width:0;padding:1.3rem 0 1.6rem;border-top:1px solid var(--rule)}
+.svc__h{
+  margin:0 0 .55rem;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.45rem);line-height:1.25;color:var(--ink);
+}
+.svc__p{margin:0;font-size:.95rem;line-height:1.65;color:var(--ink-soft)}
+@media (min-width:760px){ .svc{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1100px){ .svc{grid-template-columns:repeat(3,minmax(0,1fr))} }
+@supports (grid-template-rows:subgrid){
+  @media (min-width:760px){ .svc__i{grid-row:span 2;grid-template-rows:subgrid} }
+}
+
+
+/* ---------- the practical things, two across at most ------- */
+@media (min-width:1100px){ .svc.svc--two{grid-template-columns:repeat(2,minmax(0,1fr))} }
+
+/* ============================================================
+   THE EXPERIENCES PAGE
+   /experiences/. A guide to the city from the hotel's door, in the
+   six parts the homepage already promises. Each part has its own
+   anchor, so the homepage cards land on exactly the right one.
+   ============================================================ */
+
+/* ---------- six ways in: the contents, as small pictures ------ */
+.ways{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:1fr;
+  column-gap:clamp(1.5rem,3vw,2.5rem);row-gap:clamp(1.25rem,2.5vw,1.75rem);
+}
+.ways__a{display:grid;grid-template-columns:minmax(0,6.5rem) minmax(0,1fr);gap:1.1rem;align-items:center;color:inherit;text-decoration:none}
+.ways__f{margin:0;overflow:hidden;background:var(--sand);aspect-ratio:1/1}
+.ways__f img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 1.1s var(--e-out)}
+@media (hover:hover){.ways__a:hover .ways__f img,.ways__a:focus-visible .ways__f img{transform:scale(1.06)}}
+.ways__h{
+  margin:0 0 .3rem;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.2rem,1.7vw,1.4rem);line-height:1.2;color:var(--ink);
+  transition:color .3s var(--e-out);
+}
+.ways__a:hover .ways__h,.ways__a:focus-visible .ways__h{color:var(--crimson)}
+.ways__p{margin:0;font-size:.92rem;line-height:1.55;color:var(--ink-soft)}
+.ways__a:focus-visible{outline:2px solid var(--crimson);outline-offset:6px}
+@media (min-width:700px){ .ways{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (min-width:1100px){ .ways{grid-template-columns:repeat(3,minmax(0,1fr))} }
+
+/* ---------- two days: a real sequence, so it is numbered ----- */
+.plan{
+  list-style:none;margin:0;padding:0;counter-reset:plan;
+  display:grid;grid-template-columns:1fr;gap:0 clamp(1.5rem,3vw,2.5rem);
+}
+.plan__i{position:relative;padding:1.2rem 0 1.4rem 3.1rem;border-top:1px solid var(--rule);min-width:0}
+.plan__i::before{
+  counter-increment:plan;content:counter(plan);
+  position:absolute;left:0;top:1.15rem;width:2.1rem;height:2.1rem;border-radius:50%;
+  display:grid;place-items:center;border:1px solid var(--crimson);color:var(--crimson);
+  font-family:var(--f-display);font-size:1rem;line-height:1;
+}
+.plan__t{
+  margin:0 0 .3rem;font-size:.74rem;font-weight:500;letter-spacing:.13em;
+  text-transform:uppercase;color:#5C5C55;
+}
+.plan__h{
+  margin:0 0 .5rem;font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.2rem,1.8vw,1.45rem);line-height:1.25;color:var(--ink);
+}
+.plan__p{margin:0;font-size:.95rem;line-height:1.65;color:var(--ink-soft)}
+@media (min-width:900px){ .plan{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@supports (grid-template-rows:subgrid){
+  @media (min-width:900px){ .plan__i{display:grid;grid-row:span 3;grid-template-rows:subgrid;align-content:start} }
+}
+
+/* ---------- a short list inside a chapter --------------------- */
+.picks{list-style:none;margin:1.3rem 0 0;padding:0}
+.picks li{padding:.7rem 0;border-top:1px solid var(--rule);font-size:.95rem;line-height:1.6;color:var(--ink-soft)}
+.picks li:last-child{border-bottom:1px solid var(--rule)}
+.picks b{font-weight:500;color:var(--ink)}
+.picks a{color:inherit;text-underline-offset:.22em}
+
+/* ============================================================
+   THE LEGAL PAGES: THE COOKIE LIST
+   A real table that scrolls inside itself on a phone rather than
+   pushing the page sideways. The page layout is in v2.css, 26.
+   ============================================================ */
+
+.legal__table{margin-top:1.2rem;overflow-x:auto;border:1px solid var(--rule);background:#FFF;-webkit-overflow-scrolling:touch}
+.legal__table:focus-visible{outline:2px solid var(--crimson);outline-offset:3px}
+.legal__table table{width:100%;min-width:38rem;border-collapse:collapse;font-size:.9rem;line-height:1.5}
+.legal__table th,.legal__table td{padding:.7rem .85rem;text-align:left;vertical-align:top;border-top:1px solid var(--rule)}
+.legal__table thead th{border-top:0;font-size:.74rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5C5C55;background:var(--linen)}
+.legal__table td{color:var(--ink-soft)}
+.legal__table td:first-child{white-space:nowrap}
+.legal__table tr.legal__cat th{font-family:var(--f-display);font-weight:400;font-size:1rem;color:var(--ink);background:#FAF9F5}
+.clause code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;color:var(--ink);background:var(--linen);padding:.1em .35em;border-radius:3px}

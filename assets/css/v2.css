@@ -1,0 +1,1604 @@
+/* =============================================================
+   Colombo Court Hotel & Spa  ·  homepage, version two
+   -------------------------------------------------------------
+   A trial palette and layout, loaded ONLY by index.html and only
+   after styles.css. It redefines the tokens, so everything that
+   already reads them follows without being rewritten, and the
+   three subpages are untouched.
+
+   To go back: delete the two <link>/<script> lines in index.html
+   that point at home-v2.css and home-v2.js. Nothing else changes.
+
+   The direction: charcoal, brass, and one sage green used once.
+   Text stays charcoal, never green. Green is a ground, not ink.
+   ============================================================= */
+
+:root{
+  /* ---- ink: neutral charcoal, no green cast ------------------ */
+  --ink:#22221F;
+  --ink-soft:#494943;
+  --stone:#6A6A62;          /* meta on the light ground, 5.4:1 */
+
+  /* ---- ground ----------------------------------------------- */
+  --char:#1E1E1B;           /* the dark bands and the solid header */
+  --char-d:#131311;         /* the bar at the foot */
+  --sage:#A3A390;           /* the one green. A ground, with dark text on it */
+  --sage-d:#8C8D7A;
+  --linen:#F4F2ED;          /* the light ground */
+  --paper:#EFEDE6;
+  --cream:#FAF9F5;
+  --dawn:#F4F2ED;
+  --sand:#E3E0D6;
+  --white:#FFFFFF;
+
+  /* ---- brass, in small doses -------------------------------- */
+  --brass:#B08A46;          /* rules, borders, icon strokes */
+  --brass-ink:#7A5C22;      /* brass as text on the light ground, 5.9:1 */
+  --brass-l:#D8B872;        /* brass as text on charcoal */
+  --brass-btn:#C9A45C;      /* brass fill; ink on it is 7.0:1 */
+
+  /* the markup still names these; they are no longer red */
+  --crimson:#7A5C22;
+  --crimson-d:#5E4619;
+  --espresso:#1E1E1B;
+  --stone-l:#A6A69C;
+
+  --rule:rgba(34,34,31,.16);
+  --rule-2:rgba(34,34,31,.09);
+
+  /* ---- width and rhythm ------------------------------------- */
+  /* 1320px left a third of a 1920 screen empty. 1680 fills it
+     without pushing the measure past what anyone can read. */
+  --max:105rem;
+  --gut:clamp(1.25rem,4vw,4rem);
+  --sec-y:clamp(3.25rem,6vw,5.5rem);
+}
+
+/* the warm scroll-driven wash belongs to version one */
+body{background:var(--linen);font-size:1.125rem;line-height:1.7}
+.canvas{display:none !important}
+:focus-visible{outline:2px solid var(--brass-btn);outline-offset:3px}
+
+/* Type up a step across the board: the wider page made the old
+   17px look thin, and 18px is the readable floor on a big screen. */
+.lede{font-size:clamp(1.1rem,1.5vw,1.28rem)}
+.prose p,.venue__body p,.rooms__lede,.events__copy p{font-size:1.0625rem}
+.card__copy,.qa__a p{font-size:1.02rem}
+.qa summary{font-size:1.06rem}
+
+/* =============================================================
+   1.  Header
+   ============================================================= */
+.head__in{padding:.72rem var(--gut);padding-inline:max(var(--gut),env(safe-area-inset-left)) max(var(--gut),env(safe-area-inset-right));gap:1.75rem}
+.brand__logo{width:clamp(150px,14vw,205px)}
+.head.is-stuck{background:var(--char);box-shadow:0 1px 0 rgba(255,255,255,.12)}
+/* white on both states, so the mark never changes colour on scroll */
+.head.is-stuck .brand__logo--light{display:block}
+.head.is-stuck .brand__logo--dark{display:none}
+.head.is-stuck .nav a{color:#FFF}
+.head.is-stuck .burger{color:#FFF}
+.nav a{font-size:1rem;letter-spacing:.03em}
+.nav__list{gap:clamp(1.2rem,2.4vw,2.4rem)}
+
+/* Book now is the one brass object above the fold */
+.head .btn--solid{
+  --bg:var(--brass-btn);--fg:#1A1A16;--bd:var(--brass-btn);
+  font-size:.78rem;letter-spacing:.14em;
+}
+.head .btn--solid:hover{--bg:#DCBB78;--bd:#DCBB78}
+/* the sheen comes round every six seconds */
+.head .btn--solid::after{animation-duration:6s !important;animation-delay:2s !important}
+
+.menu{background:var(--char)}
+.menu__link{color:#B9B9AE}
+.menu__link:hover{color:#FFF}
+.menu__foot{border-top-color:rgba(255,255,255,.18)}
+
+/* =============================================================
+   2.  Hero: the film, and nothing else
+   ============================================================= */
+.hero{min-height:100vh;min-height:100svh}
+.hero__media{background:var(--char)}
+.hero__in{display:none}
+.hero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(12,12,10,.78) 0%,rgba(12,12,10,.5) 8%,rgba(12,12,10,.16) 18%,rgba(12,12,10,0) 30%),
+    linear-gradient(to top,rgba(12,12,10,.45) 0%,rgba(12,12,10,.1) 22%,rgba(12,12,10,0) 40%);
+}
+.hero__down{color:#FFF}
+
+/* The stand-in film, scaled to cover the frame the way a background video
+   would. [TEMPORARY] See the note in index.html: the whole block goes when
+   the hotel's own film returns. */
+.hero__yt{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.hero__yt iframe{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:134vw;height:75.4vw;min-height:134vh;min-width:238vh;border:0;
+}
+.hero.yt-on .hero__img,.hero.yt-on .hero__video{opacity:0}
+
+/* =============================================================
+   3.  Section rhythm and shared bits
+   ============================================================= */
+.sec--stay,.sec--exp,.sec--reviews{background:var(--white)}
+.sec--spa,.sec--events,.sec--faq{background:var(--linen)}
+.stamp__t{color:var(--brass-ink)}
+.stamp::before,.stamp__l{color:var(--stone)}
+
+/* the lede beside a heading runs to the far edge of the container */
+@media (min-width:900px){
+  .sechead--split .lede{justify-self:end;max-width:46ch}
+}
+
+/* =============================================================
+   4.  Our story: one photograph, edge to edge, words on it
+   ============================================================= */
+.sec--hotel{position:relative;isolation:isolate;overflow:hidden;padding:0;background:var(--char)}
+.story{
+  position:relative;min-height:100vh;min-height:100svh;display:grid;align-content:center;
+  width:100%;max-width:var(--max);margin-inline:auto;
+  padding:clamp(7rem,15vh,10rem) var(--gut) clamp(4rem,9vh,6rem);
+}
+/* the picture is not held by the container: it runs the whole screen */
+.story__media{position:absolute;inset:0;z-index:-2;width:100vw;left:50%;transform:translateX(-50%);overflow:hidden}
+.story__media img{width:100%;height:100%;object-fit:cover}
+/* Readability is the job. Measured, not guessed: see the README. */
+.story__scrim{
+  position:absolute;inset:0;z-index:-1;width:100vw;left:50%;transform:translateX(-50%);
+  background:
+    linear-gradient(to right,rgba(4,4,3,.94) 0%,rgba(4,4,3,.9) 40%,rgba(4,4,3,.62) 72%,rgba(4,4,3,.42) 100%),
+    linear-gradient(to top,rgba(4,4,3,.55) 0%,rgba(4,4,3,.28) 55%,rgba(4,4,3,.45) 100%);
+}
+.story__in{max-width:47rem;color:#FFF;text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+.story .stamp__t{color:var(--brass-l)}
+.story .stamp__l,.story .stamp::before{color:#C6C6BC}
+.story__in .h2{color:#FFF;margin-bottom:1.2rem;font-size:clamp(2.3rem,4.4vw,3.9rem)}
+.story__in p{color:#EAEAE4;max-width:56ch;font-size:clamp(1.06rem,1.35vw,1.2rem);line-height:1.75}
+.story__in p + p{margin-top:.9em}
+.story__act{margin-top:2.1rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.story .btn--solid{--bg:var(--brass-btn);--fg:#1A1A16;--bd:var(--brass-btn)}
+.story .btn--solid:hover{--bg:#FFF;--fg:#1A1A16;--bd:#FFF}
+.story .link{color:#FFF;border-bottom-color:rgba(255,255,255,.5)}
+.story .link:hover{color:var(--brass-l);border-bottom-color:var(--brass-l)}
+
+/* ---- why Colombo Court ------------------------------------- */
+.why{background:var(--linen);padding-block:clamp(3rem,5.5vw,4.5rem)}
+.why__in{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+.why__head{
+  font-size:.86rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--brass-ink);margin-bottom:2rem;
+}
+.why__list{display:grid;grid-template-columns:1fr;gap:2rem}
+.why__list>*{min-width:0}
+.why__i{display:grid;grid-template-columns:auto 1fr;gap:1.1rem;align-items:start}
+.why__ico{width:2.9rem;height:2.9rem;flex:none;color:var(--brass);display:grid;place-items:center}
+.why__ico svg{width:100%;height:100%;display:block}
+.why__t{
+  font-family:var(--f-display);font-weight:400;
+  font-size:1.22rem;line-height:1.28;color:var(--ink);margin-bottom:.35rem;
+}
+.why__i p{font-size:1rem;line-height:1.6;color:var(--ink-soft);max-width:32ch}
+
+/* =============================================================
+   5.  Dining: the still, the words, the card that changes
+   ============================================================= */
+.sec--eat{background:var(--sage);color:var(--ink);padding:0;overflow:hidden}
+.sec--eat .h2{color:var(--ink)}
+.dine2{
+  display:grid;grid-template-columns:1fr;align-items:center;
+  min-height:100vh;min-height:100svh;gap:clamp(1.75rem,3vw,3rem);
+  padding-block:clamp(2rem,4vh,3.25rem);
+}
+.dine2>*{min-width:0}
+/* the left frame runs off the edge of the screen, as the reference does */
+.dine2__left{overflow:hidden;background:var(--sage-d);aspect-ratio:3/4;max-height:78vh;max-height:78svh}
+.dine2__left img{width:100%;height:100%;object-fit:cover}
+.dine2__mid{padding-inline:var(--gut);max-width:44rem}
+.dine2__eyebrow{
+  font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;
+  color:#33332C;margin-bottom:1rem;
+}
+.dine2__mid .h2{font-size:clamp(2rem,2.9vw,2.85rem);margin-bottom:1rem;max-width:11ch}
+.dine2__sub{
+  font-family:var(--f-display);font-style:italic;
+  font-size:clamp(1.15rem,1.7vw,1.4rem);line-height:1.4;color:#2A2A24;margin-bottom:1.1rem;
+}
+.dine2__mid p{color:#2A2A24;max-width:52ch}
+.dine2__mid p + p{margin-top:.8em}
+.dine2__act{margin-top:1.9rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.sec--eat .link{color:#3A3A31;border-bottom-color:rgba(58,58,49,.5)}
+.sec--eat .link:hover{color:#000;border-bottom-color:#000}
+.sec--eat .btn--solid{--bg:var(--char);--fg:#FFF;--bd:var(--char)}
+.sec--eat .btn--solid:hover{--bg:#000;--bd:#000}
+
+/* the two restaurants share one frame */
+.dine2__right{padding-inline:var(--gut);display:grid;gap:1.1rem}
+.rot__list{display:grid}
+.rot__card{
+  grid-area:1/1;
+  opacity:0;visibility:hidden;transform:translateY(10px);
+  transition:opacity .8s var(--e-out),transform .8s var(--e-out),visibility 0s linear .8s;
+}
+.rot__card.is-on{opacity:1;visibility:visible;transform:none;transition-delay:0s,0s,0s}
+.rot__img{overflow:hidden;background:var(--sage-d);aspect-ratio:4/3;max-height:64vh;max-height:64svh}
+.rot__img img{width:100%;height:100%;object-fit:cover}
+.rot__name{
+  font-family:var(--f-display);font-weight:400;
+  font-size:clamp(1.4rem,2.1vw,1.85rem);line-height:1.2;color:var(--ink);margin-top:1.1rem;
+}
+.rot__when{font-size:.95rem;color:#33332C;margin-top:.3rem}
+
+/* the counter and the arrows, as the reference has them */
+.rot__nav{display:flex;align-items:center;gap:1.1rem;margin-top:.3rem}
+.rot__nav button{
+  width:2.6rem;height:2.6rem;display:grid;place-items:center;padding:0;
+  background:transparent;color:var(--ink);border:0;cursor:pointer;
+  transition:color .3s var(--e-out),transform .3s var(--e-out);
+}
+.rot__nav button:hover{color:#000}
+.rot__nav button[data-slide="-1"]:hover{transform:translateX(-3px)}
+.rot__nav button[data-slide="1"]:hover{transform:translateX(3px)}
+.rot__nav svg{width:26px;height:16px;display:block}
+.rot__count{
+  font-family:var(--f-display);font-size:1.5rem;color:var(--ink);
+  font-variant-numeric:tabular-nums lining-nums;
+}
+.rot__count small{font-size:.95rem;color:#33332C}
+
+/* =============================================================
+   6.  Sustainability: version one's treatment, full screen
+   ============================================================= */
+.green{min-height:100vh;min-height:100svh;display:grid;align-content:center;padding-block:clamp(4rem,8vw,7rem)}
+.green__lead{font-size:clamp(1.35rem,2.4vw,1.9rem)}
+.green__body{font-size:1.08rem;max-width:56ch}
+
+/* =============================================================
+   7.  Events
+   ============================================================= */
+.events__copy p{max-width:none;font-size:1.06rem}
+.events__act{margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.form-card__note{max-width:none}
+
+/* =============================================================
+   8.  Good to know: the questions, and one still beside them
+   ============================================================= */
+.qbox{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3.5rem);align-items:start}
+.qbox>*{min-width:0}
+.qbox__shot{position:relative;overflow:hidden;background:var(--sand);aspect-ratio:3/4}
+.qbox__shot img{width:100%;height:100%;object-fit:cover}
+
+/* =============================================================
+   9.  Make Colombo yours: full screen, and legible on it
+   ============================================================= */
+.book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.book__scrim{
+  background:
+    linear-gradient(to bottom,rgba(6,6,5,.66) 0%,rgba(6,6,5,.54) 20%,rgba(6,6,5,.78) 42%,rgba(6,6,5,.84) 70%,rgba(6,6,5,.9) 100%);
+}
+.book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+.book__lead{font-size:clamp(1.15rem,1.8vw,1.45rem)}
+.book .btn--ghost{--fg:#FFF;--bd:rgba(255,255,255,.55)}
+.book .btn--ghost:hover{--bg:#FFF;--fg:#1A1A16;--bd:#FFF}
+
+/* =============================================================
+   10. Buttons on the light grounds
+   ============================================================= */
+.btn--solid{--bg:var(--char);--fg:#FFF;--bd:var(--char)}
+.btn--solid:hover{--bg:#000;--bd:#000}
+.btn--line:hover{--bg:var(--char);--fg:#FFF;--bd:var(--char)}
+
+/* =============================================================
+   11. Breakpoints
+   ============================================================= */
+@media (min-width:600px){
+  .why__list{grid-template-columns:1fr 1fr}
+}
+@media (min-width:900px){
+  .qbox{grid-template-columns:minmax(0,1fr) minmax(0,.52fr);gap:clamp(2.5rem,5vw,4.5rem)}
+  .qbox__shot{position:sticky;top:6.5rem}
+  /* picture · words · picture, the middle column holding the reading */
+  .dine2{grid-template-columns:minmax(0,.82fr) minmax(0,1.3fr) minmax(0,1.05fr);gap:clamp(1.75rem,3vw,3.5rem)}
+  .dine2__left{aspect-ratio:auto;height:78vh;height:78svh;max-height:none}
+}
+@media (min-width:1080px){
+  .why__list{grid-template-columns:repeat(5,1fr);gap:2.25rem 1.75rem}
+  .why__i{grid-template-columns:1fr;gap:1rem}
+  .why__i p{max-width:26ch}
+}
+@media (max-width:899px){
+  .story{min-height:0;padding-block:clamp(5rem,12vh,7rem) clamp(3rem,7vh,4rem)}
+  .dine2{min-height:0;padding-block:var(--sec-y)}
+  .dine2__left{max-height:none}
+  .green,.book{min-height:0}
+  .qbox__shot{aspect-ratio:4/3}
+}
+@media (prefers-reduced-motion:reduce){
+  .rot__card{transition:none}
+}
+
+/* a label only assistive tech reads */
+.sr{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0}
+
+/* =============================================================
+   12. Round two of the trial
+   ============================================================= */
+
+/* ---- the header takes the brass; Book now inverts to white --- */
+.head.is-stuck{background:var(--brass-btn);box-shadow:0 1px 0 rgba(26,26,22,.18)}
+.head.is-stuck .nav a{color:#1A1A16}
+.head.is-stuck .burger{color:#1A1A16}
+/* the wordmark is white over the film and charcoal on the brass */
+.head.is-stuck .brand__logo--light{display:none}
+.head.is-stuck .brand__logo--dark{display:block}
+.head.is-stuck .btn--solid{--bg:#FFF;--fg:#1A1A16;--bd:#FFF}
+.head.is-stuck .btn--solid:hover{--bg:#1A1A16;--fg:#FFF;--bd:#1A1A16}
+
+/* the stand-in player fills its box */
+.hero__yt iframe,.hero__yt #heroYt{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:134vw;height:75.4vw;min-height:134vh;min-width:238vh;border:0;
+}
+/* nothing is shown until the player says it is playing */
+.hero:not(.yt-on) .hero__yt{opacity:0}
+.hero__yt{transition:opacity .8s var(--e-out)}
+
+/* ---- our story: the wash belongs to the picture, not a sibling.
+   A separate scrim with its own transform was making a stacking
+   context of its own, which is one variable too many for the one
+   thing on the page that has to stay readable. --------------- */
+.story__scrim{display:none}
+.story__media::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to right,rgba(0,0,0,.9) 0%,rgba(0,0,0,.84) 42%,rgba(0,0,0,.6) 74%,rgba(0,0,0,.44) 100%),
+    linear-gradient(to top,rgba(0,0,0,.5) 0%,rgba(0,0,0,.34) 55%,rgba(0,0,0,.5) 100%);
+}
+.story__in{max-width:58rem}
+.story__in .h2{max-width:16ch}
+.story__in p{max-width:70ch}
+
+/* ---- why Colombo Court, centred -------------------------- */
+.why__in{text-align:center}
+.why__head{
+  font-family:var(--f-display);font-weight:400;text-transform:none;
+  letter-spacing:0;font-size:clamp(1.7rem,2.6vw,2.4rem);color:var(--ink);
+  margin-bottom:2.5rem;
+}
+.why__i{grid-template-columns:1fr;gap:.9rem;justify-items:center}
+.why__ico{margin-inline:auto}
+.why__i p{margin-inline:auto}
+
+/* ---- Eat. Drink. Linger. ---------------------------------- */
+.sec--eat{position:relative}
+/* a paper grain, drawn rather than downloaded */
+.sec--eat::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.dine2{position:relative;z-index:1}
+.dine2__head{padding-inline:var(--gut);text-align:center}
+.dine2__head .h2{
+  max-width:none;margin:0 auto;
+  font-size:clamp(1.5rem,2.35vw,2.35rem);line-height:1.18;
+}
+.dine2__head .dine2__eyebrow{margin-bottom:.85rem}
+.dine2__mid .h2{display:none}
+
+/* three columns of one height, so the pictures and the card finish level */
+.rot__card{display:grid;grid-template-rows:minmax(0,1fr) auto;gap:1rem}
+.rot__img{aspect-ratio:auto;max-height:none;height:100%}
+.rot__name{margin-top:0}
+.rot__desc{font-size:.98rem;color:#2A2A24;margin-top:.35rem;max-width:34ch}
+.rot__nav{justify-content:flex-start}
+
+/* ---- Colombo, our way ------------------------------------- */
+.sec--exp{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+/* a grid item will not shrink below its content by default, and the looped
+   rail is twelve cards wide: without this the heading ran off a phone screen */
+.sec--exp>*{min-width:0}
+/* the rail sits in the grid with auto side margins, which size it to its
+   content (twelve cards) instead of stretching it: give it the full width */
+.sec--exp>.railwrap{width:100%}
+
+/* ---- events ------------------------------------------------ */
+.sec--events .sechead--split .h2{max-width:none;white-space:nowrap}
+.form-card{background:#242422}
+.form-card .field select option{background:#242422}
+
+/* ---- footer ------------------------------------------------ */
+.news{max-width:38rem}
+.foot__nav{justify-content:start;gap:1.5rem clamp(2.25rem,3.2vw,4rem)}
+
+@media (min-width:900px){
+  .dine2{
+    grid-template-columns:minmax(0,.82fr) minmax(0,1.16fr) minmax(0,1.02fr);
+    grid-template-rows:auto minmax(0,1fr);
+    align-items:stretch;gap:clamp(1.5rem,2.5vw,2.25rem) clamp(1.75rem,2.6vw,2.75rem);
+  }
+  .dine2__head{grid-column:1/-1;margin-bottom:.5rem}
+  .dine2__left{height:100%;aspect-ratio:auto;max-height:none}
+  .dine2__mid{align-self:center}
+  .dine2__right{grid-template-rows:minmax(0,1fr) auto;gap:1rem}
+  .foot__top{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+}
+@media (max-width:899px){
+  .sec--exp{min-height:0}
+  .sec--events .sechead--split .h2{white-space:normal}
+  .rot__img{aspect-ratio:4/3;height:auto}
+  .rot__card{grid-template-rows:auto auto}
+}
+
+/* =============================================================
+   13. Round three
+   ============================================================= */
+
+/* ---- 1. the film gets its own top wash ---------------------
+   The stand-in sits above .hero__media, so the scrim inside that
+   wrapper never reached it. This one belongs to the film itself
+   and works whichever film is playing. */
+.hero__yt::after{
+  content:"";position:absolute;inset:0 0 auto;height:38vh;
+  background:linear-gradient(to bottom,rgba(8,8,7,.62) 0%,rgba(8,8,7,.34) 34%,rgba(8,8,7,.12) 66%,rgba(8,8,7,0) 100%);
+}
+
+/* ---- 2. the bar on scroll ----------------------------------
+   White on the light brass is 2.3:1, which is unreadable, so the
+   bar takes a deeper bronze from the same family. White on that
+   is 5.1:1 and the whole thing reads better than the light fill
+   did. The button is an outline, not a block of colour. */
+.head.is-stuck{background:#8A6A2E;box-shadow:0 1px 0 rgba(0,0,0,.18)}
+.head.is-stuck .brand__logo--light{display:block}
+.head.is-stuck .brand__logo--dark{display:none}
+.head.is-stuck .nav a{color:#FFF}
+.head.is-stuck .burger{color:#FFF}
+.head.is-stuck .btn--solid{--bg:transparent;--fg:#FFF;--bd:rgba(255,255,255,.75)}
+.head.is-stuck .btn--solid:hover{--bg:#FFF;--fg:#3A2C10;--bd:#FFF}
+/* the sheen is for the brass fill over the film, not for an outline */
+.head.is-stuck .btn--solid::after{display:none}
+
+/* ---- 3. our story: the same wash, a little lighter ---------- */
+.story__media::after{
+  background:
+    linear-gradient(to right,rgba(0,0,0,.84) 0%,rgba(0,0,0,.76) 42%,rgba(0,0,0,.5) 74%,rgba(0,0,0,.34) 100%),
+    linear-gradient(to top,rgba(0,0,0,.42) 0%,rgba(0,0,0,.26) 55%,rgba(0,0,0,.4) 100%);
+}
+
+/* ---- 4. dining --------------------------------------------- */
+/* the right column finishes on the same line as every other
+   section, while the left picture still runs off the screen */
+.dine2{--edge:max(var(--gut),calc((100% - var(--max)) / 2 + var(--gut)))}
+.dine2__head{padding-inline:var(--edge)}
+.dine2__right{padding-right:var(--edge);padding-left:0}
+.dine2__mid{padding-inline:clamp(1.1rem,1.8vw,1.75rem)}
+
+.dine2__head .h2{
+  display:block;font-size:clamp(2rem,3.1vw,3rem);margin-bottom:.6rem;
+  max-width:none;white-space:nowrap;
+}
+.dine2__sub--head{
+  font-size:clamp(1.02rem,1.35vw,1.28rem);margin-bottom:0;
+  white-space:nowrap;color:#33332C;
+}
+
+/* ---- 5. events --------------------------------------------- */
+.events__act .btn--line{--fg:var(--ink);--bd:var(--rule)}
+.events__act .btn--line:hover{--bg:var(--char);--fg:#FFF;--bd:var(--char)}
+
+/* ---- 6. the footer columns, evenly spaced ------------------- */
+@media (min-width:900px){
+  .foot__nav{grid-template-columns:repeat(3,minmax(0,1fr));justify-content:stretch;gap:1.5rem}
+}
+
+@media (max-width:1100px){
+  .dine2__head .h2,.dine2__sub--head{white-space:normal}
+}
+
+/* the 42ch cap in styles.css put this note on three lines in the wider
+   footer; the block itself is much broader than that now */
+.news p{max-width:58ch}
+
+/* =============================================================
+   14. Round four: charcoal and red, the gold retired
+   -------------------------------------------------------------
+   The brass is gone. The bar is charcoal, the one call to action
+   is red, and everything else is neutral. The red is the red in
+   the mark on the logo, so the accent points back at the brand
+   rather than away from it.
+   ============================================================= */
+:root{
+  --red:#C0222E;            /* white on it: 6.0:1 */
+  --red-d:#9E1B25;          /* white on it: 8.0:1 */
+  --sand-warm:#F5EBDF;      /* the ground version one used at Events */
+
+  /* the brass tokens are still named all over this file, so they are
+     redefined once here rather than hunted down in forty rules */
+  --brass:#5E5E56;          /* icon strokes: a mid grey, not a colour */
+  --brass-ink:#9E1B25;      /* eyebrows and stamps on light, 7.0:1 */
+  --brass-l:#E8E5DF;        /* stamps on a dark ground, 13.8:1 */
+  --brass-btn:#C0222E;      /* the call to action */
+  --crimson:#9E1B25;
+  --crimson-d:#7E1520;
+}
+
+/* ---- the bar ---------------------------------------------- */
+.head.is-stuck{background:var(--char);box-shadow:0 1px 0 rgba(255,255,255,.14)}
+.head.is-stuck .brand__logo--light{display:block}
+.head.is-stuck .brand__logo--dark{display:none}
+.head.is-stuck .nav a{color:#FFF}
+.head.is-stuck .burger{color:#FFF}
+
+/* the one red object on the page, and the same in both header states */
+.head .btn--solid,
+.head.is-stuck .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.head .btn--solid:hover,
+.head.is-stuck .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+.head.is-stuck .btn--solid::after{display:block}
+
+/* ---- the two warm bands ------------------------------------ */
+/* version one let the scroll-driven canvas show through here, which is
+   where this colour comes from. It is fixed now rather than interpolated. */
+.sec--eat,.sec--events{background:var(--sand-warm)}
+.sec--eat::before{display:none}        /* the grain belonged to the sage */
+.sec--eat{color:var(--ink);padding-block:clamp(2rem,3.4vw,3rem)}
+.sec--eat .h2,.sec--eat .h2--sm{color:var(--ink)}
+.sec--eat .lede{color:var(--ink-soft)}
+.sec--eat .stamp__t{color:var(--brass-ink)}
+.sec--eat .stamp__l,.sec--eat .stamp::before{color:var(--stone)}
+.sec--eat .link{color:var(--ink);border-bottom-color:var(--rule)}
+.sec--eat .link:hover{color:var(--red-d);border-bottom-color:var(--red-d)}
+.sec--eat .btn--line{--fg:var(--ink);--bd:var(--rule)}
+.sec--eat .btn--line:hover{--bg:var(--char);--fg:#FFF;--bd:var(--char)}
+.sec--eat .tags li{border-color:rgba(34,34,31,.2);color:var(--stone)}
+
+/* the two venues fit one screen: the film is the tall thing, so it is
+   what gets capped */
+.sec--eat{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.sec--eat .venues{margin-top:clamp(1.1rem,2vw,1.6rem);gap:clamp(1.75rem,3vw,2.75rem)}
+.sec--eat .seccta{margin-top:clamp(1.2rem,2.2vw,1.75rem)}
+.sec--eat .sechead--split{gap:.8rem clamp(2rem,5vw,4rem)}
+.sec--eat .venue__body p{max-width:46ch}
+
+/* ---- the closing red ---------------------------------------- */
+.quote__stars{color:var(--red)}
+.foot__nav a:hover{color:var(--red-d)}
+
+/* One wide film per venue and nothing beside it. The 9:16 film with two
+   stills alongside was 533px tall in a 300px column before a word was
+   written; a single 16:9 frame is both shorter and calmer, and it is the
+   same footage the Eat & Drink page already uses at this shape. */
+.vfilm16{position:relative;overflow:hidden;background:var(--sand);aspect-ratio:16/9}
+
+@media (min-width:900px){
+  .sec--eat .venue__lead{margin-bottom:.7rem}
+  .sec--eat .vcard{gap:clamp(.7rem,1.3vw,1rem)}
+}
+
+/* =============================================================
+   15. The Wellness page in version two
+   -------------------------------------------------------------
+   This file is loaded by /wellness/ as well as the homepage, so
+   the tokens, the header, the footer, the width and the type
+   above already apply there. Only the shapes that page does not
+   share are below.
+   ============================================================= */
+
+/* ---- the hero takes the whole screen ------------------------ */
+.page--wellness .phero{min-height:100vh;min-height:100svh}
+.page--wellness .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
+.page--wellness .phero__title{margin-bottom:1.3rem}
+.page--wellness .phero__sub{max-width:56ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--wellness .crumb{margin-bottom:1.8rem}
+/* the wash the page already had, kept: the photograph is bright */
+.page--wellness .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.66) 0%,rgba(8,8,7,.4) 12%,rgba(8,8,7,.26) 30%,rgba(8,8,7,.52) 50%,rgba(8,8,7,.76) 75%,rgba(8,8,7,.84) 100%),
+    linear-gradient(to right,rgba(8,8,7,.6) 0%,rgba(8,8,7,.34) 50%,rgba(8,8,7,.18) 100%);
+}
+
+/* ---- the four cards run to one length ----------------------- */
+.page--wellness .sec--after .lede{max-width:60ch}
+
+/* ---- the questions, and a still beside them ----------------- */
+.page--wellness .sec--faq{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--wellness .faq{width:100%}
+
+/* ---- the pieces added after the first build ----------------- */
+/* the film player sits on the same charcoal as the band it opens
+   from, so pressing a tile does not change the temperature of the
+   page underneath it */
+.page--events .rplay{background:rgba(30,30,27,.95)}
+
+/* ---- the closing band --------------------------------------- */
+.page--wellness .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--wellness .book__scrim{
+  background:linear-gradient(to bottom,rgba(6,6,5,.62) 0%,rgba(6,6,5,.56) 20%,rgba(6,6,5,.76) 50%,rgba(6,6,5,.9) 100%);
+}
+.page--wellness .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--wellness .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--wellness .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+.page--wellness .step__t{border-top-color:var(--rule)}
+
+@media (max-width:899px){
+  .page--wellness .phero{min-height:0}
+  .page--wellness .sec--faq,.page--wellness .book{min-height:0}
+}
+
+/* =============================================================
+   16. The Eat & Drink page in version two
+   -------------------------------------------------------------
+   Loaded by /eat-drink/ as well, so the tokens, the header, the
+   footer, the width and the type above already apply there. Only
+   the shapes that page does not share are below.
+
+   Six bands run the full height of the screen: the hero, the two
+   halves of the day, the booking form, the questions and the
+   close. That is what makes the page read as a sequence of
+   places rather than a scroll of blocks. Below 900px they all
+   go back to ordinary padding, because a phone screen is the
+   wrong unit to measure a band in.
+   ============================================================= */
+
+/* ---- the hero takes the whole screen ------------------------ */
+.page--eat .phero{min-height:100vh;min-height:100svh}
+.page--eat .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
+.page--eat .phero__title{margin-bottom:1.3rem}
+.page--eat .phero__sub{max-width:56ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--eat .crumb{margin-bottom:1.8rem}
+/* the lunch photograph is bright and busy, so the wash is heavier
+   under the text block than it is at the top. Measured, see README. */
+.page--eat .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.6) 0%,rgba(8,8,7,.38) 14%,rgba(8,8,7,.3) 32%,rgba(8,8,7,.58) 52%,rgba(8,8,7,.8) 76%,rgba(8,8,7,.88) 100%),
+    linear-gradient(to right,rgba(8,8,7,.58) 0%,rgba(8,8,7,.32) 52%,rgba(8,8,7,.16) 100%);
+}
+
+/* ---- the bands that hold a screen --------------------------- */
+.page--eat .sec--day,
+.page--eat .sec--clock,
+.page--eat .sec--reserve,
+.page--eat .sec--faq,
+.page--eat .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--eat .sec--day{padding-block:var(--sec-y)}
+
+/* ---- when to come: the heading holds one side ---------------- */
+.page--eat .day .h2{max-width:13ch}
+.page--eat .day__cols p{max-width:62ch}
+
+/* ---- the clock: a board of six, not a thin strip ------------- */
+.page--eat .sec--clock{background:var(--sand-warm);padding-block:var(--sec-y)}
+.page--eat .sec--clock .clock{margin-top:clamp(1.5rem,4vh,3rem);font-size:1.02rem;color:var(--ink-soft)}
+
+/* ---- the questions on their own ground ---------------------- */
+.page--eat .sec--faq{background:var(--linen)}
+.page--eat .faq{width:100%}
+
+/* ---- the closing band --------------------------------------- */
+.page--eat .book__scrim{
+  background:linear-gradient(to bottom,rgba(6,6,5,.62) 0%,rgba(6,6,5,.56) 20%,rgba(6,6,5,.76) 50%,rgba(6,6,5,.9) 100%);
+}
+.page--eat .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--eat .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--eat .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+
+@media (min-width:900px){
+  /* three across and two down, which is the shape that fills a screen */
+  .page--eat .sec--clock .clock{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:clamp(1.75rem,3.2vw,3rem);
+  }
+  .page--eat .sec--clock .clock li{grid-template-columns:1fr;gap:.5rem;padding-top:1.1rem}
+  .page--eat .sec--clock .clock b{font-size:clamp(1.6rem,2.4vw,2.15rem)}
+}
+
+@media (max-width:899px){
+  .page--eat .phero{min-height:0}
+  .page--eat .sec--day,
+  .page--eat .sec--clock,
+  .page--eat .sec--reserve,
+  .page--eat .sec--faq,
+  .page--eat .book{min-height:0}
+}
+
+/* =============================================================
+   17. The Rooms page in version two
+   -------------------------------------------------------------
+   Loaded by /stay/ as well, so the tokens, the header, the
+   footer, the width and the type above already apply there. Only
+   the shapes that page does not share are below.
+   ============================================================= */
+
+/* ---- the hero takes the whole screen ------------------------ */
+.page--stay .phero{min-height:100vh;min-height:100svh}
+.page--stay .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
+.page--stay .phero__title{margin-bottom:1.3rem}
+/* two lines, not three: the measure is what settles that */
+.page--stay .phero__sub{max-width:52ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--stay .crumb{margin-bottom:1.8rem}
+/* the suite photograph is pale and evenly lit, so the wash has to
+   carry the whole text block rather than only the foot of it */
+.page--stay .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.62) 0%,rgba(8,8,7,.4) 14%,rgba(8,8,7,.34) 32%,rgba(8,8,7,.6) 52%,rgba(8,8,7,.82) 76%,rgba(8,8,7,.88) 100%),
+    linear-gradient(to right,rgba(8,8,7,.62) 0%,rgba(8,8,7,.36) 52%,rgba(8,8,7,.18) 100%);
+}
+
+/* ---- the bands that hold a screen --------------------------- */
+.page--stay .sec--intro,
+.page--stay .sec--which,
+.page--stay .sec--every,
+.page--stay .sec--offers,
+.page--stay .sec--faq,
+.page--stay .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--stay .sec--intro,
+.page--stay .sec--which,
+.page--stay .sec--every,
+.page--stay .sec--offers{padding-block:var(--sec-y)}
+
+/* ---- grounds, so two white bands never run together --------- */
+.page--stay .sec--which{background:var(--sand-warm)}
+
+.page--stay .sec--every{background:#FFF}
+.page--stay .sec--faq{background:var(--linen)}
+.page--stay .faq{width:100%}
+
+/* ---- the two cards: five rows, not six ---------------------- */
+/* Heading and standfirst, then one photograph, then the words, the
+   facts and the button. The tall lead frame and the pair of details
+   are gone, so the shared subgrid is a row shorter. */
+.page--stay .pair{grid-template-rows:auto auto auto auto auto}
+.page--stay .rcard{grid-row:span 5}
+.page--stay .rcard__lead{aspect-ratio:3/2}
+.page--stay .rcard__head{display:grid;gap:.5rem;align-content:start}
+.page--stay .rcard__head .room2__lede{margin-bottom:0;max-width:34ch}
+
+/* three facts, or four, and never a hole at the end of the row */
+.page--stay .specs,
+.page--stay .rcard .specs{grid-template-columns:repeat(auto-fit,minmax(7.5rem,1fr))}
+
+/* ---- the Suite: a 16:9 film, and the details under it -------- */
+/* The film was a full-height portrait and read as a poster rather than
+   a detail. It is 16:9 now, which is both the shape of the footage and
+   a good deal smaller, and the two stills sit directly beneath it at
+   matching widths. Nothing has to be stretched to keep them in line,
+   because they are in the same column as the film. */
+.page--stay .room2__pair{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.page--stay .room2__media{display:grid;gap:clamp(.6rem,1.2vw,.9rem);align-content:start}
+.page--stay .rfilm16{position:relative;overflow:hidden;background:var(--sand);aspect-ratio:16/9}
+.page--stay .rfilm16 img,.page--stay .rfilm16 video{width:100%;height:100%;object-fit:cover}
+/* the stand-in frame, revealed only once it is genuinely playing */
+.page--stay .rfilm16 .ytbox{position:absolute;inset:0;z-index:1;opacity:0;pointer-events:none;transition:opacity .8s var(--e-out)}
+.page--stay .rfilm16.yt-on .ytbox{opacity:1}
+.page--stay .rfilm16 .ytbox iframe{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:100%;height:100%;min-width:177.78vh;min-height:56.25vw;border:0;
+}
+/* one line, which is what the room deserves and all it needs */
+.page--stay .room--lead .room2__lede{max-width:none}
+
+@media (min-width:900px){
+  .page--stay .room--lead .room2{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+    align-items:start;
+  }
+}
+
+/* ---- the offers run to one length --------------------------- */
+.page--stay .offer__body{display:flex;flex-direction:column}
+.page--stay .offer__body p{max-width:46ch}
+.page--stay .offer__terms{margin-top:auto;padding-top:1rem}
+
+/* ---- the closing band --------------------------------------- */
+.page--stay .book__scrim{
+  background:linear-gradient(to bottom,rgba(6,6,5,.62) 0%,rgba(6,6,5,.56) 20%,rgba(6,6,5,.76) 50%,rgba(6,6,5,.9) 100%);
+}
+.page--stay .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--stay .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--stay .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+.page--stay .intro__n{color:var(--brass-ink)}
+
+@media (max-width:899px){
+  .page--stay .phero{min-height:0}
+  .page--stay .sec--intro,
+  .page--stay .sec--which,
+  .page--stay .sec--every,
+  .page--stay .sec--offers,
+  .page--stay .sec--faq,
+  .page--stay .book{min-height:0}
+}
+
+/* =============================================================
+   18. One line the full-height bands all needed
+   -------------------------------------------------------------
+   Every band above that became `display:grid` in order to centre
+   its content turned its `.wrap` into a grid item, and a grid item
+   defaults to `min-width:auto`: it refuses to be narrower than its
+   own content. So the comparison table, which is deliberately
+   wider than a phone and meant to scroll inside its own box,
+   pushed its container past the edge of the screen instead. The
+   section clipped it, the box never scrolled, and the last three
+   columns were simply unreachable on a phone.
+
+   `min-width:0` puts each of them back under the grid's control.
+   It is listed band by band rather than applied with a wildcard,
+   so it is obvious later which rules this was meant to cover.
+   ============================================================= */
+.page--stay .sec--intro>*,
+.page--stay .sec--which>*,
+.page--stay .sec--every>*,
+.page--stay .sec--offers>*,
+.page--stay .sec--faq>*,
+.page--stay .book>*,
+.page--eat .sec--day>*,
+.page--eat .sec--clock>*,
+.page--eat .sec--reserve>*,
+.page--eat .sec--faq>*,
+.page--eat .book>*,
+.page--wellness .sec--faq>*,
+.page--wellness .book>*{min-width:0}
+
+/* =============================================================
+   19. The Rooms page: paragraphs to the edge of their column
+   -------------------------------------------------------------
+   Version one caps every paragraph in `ch`, which was right when
+   the page was 1200px wide. At 1680 those caps stop short of the
+   column they sit in and leave a ragged gutter down the right of
+   the page. Each one is released to the width of its own column
+   here rather than site-wide, because these columns are the ones
+   that are already a sensible measure: 62 to 77 characters at the
+   body size, which is inside the readable range. The one place a
+   cap stays is the standfirst beside a section heading, where the
+   column really is the full 1310px.
+   ============================================================= */
+.page--stay .intro__cols p,
+.page--stay .room2__body p,
+.page--stay .rcard__body p,
+.page--stay .rband__body p,
+.page--stay .pick__p p,
+.page--stay .wide-note{max-width:none}
+
+/* the standfirst on a card runs to one line, so it needs the room */
+.page--stay .rcard__head .room2__lede{
+  max-width:none;
+  font-size:clamp(1.1rem,1.55vw,1.32rem);
+}
+
+/* five facts, not four */
+@media (min-width:1100px){
+  .page--stay .intro__facts{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media (min-width:700px) and (max-width:1099px){
+  .page--stay .intro__facts{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+/* four facts on a strip, spread rather than bunched to the left */
+.page--stay .specs--inline{
+  grid-template-columns:repeat(auto-fit,minmax(0,1fr));
+  justify-content:stretch;
+}
+
+/* ---- the chooser heading holds one line --------------------- */
+/* The two-column section head split 533/580 and the display size
+   put "Which room is yours." on two. The heading takes the wider
+   half here; the standfirst is short enough not to mind. */
+@media (min-width:900px){
+  .page--stay .sec--which .sechead--split{
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  }
+  .page--stay .sec--which .sechead--split .h2{max-width:none}
+  .page--stay .sec--which .sechead--split .lede{max-width:52ch}
+}
+
+/* =============================================================
+   20. The journal in version two
+   -------------------------------------------------------------
+   The listing and the entry pages load this file like every other
+   page, so the header, the footer, the width and the type are
+   already right. Only the grounds and the one shorter hero are
+   below.
+   ============================================================= */
+
+/* ---- the listing hero, the full screen -------------------- */
+/* The text block in a hero is anchored to the foot of the band, so how
+   high the heading sits depends on how tall the block is. Every other
+   page has a row of buttons under the standfirst and this one has none,
+   which put the heading 179px lower than the same heading on /stay/.
+   The extra foot padding puts it back on the same line. */
+.page--journal .phero{min-height:100vh;min-height:100svh}
+.page--journal .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(9rem,28vh,17rem)}
+.page--journal .phero__sub{max-width:60ch;margin-bottom:0}
+
+/* ---- a post opens on a shorter one ------------------------- */
+/* Not the full screen: on a post the reader came for the words, and
+   a whole screen of photograph before the first line is a toll. This
+   is enough to carry the title block and give the fixed navigation
+   something dark to be legible against. */
+.page--post .phero--post{min-height:min(74vh,48rem);min-height:min(74svh,48rem)}
+.page--post .phero--post .phero__in{padding-block:clamp(7.5rem,15vh,10rem) clamp(3rem,7vh,4.5rem)}
+.page--post .phero__title{max-width:24ch;margin-bottom:1.2rem}
+.page--post .phero__sub{max-width:70ch;margin-bottom:0;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--post .crumb{margin-bottom:1.6rem}
+.page--post .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.64) 0%,rgba(8,8,7,.46) 16%,rgba(8,8,7,.48) 34%,rgba(8,8,7,.7) 56%,rgba(8,8,7,.86) 80%,rgba(8,8,7,.9) 100%),
+    linear-gradient(to right,rgba(8,8,7,.64) 0%,rgba(8,8,7,.4) 55%,rgba(8,8,7,.2) 100%);
+}
+.page--journal .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.6) 0%,rgba(8,8,7,.42) 22%,rgba(8,8,7,.56) 55%,rgba(8,8,7,.82) 100%),
+    linear-gradient(to right,rgba(8,8,7,.6) 0%,rgba(8,8,7,.34) 55%,rgba(8,8,7,.16) 100%);
+}
+
+/* ---- grounds ------------------------------------------------ */
+.page--journal .sec--find,
+.page--journal .sec--posts{background:var(--linen)}
+.page--post .post{background:var(--linen)}
+.page--post .post__foot{background:var(--linen)}
+.page--post .post__body,
+.page--post .post__foot{background:var(--linen)}
+
+/* ---- the closing band, as everywhere else ------------------- */
+.page--journal .book,
+.page--post .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--journal .book>*,
+.page--post .book>*{min-width:0}
+.page--journal .book__scrim,
+.page--post .book__scrim{
+  background:linear-gradient(to bottom,rgba(6,6,5,.62) 0%,rgba(6,6,5,.56) 20%,rgba(6,6,5,.76) 50%,rgba(6,6,5,.9) 100%);
+}
+.page--journal .book__in,
+.page--post .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--journal .btn--solid,
+.page--post .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--journal .btn--solid:hover,
+.page--post .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+
+@media (max-width:899px){
+  .page--journal .phero--short{min-height:0}
+  .page--journal .book,.page--post .book{min-height:0}
+}
+
+/* ---- the line under each restaurant's name ------------------ */
+/* It was capped at 38ch and broke on to a second line carrying only
+   three or four words, in a column with 300px to spare. Both lines
+   fit whole at this measure: Amber needs 720px and Cloud 626px, and
+   the column gives 832. Below 1100px they wrap as before, which is
+   correct, because there the column really is narrow. */
+@media (min-width:1100px){
+  .page--eat .vhead__lede{max-width:56ch}
+}
+
+/* =============================================================
+   21. The Events page in version two
+   -------------------------------------------------------------
+   Same tokens, header, footer, width and type as every other
+   page. This one runs darker than the rest, because the evenings
+   it is selling happen after dark, and the bands alternate
+   accordingly rather than staying on linen throughout.
+   ============================================================= */
+
+/* ---- the hero, full screen like the others ------------------ */
+.page--events .phero{min-height:100vh;min-height:100svh}
+.page--events .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
+.page--events .phero__title{margin-bottom:1.3rem;max-width:16ch}
+.page--events .phero__sub{max-width:60ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--events .crumb{margin-bottom:1.8rem}
+/* the ceremony photograph is lamplit and busy, so the wash carries
+   the whole text block rather than only the foot of it */
+.page--events .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.62) 0%,rgba(8,8,7,.44) 14%,rgba(8,8,7,.4) 32%,rgba(8,8,7,.64) 52%,rgba(8,8,7,.84) 76%,rgba(8,8,7,.9) 100%),
+    linear-gradient(to right,rgba(8,8,7,.64) 0%,rgba(8,8,7,.38) 52%,rgba(8,8,7,.18) 100%);
+}
+
+/* ---- the bands that hold a screen --------------------------- */
+.page--events .sec--why,
+.page--events .sec--fit,
+.page--events .sec--reels,
+.page--events .sec--change,
+.page--events .sec--enquire,
+.page--events .sec--faq,
+.page--events .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--events .sec--why>*,
+.page--events .sec--fit>*,
+.page--events .sec--reels>*,
+.page--events .sec--change>*,
+.page--events .sec--enquire>*,
+.page--events .sec--faq>*,
+.page--events .book>*{min-width:0}
+.page--events .sec--why,
+.page--events .sec--fit,
+.page--events .sec--change,
+.page--events .sec--enquire{padding-block:var(--sec-y)}
+
+/* ---- grounds, light to dark and back ------------------------ */
+.page--events .sec--why{background:#FFF}
+.page--events .sec--three{background:#FFF;padding-block:var(--sec-y)}
+.page--events .sec--fit{background:var(--linen)}
+.page--events .sec--spaces{background:#FFF;padding-block:var(--sec-y)}
+/* the reel wall is the one dark band: these are films of evenings,
+   and a dark ground is what stops six bright posters shouting */
+.page--events .sec--reels{background:var(--char);color:#D9D9D0;padding-block:var(--sec-y)}
+.page--events .sec--reels .h2{color:#FFF}
+.page--events .sec--reels .lede{color:#C9C9BE}
+.page--events .sec--change{background:var(--linen)}
+.page--events .sec--enquire{background:#FFF}
+/* the split headings on this page are sentences rather than labels,
+   so they get more room than the site default of 15ch */
+.page--events .sechead--split .h2{max-width:24ch}
+/* the standfirst beside a short heading gets the room the heading
+   is not using, so it lands on two lines rather than three */
+.page--events .sec--three .sechead--split .lede{max-width:56ch}
+.page--events .sec--faq{background:#FFF}
+.page--events .faq{width:100%}
+
+/* ---- paragraphs run to the width of their own column -------- */
+.page--events .why__cols p,
+.page--events .change__text p,
+.page--events .space__body p,
+.page--events .three__note,
+.page--events .size__p{max-width:none}
+
+/* ---- the closing band --------------------------------------- */
+.page--events .book__scrim{
+  background:linear-gradient(to bottom,rgba(6,6,5,.62) 0%,rgba(6,6,5,.56) 20%,rgba(6,6,5,.76) 50%,rgba(6,6,5,.9) 100%);
+}
+.page--events .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--events .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--events .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+.page--events .why__n{color:var(--brass-ink)}
+
+@media (min-width:1100px){
+  .page--events .why__facts{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (min-width:700px) and (max-width:1099px){
+  .page--events .why__facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+
+@media (max-width:899px){
+  .page--events .phero{min-height:0}
+  .page--events .sec--why,
+  .page--events .sec--fit,
+  .page--events .sec--reels,
+  .page--events .sec--change,
+  .page--events .sec--enquire,
+  .page--events .sec--faq,
+  .page--events .book{min-height:0}
+}
+
+/* =============================================================
+   22. The Our Story page in version two
+   -------------------------------------------------------------
+   Six chapters, each holding a screen, alternating light and
+   linen with one dark band for the sculpture. Same tokens,
+   header, footer, width and type as every other page.
+   ============================================================= */
+
+/* ---- the hero, full screen like the others ------------------ */
+.page--story .phero{min-height:100vh;min-height:100svh}
+.page--story .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
+.page--story .phero__title{margin-bottom:1.3rem;max-width:16ch}
+.page--story .phero__sub{max-width:62ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--story .crumb{margin-bottom:1.8rem}
+/* the sculpture is shot against a bright skylight, so the wash has
+   to carry the whole text block rather than only the foot of it */
+.page--story .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.55) 0%,rgba(8,8,7,.4) 16%,rgba(8,8,7,.46) 38%,rgba(8,8,7,.72) 58%,rgba(8,8,7,.88) 80%,rgba(8,8,7,.93) 100%),
+    linear-gradient(to right,rgba(8,8,7,.7) 0%,rgba(8,8,7,.42) 50%,rgba(8,8,7,.2) 100%);
+}
+
+/* ---- the bands that hold a screen --------------------------- */
+.page--story .sec--before,
+.page--story .sec--drawn,
+.page--story .sec--made,
+.page--story .sec--art,
+.page--story .sec--green,
+.page--story .sec--now,
+.page--story .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--story .sec--before>*,
+.page--story .sec--drawn>*,
+.page--story .sec--made>*,
+.page--story .sec--art>*,
+.page--story .sec--green>*,
+.page--story .sec--now>*,
+.page--story .book>*{min-width:0}
+.page--story .sec--before,
+.page--story .sec--drawn,
+.page--story .sec--made,
+.page--story .sec--art,
+.page--story .sec--green,
+.page--story .sec--now{padding-block:var(--sec-y)}
+
+/* ---- grounds, light to dark and back ------------------------ */
+.page--story .sec--before{background:#FFF}
+.page--story .sec--drawn{background:var(--linen)}
+.page--story .sec--made{background:#FFF}
+/* the sculpture is the one dark band: it is shot against a bright
+   sky and it needs the page to stop talking while you look at it */
+.page--story .sec--art{background:var(--char);color:#D9D9D0}
+.page--story .sec--art .h2{color:#FFF}
+.page--story .sec--art p{color:#C9C9BE}
+.page--story .sec--art .chap__mark{color:#E8A0A6}
+.page--story .sec--green{background:var(--linen)}
+.page--story .sec--now{background:#FFF}
+
+/* ---- paragraphs run to the width of their own column -------- */
+.page--story .chap__cols p,
+.page--story .split__text p,
+.page--story .chap__note,
+.page--story .made__i p{max-width:none}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--story .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--story .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+.page--story .chap__num{color:var(--brass-ink)}
+.page--story .sec--art .chap__num{color:#FFF}
+
+/* ---- the closing band --------------------------------------- */
+.page--story .book__scrim{
+  background:linear-gradient(to bottom,rgba(6,6,5,.62) 0%,rgba(6,6,5,.56) 20%,rgba(6,6,5,.76) 50%,rgba(6,6,5,.9) 100%);
+}
+.page--story .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+
+@media (max-width:899px){
+  .page--story .phero{min-height:0}
+  .page--story .sec--before,
+  .page--story .sec--drawn,
+  .page--story .sec--made,
+  .page--story .sec--art,
+  .page--story .sec--green,
+  .page--story .sec--now,
+  .page--story .book{min-height:0}
+}
+
+/* =============================================================
+   23. The Facilities page in version two
+   -------------------------------------------------------------
+   Same tokens, header, footer, width and type as Our Story, whose
+   chapter styles it shares. One dark band, for the library.
+   ============================================================= */
+
+/* ---- the hero, full screen like the others ------------------ */
+.page--facilities .phero{min-height:100vh;min-height:100svh}
+.page--facilities .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
+.page--facilities .phero__title{margin-bottom:1.3rem;max-width:16ch}
+.page--facilities .phero__sub{max-width:62ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--facilities .crumb{margin-bottom:1.8rem}
+/* the library is lamplit behind glass, so the brightest part of the
+   picture is where the text sits; the wash carries all of it */
+.page--facilities .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.58) 0%,rgba(8,8,7,.44) 16%,rgba(8,8,7,.5) 38%,rgba(8,8,7,.74) 58%,rgba(8,8,7,.88) 80%,rgba(8,8,7,.93) 100%),
+    linear-gradient(to right,rgba(8,8,7,.72) 0%,rgba(8,8,7,.44) 50%,rgba(8,8,7,.22) 100%);
+}
+
+/* ---- the bands that hold a screen --------------------------- */
+.page--facilities .sec--arrive,
+.page--facilities .sec--room,
+.page--facilities .sec--water,
+.page--facilities .sec--library,
+.page--facilities .sec--kit,
+.page--facilities .sec--faq,
+.page--facilities .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--facilities .sec--arrive>*,
+.page--facilities .sec--room>*,
+.page--facilities .sec--water>*,
+.page--facilities .sec--library>*,
+.page--facilities .sec--kit>*,
+.page--facilities .sec--faq>*,
+.page--facilities .book>*{min-width:0}
+.page--facilities .sec--arrive,
+.page--facilities .sec--room,
+.page--facilities .sec--water,
+.page--facilities .sec--library,
+.page--facilities .sec--kit{padding-block:var(--sec-y)}
+
+/* ---- grounds, light to dark and back ------------------------ */
+.page--facilities .sec--arrive{background:#FFF}
+.page--facilities .sec--room{background:var(--linen)}
+.page--facilities .sec--water{background:#FFF}
+/* The library band is not black. It is the room itself in colour and
+   texture: a walnut ground, a warm pool of lamplight behind the
+   photograph, a fine paper grain over all of it, and a brass hairline
+   top and bottom like the edge of a shelf. The grain is an inline SVG,
+   so it costs no request, and the site's CSP already allows data: for
+   images. Every text colour was measured against the lightest point
+   the layers can make, not against the average. */
+.page--facilities .sec--library{
+  color:#E0D3BF;
+  background-color:#221912;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 .9 0 0 0 0 .78 .08 0 0 0 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>"),
+    radial-gradient(ellipse 55% 65% at 24% 50%,rgba(226,170,92,.14) 0%,rgba(226,170,92,0) 70%),
+    radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 55%,rgba(0,0,0,.32) 100%),
+    linear-gradient(160deg,#2C2119 0%,#221912 55%,#1B140F 100%);
+  box-shadow:inset 0 1px 0 rgba(201,164,107,.32),inset 0 -1px 0 rgba(201,164,107,.32);
+}
+.page--facilities .sec--library .h2{color:#F7EFE2}
+.page--facilities .sec--library p{color:#E0D3BF}
+.page--facilities .sec--library .chap__mark{color:#D9B27A}
+.page--facilities .sec--library .split__text a{color:#F7EFE2;text-decoration-color:rgba(217,178,122,.7);text-underline-offset:.24em}
+.page--facilities .sec--library .split__text a:hover{text-decoration-color:#D9B27A}
+/* the photograph hangs like a framed print: a brass line set off it */
+.page--facilities .sec--library .split__shot img{
+  outline:1px solid rgba(217,178,122,.45);outline-offset:10px;
+  box-shadow:0 22px 48px rgba(0,0,0,.45);
+}
+.page--facilities .sec--kit{background:var(--linen)}
+.page--facilities .sec--faq{background:#FFF}
+.page--facilities .faq{width:100%}
+
+/* ---- headings are sentences here, so they get the room ------ */
+.page--facilities .sechead--split .h2{max-width:22ch}
+.page--facilities .split__text .h2{max-width:22ch}
+.page--facilities .chap .h2{max-width:30ch}
+
+/* ---- paragraphs run to the width of their own column -------- */
+.page--facilities .chap__cols p,
+.page--facilities .split__text p,
+.page--facilities .chap__note,
+.page--facilities .facil__p,
+.page--facilities .svc__p{max-width:none}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--facilities .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--facilities .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+.page--facilities .chap__num{color:var(--brass-ink)}
+.page--facilities .sec--kit .chap__note{margin-top:clamp(1.5rem,3vw,2.25rem)}
+
+/* four portrait cards plus a heading overran a 900px screen by 35px,
+   so on wide screens the pictures go square and the band fits */
+@media (min-width:1100px){ .page--facilities .facil__f{aspect-ratio:1/1} }
+
+/* ---- the closing band --------------------------------------- */
+.page--facilities .book__scrim{
+  background:linear-gradient(to bottom,rgba(6,6,5,.64) 0%,rgba(6,6,5,.58) 20%,rgba(6,6,5,.78) 50%,rgba(6,6,5,.9) 100%);
+}
+.page--facilities .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+
+@media (max-width:899px){
+  .page--facilities .phero{min-height:0}
+  .page--facilities .sec--arrive,
+  .page--facilities .sec--room,
+  .page--facilities .sec--water,
+  .page--facilities .sec--library,
+  .page--facilities .sec--kit,
+  .page--facilities .sec--faq,
+  .page--facilities .book{min-height:0}
+}
+
+/* =============================================================
+   24. The Sustainability page in version two
+   -------------------------------------------------------------
+   /our-story/sustainability/. Shares the chapter styles with Our
+   Story and Facilities. One textured band, a forest ground with
+   light falling through it, for the work done outside the hotel.
+   ============================================================= */
+
+/* ---- the hero, full screen like the others ------------------ */
+.page--sust .phero{min-height:100vh;min-height:100svh}
+.page--sust .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
+.page--sust .phero__title{margin-bottom:1.3rem;max-width:16ch}
+.page--sust .phero__sub{max-width:62ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--sust .crumb{margin-bottom:1.8rem}
+.page--sust .crumb a{color:inherit}
+/* a blue sky and bright leaves: the wash carries the whole text block */
+.page--sust .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.6) 0%,rgba(8,8,7,.46) 16%,rgba(8,8,7,.52) 38%,rgba(8,8,7,.76) 58%,rgba(8,8,7,.9) 80%,rgba(8,8,7,.94) 100%),
+    linear-gradient(to right,rgba(8,8,7,.74) 0%,rgba(8,8,7,.46) 50%,rgba(8,8,7,.24) 100%);
+}
+
+/* ---- the bands that hold a screen --------------------------- */
+.page--sust .sec--measure,
+.page--sust .sec--kept,
+.page--sust .sec--water,
+.page--sust .sec--waste,
+.page--sust .sec--gate,
+.page--sust .sec--faq,
+.page--sust .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--sust .sec--measure>*,
+.page--sust .sec--kept>*,
+.page--sust .sec--water>*,
+.page--sust .sec--waste>*,
+.page--sust .sec--gate>*,
+.page--sust .sec--faq>*,
+.page--sust .book>*{min-width:0}
+.page--sust .sec--measure,
+.page--sust .sec--kept,
+.page--sust .sec--water,
+.page--sust .sec--waste,
+.page--sust .sec--gate{padding-block:var(--sec-y)}
+
+/* ---- grounds, light to dark and back ------------------------ */
+.page--sust .sec--measure{background:#FFF}
+.page--sust .sec--kept{background:var(--linen)}
+.page--sust .sec--water{background:#FFF}
+.page--sust .sec--waste{background:var(--linen)}
+.page--sust .sec--faq{background:#FFF}
+.page--sust .faq{width:100%}
+.page--sust .sec--measure .chap__note{margin-top:.2rem}
+
+/* ---- beyond the gate: the forest band ----------------------- */
+/* Not a photograph and not flat green. A deep forest ground, a few
+   soft pools of light as if through a canopy, a fine grain, and a
+   pale green hairline top and bottom. The grain is an inline SVG and
+   the CSP already allows data: images. Every text colour is measured
+   against the lightest point the layers can make. */
+.page--sust .sec--gate{
+  color:#D5DCC6;
+  background-color:#18211A;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .9 0 0 0 0 1 0 0 0 0 .84 .07 0 0 0 0'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>"),
+    radial-gradient(ellipse 38% 30% at 16% 20%,rgba(176,204,124,.10) 0%,rgba(176,204,124,0) 70%),
+    radial-gradient(ellipse 30% 26% at 84% 28%,rgba(176,204,124,.08) 0%,rgba(176,204,124,0) 70%),
+    radial-gradient(ellipse 46% 34% at 62% 88%,rgba(176,204,124,.07) 0%,rgba(176,204,124,0) 70%),
+    radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 55%,rgba(0,0,0,.3) 100%),
+    linear-gradient(165deg,#223020 0%,#1A241A 55%,#141C15 100%);
+  box-shadow:inset 0 1px 0 rgba(176,204,124,.26),inset 0 -1px 0 rgba(176,204,124,.26);
+}
+.page--sust .sec--gate .h2{color:#F3F5EC}
+.page--sust .sec--gate .chap__cols p{color:#D5DCC6}
+.page--sust .sec--gate .chap__mark{color:#C5D69A}
+.page--sust .sec--gate .svc__i{border-top-color:rgba(228,233,216,.2)}
+.page--sust .sec--gate .svc__h{color:#F3F5EC}
+.page--sust .sec--gate .svc__p{color:#D5DCC6}
+
+/* ---- headings are sentences here, so they get the room ------ */
+.page--sust .sechead--split .h2{max-width:22ch}
+.page--sust .split__text .h2{max-width:22ch}
+.page--sust .chap .h2{max-width:30ch}
+
+/* ---- paragraphs run to the width of their own column -------- */
+.page--sust .chap__cols p,
+.page--sust .split__text p,
+.page--sust .chap__note,
+.page--sust .svc__p{max-width:none}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--sust .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--sust .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+.page--sust .chap__num{color:var(--brass-ink)}
+
+/* ---- the closing band --------------------------------------- */
+.page--sust .book__scrim{
+  background:linear-gradient(to bottom,rgba(6,6,5,.64) 0%,rgba(6,6,5,.58) 20%,rgba(6,6,5,.78) 50%,rgba(6,6,5,.9) 100%);
+}
+.page--sust .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+
+@media (max-width:899px){
+  .page--sust .phero{min-height:0}
+  .page--sust .sec--measure,
+  .page--sust .sec--kept,
+  .page--sust .sec--water,
+  .page--sust .sec--waste,
+  .page--sust .sec--gate,
+  .page--sust .sec--faq,
+  .page--sust .book{min-height:0}
+}
+
+/* =============================================================
+   25. The Experiences page in version two
+   -------------------------------------------------------------
+   /experiences/. Same tokens, header, footer, width and type as
+   the other chapter pages. One dark band, for Colombo after dark.
+   ============================================================= */
+
+/* ---- the hero, full screen like the others ------------------ */
+.page--xp .phero{min-height:100vh;min-height:100svh}
+.page--xp .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
+.page--xp .phero__title{margin-bottom:1.3rem;max-width:16ch}
+.page--xp .phero__sub{max-width:62ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--xp .crumb{margin-bottom:1.8rem}
+/* the city lights sit behind the text, so the wash carries all of it */
+.page--xp .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.56) 0%,rgba(8,8,7,.42) 16%,rgba(8,8,7,.48) 38%,rgba(8,8,7,.74) 58%,rgba(8,8,7,.88) 80%,rgba(8,8,7,.93) 100%),
+    linear-gradient(to right,rgba(8,8,7,.7) 0%,rgba(8,8,7,.42) 50%,rgba(8,8,7,.2) 100%);
+}
+
+/* ---- the bands that hold a screen --------------------------- */
+.page--xp .sec--ways,
+.page--xp .sec--days,
+.page--xp .sec--eat,
+.page--xp .sec--art,
+.page--xp .sec--shop,
+.page--xp .sec--dark,
+.page--xp .sec--hidden,
+.page--xp .sec--faq,
+.page--xp .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
+.page--xp .sec--ways>*,
+.page--xp .sec--days>*,
+.page--xp .sec--eat>*,
+.page--xp .sec--art>*,
+.page--xp .sec--shop>*,
+.page--xp .sec--dark>*,
+.page--xp .sec--hidden>*,
+.page--xp .sec--faq>*,
+.page--xp .book>*{min-width:0}
+.page--xp .sec--ways,
+.page--xp .sec--days,
+.page--xp .sec--eat,
+.page--xp .sec--art,
+.page--xp .sec--shop,
+.page--xp .sec--dark,
+.page--xp .sec--hidden{padding-block:var(--sec-y)}
+
+/* ---- grounds, light to dark and back ------------------------ */
+.page--xp .sec--ways{background:#FFF}
+.page--xp .sec--days{background:var(--linen)}
+.page--xp .sec--eat{background:#FFF}
+.page--xp .sec--art{background:var(--linen)}
+.page--xp .sec--shop{background:#FFF}
+/* after dark is the one dark band: night, and the rooftop */
+.page--xp .sec--dark{background:var(--char);color:#D9D9D0}
+.page--xp .sec--dark .h2{color:#FFF}
+.page--xp .sec--dark p{color:#C9C9BE}
+.page--xp .sec--dark .chap__mark{color:#E8A0A6}
+.page--xp .sec--dark .picks li{color:#C9C9BE;border-color:rgba(255,255,255,.16)}
+.page--xp .sec--dark .picks b{color:#FFF}
+.page--xp .sec--dark .split__text a{color:#FFF;text-underline-offset:.24em}
+.page--xp .sec--dark figcaption{color:#B9B9AE}
+.page--xp .sec--hidden{background:var(--linen)}
+.page--xp .sec--faq{background:#FFF}
+.page--xp .faq{width:100%}
+
+/* ---- headings are sentences here, so they get the room ------ */
+.page--xp .sechead--split .h2{max-width:22ch}
+.page--xp .split__text .h2{max-width:22ch}
+.page--xp .chap .h2{max-width:30ch}
+
+/* ---- paragraphs run to the width of their own column -------- */
+.page--xp .split__text p,
+.page--xp .chap__note,
+.page--xp .plan__p,
+.page--xp .ways__p{max-width:none}
+.page--xp .split__text .picks{margin-top:1.1rem}
+.page--xp .sec--days .chap__note,
+.page--xp .sec--ways .chap__note{margin-top:clamp(1.25rem,2.5vw,1.75rem)}
+.page--xp .chap__note a,
+.page--xp .split__text p a{color:inherit;text-underline-offset:.22em}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--xp .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--xp .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+
+/* ---- the closing band --------------------------------------- */
+.page--xp .book__scrim{
+  background:linear-gradient(to bottom,rgba(6,6,5,.64) 0%,rgba(6,6,5,.58) 20%,rgba(6,6,5,.78) 50%,rgba(6,6,5,.9) 100%);
+}
+.page--xp .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
+
+@media (max-width:899px){
+  .page--xp .phero{min-height:0}
+  .page--xp .sec--ways,
+  .page--xp .sec--days,
+  .page--xp .sec--eat,
+  .page--xp .sec--art,
+  .page--xp .sec--shop,
+  .page--xp .sec--dark,
+  .page--xp .sec--hidden,
+  .page--xp .sec--faq,
+  .page--xp .book{min-height:0}
+}
+
+/* =============================================================
+   26. The legal pages in version two
+   -------------------------------------------------------------
+   /terms-and-conditions/  /privacy-policy/  /cookie-policy/
+   /gdpr-compliance/. The same header, full-screen hero and footer
+   as every other page, and the document runs the full width of
+   the page: a band with the facts and the contents, then each
+   clause with its heading on the left and its text on the right,
+   so no line of text runs too long to read.
+   ============================================================= */
+
+/* ---- the hero, full screen like the others ------------------ */
+.page--legal .phero{min-height:100vh;min-height:100svh}
+.page--legal .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
+.page--legal .phero__title{margin-bottom:1.3rem;max-width:22ch}
+.page--legal .phero__sub{max-width:62ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
+.page--legal .crumb{margin-bottom:1.8rem}
+.page--legal .phero--deep .phero__scrim{
+  background:
+    linear-gradient(to bottom,rgba(8,8,7,.56) 0%,rgba(8,8,7,.42) 16%,rgba(8,8,7,.48) 38%,rgba(8,8,7,.74) 58%,rgba(8,8,7,.88) 80%,rgba(8,8,7,.93) 100%),
+    linear-gradient(to right,rgba(8,8,7,.7) 0%,rgba(8,8,7,.42) 50%,rgba(8,8,7,.2) 100%);
+}
+
+/* ---- the red carried across from the homepage --------------- */
+.page--legal .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
+.page--legal .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+
+/* ---- the facts and the contents ----------------------------- */
+.page--legal .sec--contents{background:var(--linen);padding-block:clamp(3rem,6vw,5rem)}
+.doc__top{display:grid;grid-template-columns:minmax(0,1fr);gap:2.5rem}
+.doc__top>*{min-width:0}
+.doc__facts{margin:0;display:grid;gap:0}
+.doc__facts>div{padding-block:.95rem;border-top:1px solid var(--rule)}
+.doc__facts>div:last-child{border-bottom:1px solid var(--rule)}
+.doc__facts dt{margin-bottom:.3rem;font-size:.74rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--stone)}
+.doc__facts dd{margin:0;font-size:.98rem;line-height:1.55;color:var(--ink)}
+.doc__facts a{color:inherit;text-underline-offset:.22em}
+.doc__toc-h{margin:0 0 1.1rem;font-family:var(--f-display);font-weight:400;font-size:clamp(1.4rem,2.3vw,1.95rem);line-height:1.14;letter-spacing:-.01em;color:var(--ink)}
+.doc__toc ol{list-style:none;margin:0;padding:0;columns:12.5rem 3;column-gap:2.25rem}
+.doc__toc li{break-inside:avoid;border-top:1px solid var(--rule)}
+.doc__toc a{display:flex;gap:.8rem;align-items:baseline;padding:.68rem 0;font-size:.95rem;line-height:1.4;color:var(--ink);text-decoration:none}
+.doc__toc a:hover{color:var(--crimson)}
+.doc__n{flex:none;min-width:1.5rem;font-size:.76rem;font-variant-numeric:tabular-nums;color:var(--stone)}
+.doc__toc a:hover .doc__n{color:var(--crimson)}
+
+/* ---- the clauses -------------------------------------------- */
+.page--legal .sec--doc{background:#FFF;padding-block:clamp(1rem,2vw,1.5rem) var(--sec-y)}
+.clause{display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem;padding-block:clamp(2.25rem,4.5vw,3.5rem);border-top:1px solid var(--rule)}
+.clause:first-child{border-top:0}
+.clause>*{min-width:0}
+.clause__side{display:flex;gap:1rem;align-items:baseline}
+.clause__n{flex:none;min-width:1.6rem;font-size:.8rem;font-variant-numeric:tabular-nums;color:var(--stone)}
+.clause__h{margin:0;max-width:22ch;font-family:var(--f-display);font-weight:400;font-size:clamp(1.4rem,2.3vw,1.95rem);line-height:1.18;letter-spacing:-.01em;color:var(--ink)}
+.clause__txt>*{max-width:72ch}
+/* an email address or a web address cannot wrap on its own at 320px */
+.clause__txt,.doc__facts dd{overflow-wrap:break-word;overflow-wrap:anywhere}
+.clause__txt p{line-height:1.75;color:var(--ink-soft)}
+.clause__txt p+p{margin-top:.9em}
+.clause__txt p b{color:var(--ink);font-weight:500}
+.clause__txt .ticks{margin-top:1.1rem}
+.clause__txt .ticks li{font-size:.98rem;line-height:1.65;color:var(--ink-soft)}
+.clause__txt .ticks b{color:var(--ink);font-weight:500}
+.clause__txt>.ticks+p,
+.clause__txt>.clause__subs+p,
+.clause__txt>.legal__table+p{margin-top:1.3rem}
+.clause__txt>p+.clause__subs,
+.clause__txt>.ticks+.clause__subs{margin-top:1.4rem}
+.clause__subs{display:grid;gap:1rem}
+.clause__subs>div{padding:1.2rem 1.35rem 1.3rem;background:var(--linen)}
+.clause__subs .h4{margin-bottom:.45rem;color:var(--ink)}
+.clause__subs p{font-size:.98rem}
+.clause__subs .ticks{margin-top:.6rem}
+.clause__sub-h{margin:1.6rem 0 .45rem}
+
+/* the end of the document: where the related policies live */
+.doc__end{padding-top:clamp(1.75rem,3.5vw,2.5rem);border-top:1px solid var(--rule)}
+.doc__end p{max-width:72ch;font-size:.94rem;line-height:1.7;color:var(--stone)}
+.doc__end a{color:var(--ink)}
+
+@media (min-width:1100px){
+  .doc__top,
+  .clause,
+  .doc__end{grid-template-columns:minmax(0,5fr) minmax(0,7fr);column-gap:clamp(2.5rem,5vw,5.5rem)}
+  .doc__end{display:grid}
+  .doc__end>*{grid-column:2}
+  /* the heading stays in view while its clause is read */
+  .clause__side{position:sticky;top:6.5rem;align-self:start}
+  /* the cookie list needs every column the page has */
+  .clause--wide{grid-template-columns:minmax(0,1fr)}
+  .clause--wide .clause__side{position:static}
+  .clause--wide .clause__txt>.legal__table{max-width:none}
+}
+
+@media (max-width:899px){
+  .page--legal .phero{min-height:0}
+}
+
+/* =============================================================
+   27. Where you are
+   -------------------------------------------------------------
+   main.js marks the link to the page you are on in every copy of
+   the navigation. The header keeps a full rule under it, the phone
+   menu shows it in brass with a short rule before it, and the
+   footer underlines it.
+   ============================================================= */
+.nav a[aria-current="page"]::after{transform:scaleX(1);opacity:1;height:2px;bottom:0}
+.menu__list a[aria-current="page"]{color:#DCBB78}
+.menu__list a[aria-current="page"]::before{content:"";display:inline-block;width:1.1rem;height:2px;margin-right:.75rem;vertical-align:.3em;background:currentColor}
+.foot__nav a[aria-current="page"],
+.foot__links a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em}

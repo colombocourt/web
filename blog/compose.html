@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Write a blog post &middot; Colombo Court</title>
+<style>
+  :root{
+    --ink:#22221F; --soft:#494943; --stone:#6A6A62;
+    --linen:#F4F2ED; --rule:rgba(38,34,30,.18); --red:#C0222E;
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--linen);color:var(--ink);font-size:15px;line-height:1.6}
+  .wrap{max-width:64rem;margin:0 auto;padding:2rem 1.25rem 5rem}
+  h1{font-size:1.6rem;margin:0 0 .3rem}
+  .sub{margin:0 0 2rem;color:var(--stone)}
+  fieldset{border:1px solid var(--rule);background:#fff;padding:1.25rem;margin:0 0 1.25rem}
+  legend{padding:0 .5rem;font-weight:600;font-size:.85rem;letter-spacing:.06em;color:var(--red)}
+  label{display:block;font-size:.8rem;letter-spacing:.05em;color:var(--stone);margin:0 0 .3rem}
+  input,select,textarea{
+    width:100%;padding:.6rem .7rem;border:1px solid var(--rule);background:#fff;
+    font:inherit;color:var(--ink);border-radius:0;
+  }
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--red);outline-offset:1px}
+  textarea{min-height:16rem;line-height:1.7;resize:vertical}
+  .row{display:grid;gap:1rem;margin-bottom:1rem}
+  @media (min-width:720px){ .row--3{grid-template-columns:1fr 1fr 1fr} .row--2{grid-template-columns:1fr 1fr} }
+  .hint{font-size:.82rem;color:var(--stone);margin:.35rem 0 0}
+  .pics{display:grid;gap:.75rem}
+  .pic{display:grid;gap:.5rem;grid-template-columns:1fr;align-items:end}
+  @media (min-width:720px){ .pic{grid-template-columns:14rem 1fr} }
+  button{
+    font:inherit;padding:.7rem 1.2rem;border:1px solid var(--ink);background:var(--ink);
+    color:#fff;cursor:pointer;letter-spacing:.04em;
+  }
+  button.ghost{background:transparent;color:var(--ink)}
+  button:hover{background:var(--red);border-color:var(--red);color:#fff}
+  .out{
+    width:100%;min-height:22rem;font-family:ui-monospace,Consolas,"SF Mono",monospace;
+    font-size:12.5px;line-height:1.55;white-space:pre;overflow:auto;
+    background:#1E1E1B;color:#E8E5DF;border:0;padding:1rem;
+  }
+  .acts{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin:1rem 0}
+  .said{color:var(--red);font-size:.88rem}
+  ol{padding-left:1.2rem}
+  li{margin:.4rem 0}
+  code{background:#EFEDE6;padding:.1rem .35rem;font-size:.9em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Write a blog post</h1>
+  <p class="sub">Paste the words, choose the pictures, press the button. This page writes the
+  formatting for you; it does not publish anything on its own.</p>
+  <p class="sub"><b>Do the pictures first.</b> Rename them, drop them into
+  <code>blog\_new-pictures\header</code> and <code>blog\_new-pictures\inside</code>,
+  and double-click <code>blog\add-pictures.cmd</code>. Then come back here and their
+  names will be waiting in the Main picture box.</p>
+
+  <fieldset>
+    <legend>The post</legend>
+    <div class="row">
+      <div>
+        <label for="t">Heading</label>
+        <input id="t" placeholder="Where to eat in Colombo 3, from the people at the desk">
+      </div>
+    </div>
+    <div class="row row--3">
+      <div>
+        <label for="d">Date</label>
+        <input id="d" type="date">
+        <p class="hint">Never a future date.</p>
+      </div>
+      <div>
+        <label for="c">Topic</label>
+        <select id="c">
+          <option>Colombo</option>
+          <option>Food &amp; Drink</option>
+          <option>Wellness</option>
+          <option>Sustainability</option>
+          <option>The Hotel</option>
+        </select>
+      </div>
+      <div>
+        <label for="sl">Web address</label>
+        <input id="sl" placeholder="fills itself in">
+        <p class="hint">/blog/&hellip;/ &mdash; leave it alone unless you have a reason.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label for="s">Summary</label>
+        <textarea id="s" style="min-height:5rem" placeholder="One or two sentences. This is the card text and the Google description, so put the useful words in it."></textarea>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Pictures</legend>
+    <div class="pics">
+      <div class="pic">
+        <div>
+          <label for="h">Main picture</label>
+          <input id="h" list="heroes" placeholder="bl-eat-hero">
+          <datalist id="heroes"><option value="bl-airport-hero"> <option value="bl-around-hero"> <option value="bl-breakfast-hero"> <option value="bl-carbon-hero"> <option value="bl-days-hero"> <option value="bl-eat-hero"> <option value="bl-eco-hero"> <option value="bl-events-hero"> <option value="bl-firstspa-hero"> <option value="bl-hightea-hero"> <option value="bl-inward-hero"> <option value="bl-massage-hero"> <option value="bl-pack-hero"> <option value="bl-rain-hero"> <option value="bl-tea-hero"> <option value="bl-things-hero"> <option value="bl-twodays-hero"> <option value="bl-when-hero"> <option value="bl-work-hero"> <option value="bl-worth-hero"> </datalist>
+        </div>
+        <div>
+          <label for="ha">What it shows</label>
+          <input id="ha" placeholder="A table of people eating outdoors after dark.">
+        </div>
+      </div>
+      <div class="pic">
+        <div>
+          <label for="i1">Second picture</label>
+          <input id="i1" placeholder="bl-roof">
+        </div>
+        <div>
+          <label for="i1a">What it shows, and a caption after a | if you want one</label>
+          <input id="i1a" placeholder="Rooftop seating in the evening. | The roof, which solves the problem.">
+        </div>
+      </div>
+      <div class="pic">
+        <div>
+          <label for="i2">Third picture</label>
+          <input id="i2" placeholder="bl-lights">
+        </div>
+        <div>
+          <label for="i2a">What it shows, and a caption after a |</label>
+          <input id="i2a">
+        </div>
+      </div>
+    </div>
+    <p class="hint">Use the file name without the size, so <code>bl-roof</code>, not <code>bl-roof-700.jpg</code>.
+    The main picture must be one of the <code>-hero</code> images, which are built wide enough for a
+    header; start typing and the list will offer them. The second and third can be any picture in
+    <code>assets/img/</code>. Leave them blank if the post has none. If you name one that does not exist,
+    publishing stops and tells you which.</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>The words</legend>
+    <label for="b">Body</label>
+    <textarea id="b" placeholder="Write or paste it here, exactly as you would in an email.
+
+Leave a blank line between paragraphs.
+
+Put a sub-heading on a line of its own and start it with ## like this:
+
+## Within walking distance
+
+To put one of the pictures in, write [image 2] or [image 3] on a line of its own where you want it.
+
+To link to something, write [Amber Poolside](/eat-drink/#amber)."></textarea>
+    <p class="hint">Blank line between paragraphs. <code>## </code> for a sub-heading. <code>**bold**</code> for bold.
+    <code>[image 2]</code> and <code>[image 3]</code> place the pictures. <code>[words](/link/)</code> makes a link.</p>
+  </fieldset>
+
+  <div class="acts">
+    <button type="button" id="go">Write the post</button>
+    <button type="button" class="ghost" id="copy">Copy it</button>
+    <span class="said" id="said"></span>
+  </div>
+
+  <textarea class="out" id="out" readonly spellcheck="false"></textarea>
+
+  <fieldset style="margin-top:1.5rem">
+    <legend>Then</legend>
+    <ol>
+      <li>Press <b>Copy it</b>.</li>
+      <li>Open <code>blog\_src\posts.txt</code> in Notepad and paste it at the very bottom. Save.</li>
+      <li>Double-click <code>blog\publish.cmd</code>.</li>
+      <li>Upload <code>assets\img</code>, <code>blog</code> and <code>sitemap.xml</code> into
+          <code>public_html</code> on Hostinger, replacing what is there.</li>
+    </ol>
+    <p class="hint">Step three rewrites the listing, the new post&rsquo;s own page, every other post&rsquo;s
+    next and previous links, the feed and the sitemap, all together, so none of them can disagree.</p>
+  </fieldset>
+
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* the address is made from the heading unless somebody types their own */
+  var touched = false;
+  $('sl').addEventListener('input', function () { touched = true; });
+  $('t').addEventListener('input', function () {
+    if (touched) return;
+    $('sl').value = $('t').value.toLowerCase()
+      .replace(/&/g, ' and ')
+      .replace(/[‘’']/g, '')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .split('-').slice(0, 8).join('-');
+  });
+
+  /* today, so nobody has to think about it */
+  var now = new Date();
+  $('d').value = now.getFullYear() + '-' +
+    String(now.getMonth() + 1).padStart(2, '0') + '-' +
+    String(now.getDate()).padStart(2, '0');
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function attr(s) { return esc(s).replace(/"/g, '&quot;'); }
+
+  /* the typographic tidy-up nobody should have to do by hand */
+  function nice(s) {
+    return esc(s)
+      .replace(/(\w)'(\w)/g, '$1&rsquo;$2')
+      .replace(/"([^"]+)"/g, '&ldquo;$1&rdquo;')
+      .replace(/\.\.\./g, '&hellip;')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+  }
+
+  function picture(name, alt) {
+    if (!name) return '';
+    var cap = '';
+    var m = String(alt).split('|');
+    if (m.length > 1) { alt = m[0].trim(); cap = m[1].trim(); }
+    var f = '{{A}}assets/img/' + name.replace(/-\d+\.jpg$/, '').trim();
+    return '<figure><img src="' + f + '-700.jpg" srcset="' + f + '-700.jpg 700w, ' + f +
+      '-1100.jpg 1100w" sizes="(max-width: 760px) 92vw, 46rem" width="700" height="467" ' +
+      'loading="lazy" decoding="async" alt="' + attr(alt) + '">' +
+      (cap ? '<figcaption>' + nice(cap) + '</figcaption>' : '') + '</figure>';
+  }
+
+  function build() {
+    var title = $('t').value.trim();
+    var slug  = $('sl').value.trim();
+    var body  = $('b').value.replace(/\r\n/g, '\n').trim();
+    if (!title || !slug || !body) {
+      $('said').textContent = 'Heading, address and words are all needed.';
+      return;
+    }
+
+    var pics = {
+      2: picture($('i1').value.trim(), $('i1a').value.trim()),
+      3: picture($('i2').value.trim(), $('i2a').value.trim())
+    };
+
+    var out = body.split(/\n\s*\n/).map(function (block) {
+      var t = block.trim();
+      if (!t) return '';
+      var img = t.match(/^\[image\s*([23])\]$/i);
+      if (img) return pics[img[1]] || '';
+      if (t.indexOf('## ') === 0) return '<h2>' + nice(t.slice(3).trim()) + '</h2>';
+      return '<p>' + nice(t).replace(/\n/g, ' ') + '</p>';
+    }).filter(Boolean).join('\n\n');
+
+    /* about two hundred and twenty words a minute, rounded up */
+    var words = body.split(/\s+/).filter(Boolean).length;
+    var mins = Math.max(2, Math.round(words / 220));
+
+    var hero = $('h').value.replace(/-\d+\.jpg$/, '').trim() || 'bl-inward-hero';
+    var text =
+      '=== ' + slug + '\n' +
+      'title: ' + title + '\n' +
+      'date: ' + $('d').value + '\n' +
+      'topic: ' + $('c').value + '\n' +
+      'summary: ' + $('s').value.trim().replace(/\s+/g, ' ') + '\n' +
+      'hero: ' + hero + '\n' +
+      'heroW: 1600\n' +
+      'heroAlt: ' + $('ha').value.trim() + '\n' +
+      'minutes: ' + mins + '\n' +
+      '---\n' +
+      out + '\n';
+
+    $('out').value = text;
+    $('said').textContent = words + ' words, about a ' + mins + ' minute read. Now copy it.';
+  }
+
+  $('go').addEventListener('click', build);
+  $('copy').addEventListener('click', function () {
+    if (!$('out').value) build();
+    if (!$('out').value) return;
+    $('out').select();
+    navigator.clipboard.writeText($('out').value).then(function () {
+      $('said').textContent = 'Copied. Paste it at the bottom of blog/_src/posts.txt.';
+    }, function () {
+      document.execCommand('copy');
+      $('said').textContent = 'Copied.';
+    });
+  });
+})();
+</script>
+</body>
+</html>

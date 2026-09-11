@@ -1,0 +1,178 @@
+# =============================================================
+#  Colombo Court Hotel & Spa
+#  Apache configuration: clean URLs, security headers, caching.
+#
+#  Most Sri Lankan shared hosting is Apache with mod_rewrite and
+#  mod_headers on, so this file works as dropped. If the site ends up
+#  behind nginx, Netlify, Cloudflare Pages or Vercel instead, the
+#  equivalents are written out in README.md under "Server configuration".
+#
+#  Nothing here is optional. The redirects decide what a search engine
+#  treats as the canonical URL, and the headers are what stop the page
+#  being framed, sniffed, or used to leak a guest's referrer.
+# =============================================================
+
+# ---------- 1. One URL per page ------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # https, always. A booking form on http is not a booking form.
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+  # one host. Pick www or bare and keep it; this file chooses www,
+  # which is what the canonical tag and the sitemap already say.
+  RewriteCond %{HTTP_HOST} ^colombocourthotel\.com$ [NC]
+  RewriteRule ^ https://www.colombocourthotel.com%{REQUEST_URI} [R=301,L]
+
+  # the previous website kept its legal pages at .html addresses, and
+  # those are linked from booking confirmations and search results. Send
+  # them to their new homes in a single hop rather than two.
+  RewriteRule ^terms-and-conditions\.html$ /terms-and-conditions/ [R=301,L]
+  RewriteRule ^privacy-policy\.html$ /privacy-policy/ [R=301,L]
+
+  # /index.html and /page.html are never the address a visitor sees.
+  # A request for either is answered with a permanent redirect to the
+  # clean form, so links, analytics and the index all agree.
+  RewriteCond %{THE_REQUEST} \s/(.+/)?index\.html[\s?] [NC]
+  RewriteRule ^(.+/)?index\.html$ /%1 [R=301,L]
+
+  RewriteCond %{THE_REQUEST} \s/(.+)\.html[\s?] [NC]
+  RewriteRule ^(.+)\.html$ /$1 [R=301,L]
+
+  # and the clean form is served from the file behind it
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}\.html -f
+  RewriteRule ^(.+?)/?$ $1.html [L]
+
+  # no trailing slash on a file, one trailing slash on a directory
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ /$1/ [R=301,L]
+</IfModule>
+
+DirectoryIndex index.html
+
+# ---------- 2. Security headers ------------------------------
+<IfModule mod_headers.c>
+  # The page loads its own CSS and JS, Google Fonts, and whatever the
+  # consent-gated tags pull in. Everything else is refused. Update this
+  # line when a new third party is added, not the other way round.
+  Header always set Content-Security-Policy "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self' https://wa.me https://*.brevo.com https://*.sendinblue.com; img-src 'self' data: https://i.ytimg.com https://*.google-analytics.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.facebook.com https://*.clarity.ms https://c.bing.com; media-src 'self'; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://*.googletagmanager.com https://connect.facebook.net https://*.clarity.ms https://www.youtube.com https://s.ytimg.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.facebook.com https://connect.facebook.net https://*.clarity.ms https://c.bing.com https://*.brevo.com https://*.sendinblue.com; frame-src 'self' https://www.youtube-nocookie.com https://www.youtube.com; upgrade-insecure-requests"
+
+  # a year of HSTS, with subdomains. Only switch preload on once you are
+  # certain every subdomain can do https, because it is hard to undo.
+  Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()"
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+
+  # the server's own version number is nobody's business
+  Header unset X-Powered-By
+  Header always unset X-AspNet-Version
+</IfModule>
+
+ServerSignature Off
+<IfModule mod_headers.c>
+  Header set X-Robots-Tag "index, follow, max-image-preview:large"
+</IfModule>
+
+# ---------- 3. Nothing private is served ---------------------
+<FilesMatch "^\.">
+  Require all denied
+</FilesMatch>
+<FilesMatch "\.(md|ps1|pl|sh|log|bak|sql|env|yml|yaml|json)$">
+  Require all denied
+</FilesMatch>
+<Files "site.webmanifest">
+  Require all granted
+</Files>
+<Files "robots.txt">
+  Require all granted
+</Files>
+<Files "llms.txt">
+  Require all granted
+</Files>
+Options -Indexes -MultiViews
+
+# ---------- 4. Compression -----------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml
+  AddOutputFilterByType DEFLATE application/javascript text/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml application/manifest+json
+  AddOutputFilterByType DEFLATE image/svg+xml
+</IfModule>
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/css text/plain text/xml
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript text/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/xml application/manifest+json
+  AddOutputFilterByType BROTLI_COMPRESS image/svg+xml
+</IfModule>
+
+# ---------- 5. Caching ---------------------------------------
+# The HTML has to stay short-lived because rates and hours change in it.
+# Everything with a size in its filename can be cached hard, because a
+# new photograph gets a new name. CSS and JS are linked with ?v=YYYYMMDD:
+# when either file changes, change that date in every page (one find and
+# replace across the folder), or returning visitors keep the old file.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html                 "access plus 10 minutes"
+  ExpiresByType text/css                  "access plus 1 year"
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/javascript           "access plus 1 year"
+  ExpiresByType image/jpeg                "access plus 1 year"
+  ExpiresByType image/png                 "access plus 1 year"
+  ExpiresByType image/webp                "access plus 1 year"
+  ExpiresByType image/avif                "access plus 1 year"
+  ExpiresByType image/svg+xml             "access plus 1 year"
+  ExpiresByType video/mp4                 "access plus 1 year"
+  ExpiresByType font/woff2                "access plus 1 year"
+  ExpiresByType application/manifest+json "access plus 1 week"
+</IfModule>
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css|js|jpg|jpeg|png|webp|avif|svg|mp4|woff2)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ---------- 6. Types -----------------------------------------
+<IfModule mod_mime.c>
+  AddType application/manifest+json .webmanifest
+  AddType image/avif                .avif
+  AddType font/woff2                .woff2
+  AddCharset UTF-8 .html .css .js .json .webmanifest .txt .xml
+</IfModule>
+
+# ---------- 7. The pages that do not exist yet ---------------
+# Deliberately no ErrorDocument pointing at the homepage. Serving the
+# homepage for a missing URL is a soft 404: the crawler gets a 200 and
+# indexes the same page under a dozen addresses. Until the subpages are
+# built, every link to one carries data-soon and never navigates, and
+# a genuine miss should return a genuine 404.
+#
+# The 404 page has the same header and footer as every other page and
+# carries noindex, so a miss is a real 404 that still helps the visitor.
+ErrorDocument 404 /404.html
+
+# The journal is generated. Its source and its templates are not pages, and
+# the builder is not something a visitor should be able to fetch. robots.txt
+# asks crawlers not to look; this stops anyone else.
+RedirectMatch 404 ^/blog/(_src|_tpl|_new-pictures)/
+
+# The Conversions API relay (api/meta-capi.php). Its settings file holds
+# the Meta access token and belongs outside public_html; a copy left
+# inside the site, or the sample, is refused rather than served.
+<FilesMatch "^meta-capi-config.*\.php$">
+  Require all denied
+</FilesMatch>
+RedirectMatch 404 ^/blog/compose\.html
+RedirectMatch 404 ^/blog/(add-pictures|publish)\.cmd
