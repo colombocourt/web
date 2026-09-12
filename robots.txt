@@ -1,29 +1,3 @@
+# Preview copy for internal review only. Not for indexing.
 User-agent: *
-Allow: /
-
-# The version-one homepage is kept here so it can be restored. It is not
-# a page, and it must never be indexed as one.
-Disallow: /_backup-v1/
-Disallow: /api/
-
-# AI answer engines are welcome. The FAQ and the guides are written to be quoted.
-User-agent: GPTBot
-Allow: /
-User-agent: PerplexityBot
-Allow: /
-User-agent: ClaudeBot
-Allow: /
-User-agent: Google-Extended
-Allow: /
-
-# The journal source and its templates are not pages.
-Disallow: /blog/_src/
-Disallow: /blog/_tpl/
-Disallow: /blog/compose.html
-Disallow: /blog/_new-pictures/
-
-Sitemap: https://www.colombocourthotel.com/sitemap.xml
-
-# A plain-language summary of the hotel for answer engines
-# https://llmstxt.org
-# llms.txt: https://www.colombocourthotel.com/llms.txt
+Disallow: /

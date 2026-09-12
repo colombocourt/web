@@ -128,13 +128,13 @@
   function show(slug, html, title, push) {
     body.innerHTML = html;
     label.textContent = title;
-    open.href = '/blog/' + slug + '/';
+    open.href = '/web/blog/' + slug + '/';
     box.hidden = false;
     isOpen = true;
     lock(true);
     body.scrollTop = 0;
     body.focus({ preventScroll: true });
-    if (push) history.pushState({ cchPost: slug }, '', '/blog/' + slug + '/');
+    if (push) history.pushState({ cchPost: slug }, '', '/web/blog/' + slug + '/');
     /* the reader is a new document as far as a reader is concerned */
     document.title = title + ' | Colombo Court Hotel & Spa';
   }
@@ -147,7 +147,7 @@
     body.innerHTML = '';
     document.title = 'Blog | Colombo Court Hotel & Spa, Colombo 3';
     if (opener) { opener.focus({ preventScroll: true }); opener = null; }
-    if (back) history.pushState({ cchPost: null }, '', '/blog/');
+    if (back) history.pushState({ cchPost: null }, '', '/web/blog/');
   }
 
   function load(slug, push, from) {
@@ -155,7 +155,7 @@
     if (cache[slug]) { show(slug, cache[slug].html, cache[slug].title, push); return; }
 
     box.classList.add('is-waiting');
-    fetch('/blog/' + slug + '/', { credentials: 'same-origin' })
+    fetch('/web/blog/' + slug + '/', { credentials: 'same-origin' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
       .then(function (text) {
         var doc = new DOMParser().parseFromString(text, 'text/html');
@@ -174,7 +174,7 @@
       .catch(function () {
         /* if anything at all goes wrong, go to the real page: it exists */
         box.classList.remove('is-waiting');
-        location.href = '/blog/' + slug + '/';
+        location.href = '/web/blog/' + slug + '/';
       });
   }
 

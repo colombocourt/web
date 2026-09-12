@@ -50,7 +50,7 @@
       ga4Id: '',
       clarityId: '',
       metaPixelId: '',
-      capiEndpoint: '/api/meta-capi.php',
+      capiEndpoint: '',
       linkDomains: []
     },
 

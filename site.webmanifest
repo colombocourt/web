@@ -2,7 +2,7 @@
   "name": "Colombo Court Hotel & Spa",
   "short_name": "Colombo Court",
   "description": "An eco-luxury boutique hotel in the heart of Colombo.",
-  "start_url": "/",
+  "start_url": "/web/",
   "display": "standalone",
   "background_color": "#F7F4EF",
   "theme_color": "#23201E",
