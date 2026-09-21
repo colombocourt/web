@@ -12,35 +12,15 @@
   var motionOff = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ===========================================================
-     1.  Booking with a room already chosen
+     1.  Booking from a room or an offer
 
-     The engine is eZee (live.ipms247.com). It takes the stay dates
-     as query parameters, and it can also open on one room type —
-     but the key and the per-room ids come out of the hotel's own
-     eZee back office, so they are placeholders until someone reads
-     them off a live booking URL.
-
-     [PLACEHOLDER] To finish this: in eZee, open the booking engine
-     on one room type, copy the address bar, and read off the
-     parameter name and the id. Then fill ROOM_KEY and ROOMS below.
-     Until they are filled the buttons still work — they open the
-     engine on the normal availability screen, which is correct
-     behaviour, just one click longer for the guest.
+     The engine is SiteMinder (book-directonline.com). It takes the
+     stay dates and the number of adults as query parameters and
+     opens on the availability screen, where every room is listed.
+     The room a button belongs to is still sent to the measurement
+     tools, so the reports show which room was clicked.
      =========================================================== */
-  var ROOM_KEY = '';          /* e.g. 'roomtypeunkid' */
-  var ROOMS = {
-    honeymoon:     '',        /* e.g. '12345' */
-    duplex:        '',
-    suite:         '',
-    'super-deluxe': '',
-    twin:          '',
-    deluxe:        '',
-    /* the three offers open on a rate plan rather than a room type */
-    staycation:    '',
-    daycation:     '',
-    direct:        ''
-  };
-  var BOOKING = 'https://live.ipms247.com/booking/book-rooms-colombocourthotel';
+  var BOOKING = 'https://book-directonline.com/colombo-court-hotel-and-spa/properties/COLOMBOCOURTHOTELSPADIRECT';
 
   function iso(d) { return d.toISOString().slice(0, 10); }
 
@@ -60,11 +40,10 @@
       var room = el.dataset.room;
       var now = Date.now();
       var q = [
-        'checkin=' + encodeURIComponent(iso(new Date(now + 864e5))),
-        'checkout=' + encodeURIComponent(iso(new Date(now + 3 * 864e5))),
-        'adult=2'
+        'checkInDate=' + encodeURIComponent(iso(new Date(now + 864e5))),
+        'checkOutDate=' + encodeURIComponent(iso(new Date(now + 3 * 864e5))),
+        'items[0][adults]=2'
       ];
-      if (ROOM_KEY && ROOMS[room]) q.push(ROOM_KEY + '=' + encodeURIComponent(ROOMS[room]));
       track('booking_click', { placement: window.cchWhere ? window.cchWhere(el) : 'page', room: room });
       window.open(BOOKING + '?' + q.join('&'), '_blank', 'noopener');
     }, true);
@@ -282,10 +261,9 @@
 
   /* ===========================================================
      6.  Table requests
-     One press sends the details two ways: a prefilled WhatsApp
-     message to the restaurant number, and a quiet post to the
-     hotel's inbox when CFG.eventEndpoint is set. Neither depends
-     on the other.
+     One press emails the details to the hotel through api/enquiry.php
+     (the sender lives in main.js as window.cchEnquiry). If the email
+     cannot be sent, the guest is offered a ready-written email.
      =========================================================== */
   (function requestForm() {
     var form = $('#tform') || $('#sform');
@@ -293,9 +271,6 @@
     var spa = form.id === 'sform';
     var card = spa ? $('#spaForm') : $('#tableForm');
     var ok = spa ? $('#sformOk') : $('#tformOk');
-    var WA = '94766680971';
-    var EMAIL = 'reservations@colombocourthotel.com';
-    var ENDPOINT = (window.CCH_CFG && window.CCH_CFG.eventEndpoint) || '';
 
     /* a table cannot be booked for yesterday */
     var date = $('#tf-date') || $('#sf-date');
@@ -322,21 +297,11 @@
 
     /* The spa request and the table request carry different middle lines.
        Everything either side of them is identical, so they share the code. */
-    function message(d) {
-      return (spa ? 'Spa booking request' : 'Table request') + ' — Colombo Court\n\n' +
-        'Name: ' + d.name + '\n' +
-        'Contact: ' + d.phone + '\n' +
-        'Email: ' + d.email + '\n' +
-        (spa
-          ? 'Treatment: ' + d.venue + '\n' +
-            'Staying with us: ' + d.stay + '\n'
-          : 'Where: ' + d.venue + '\n' +
-            (d.occasion && d.occasion !== 'Just a table' ? 'Occasion: ' + d.occasion + '\n' : '')) +
-        'Date: ' + d.date + '\n' +
-        'Time: ' + d.time + '\n' +
-        (spa ? 'People: ' : 'Guests: ') + d.guests + '\n' +
-        (d.message ? '\nNotes: ' + d.message + '\n' : '') +
-        '\nSent from colombocourthotel.com' + (spa ? '/wellness/' : '/eat-drink/');
+    function details(d) {
+      return (spa
+        ? [['Treatment', d.venue], ['Staying with us', d.stay]]
+        : [['Where', d.venue], ['Occasion', d.occasion && d.occasion !== 'Just a table' ? d.occasion : '']])
+        .concat([['Date', d.date], ['Time', d.time], [spa ? 'People' : 'Guests', d.guests]]);
     }
 
     form.addEventListener('submit', function (e) {
@@ -364,37 +329,20 @@
         });
       if (bad) return;
 
-      var text = message(f);
-
-      /* opened inside the click so the browser does not treat it as a popup */
-      window.open('https://wa.me/' + WA + '?text=' + encodeURIComponent(text), '_blank', 'noopener');
-
-      if (ENDPOINT) {
-        try {
-          fetch(ENDPOINT, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.assign(
-              spa ? { subject: 'Spa booking request', source: 'wellness' }
-                  : { subject: 'Table request', source: 'eat-drink' }, f))
-          }).catch(function () {});
-        } catch (x) { /* the WhatsApp message has already gone */ }
-      }
-
-      track('generate_lead', { form: spa ? 'spa' : 'table', item: f.venue, guests: f.guests });
-
-      form.hidden = true;
-      var note = $('.form-card__note', card);
-      if (note) note.hidden = true;
-      ok.hidden = false;
-      ok.innerHTML =
-        '<p class="form-ok__t">Your ' + (spa ? 'treatment' : 'table') + ' request is on its way.</p>' +
-        '<p>WhatsApp should have opened with everything filled in — press send there and it reaches the ' + (spa ? 'spa' : 'restaurant team') + '. If it did not open, the two buttons below do the same job.</p>' +
-        '<div class="form-ok__acts">' +
-        '<a class="btn btn--line" href="https://wa.me/' + WA + '?text=' + encodeURIComponent(text) + '" target="_blank" rel="noopener">Open WhatsApp</a>' +
-        '<a class="btn btn--line" href="mailto:' + EMAIL + '?subject=' + encodeURIComponent((spa ? 'Spa booking request — ' : 'Table request — ') + f.name) + '&body=' + encodeURIComponent(text) + '">Send it by email</a>' +
-        '</div>';
-      ok.focus();
+      var title = spa ? 'Spa booking request' : 'Table request';
+      var payload = {
+        form: spa ? 'spa' : 'table', name: f.name, phone: f.phone, email: f.email,
+        details: details(f), message: f.message, company: ''
+      };
+      var btn = $('button[type="submit"]', form);
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending'; }
+      window.cchEnquiry.send(payload, function (sent) {
+        form.hidden = true;
+        var note = $('.form-card__note', card);
+        if (note) note.hidden = true;
+        window.cchEnquiry.result(sent, ok, title, payload);
+        if (sent) track('generate_lead', { form: spa ? 'spa' : 'table', item: f.venue, guests: f.guests });
+      });
     });
   })();
 

@@ -17,19 +17,17 @@
      CONFIG  ·  the only things a developer needs to touch
      ----------------------------------------------------------- */
   var CFG = {
-    /* [PLACEHOLDER] Booking engine. Swap in the live URL and the query keys
-       the engine expects. Everything else in this file already feeds it. */
-    bookingUrl: 'https://live.ipms247.com/booking/book-rooms-colombocourthotel',
-    bookingKeys: { checkin: 'checkin', checkout: 'checkout', adults: 'adult' },
+    /* Booking engine (SiteMinder). Every "Book now" and room button opens
+       this address. bookingKeys names the query keys the engine reads for
+       dates and guests; leave one empty and that value is not sent. */
+    bookingUrl: 'https://book-directonline.com/colombo-court-hotel-and-spa/properties/COLOMBOCOURTHOTELSPADIRECT',
+    bookingKeys: { checkin: 'checkInDate', checkout: 'checkOutDate', adults: 'items[0][adults]' },
 
-    /* Event enquiries. The form opens a prefilled WhatsApp message to the
-       first number; the success panel offers the second and an email copy. */
-    eventsWhatsApp: ['94770058779', '94772089230'],
-    reservationsEmail: 'reservations@colombocourthotel.com',
-
-    /* [PLACEHOLDER] Optional. Set this and the enquiry is also posted
-       silently to the hotel's inbox or CRM at the same time. */
-    eventEndpoint: '',
+    /* Enquiry forms (events, table, spa) are emailed to the hotel by
+       api/enquiry.php. Nothing goes to WhatsApp. If the email cannot be
+       sent, the guest is offered a ready-written email to this address. */
+    enquiryEndpoint: '',
+    enquiryEmail: 'info@colombocourthotel.com',
 
     /* [PLACEHOLDER] Brevo. Leave empty to keep the honest local success state. */
     brevoEndpoint: '',
@@ -51,7 +49,7 @@
       clarityId: '',
       metaPixelId: '',
       capiEndpoint: '',
-      linkDomains: []
+      linkDomains: ['book-directonline.com']
     },
 
     /* how long each photograph and each review holds, in milliseconds */
@@ -570,72 +568,90 @@
   })();
 
   /* ===========================================================
-     10.  Reviews slider
-     [INTEGRATION] Tripadvisor. If a feed sets window.CCH_REVIEWS to an
-     array of { stars, text, name, meta }, it replaces the markup below.
-     Send it already filtered to 5 stars and newest first; this slider
-     shows whatever it is given, 3 to 10 items.
+     10a.  Guest reviews slider
+     The hub writes the chosen reviews as a plain list (.quotes).
+     This shows them one at a time and moves on by itself. It
+     stops while the pointer or the keyboard is on it, when it is
+     off screen, and for good once a visitor picks a review.
      =========================================================== */
-  (function reviews() {
-    var track = $('#reviewTrack'), dots = $('#revDots');
-    var prev = $('#revPrev'), next = $('#revNext');
-    if (!track || !dots) return;
+  (function quoteSlider() {
+    var list = $('.quotes');
+    if (!list) return;
+    var slides = $$('.quote', list);
+    if (slides.length < 2) return;
+    list.classList.add('is-slider');
 
-    if (Array.isArray(window.CCH_REVIEWS) && window.CCH_REVIEWS.length >= 3) {
-      var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); };
-      track.innerHTML = window.CCH_REVIEWS
-        .filter(function (r) { return (r.stars || 5) >= 5; })
-        .slice(0, 10)
-        .map(function (r, i) {
-          return '<figure class="quote' + (i === 0 ? ' is-on' : '') + '">' +
-            '<p class="quote__stars" aria-label="5 out of five">★★★★★</p>' +
-            '<blockquote><p>' + esc(r.text) + '</p></blockquote>' +
-            '<figcaption>' + esc(r.name) + ' <span>' + esc(r.meta) + '</span></figcaption></figure>';
-        }).join('');
-    }
-
-    var slides = $$('.quote', track);
-    if (slides.length < 2) { if (prev) prev.hidden = true; if (next) next.hidden = true; return; }
-
-    var i = 0, timer = null, held = false, onScreen = true;
-
+    var dots = document.createElement('div');
+    dots.className = 'quotes__dots';
+    dots.setAttribute('role', 'group');
+    dots.setAttribute('aria-label', 'Choose a review');
     dots.innerHTML = slides.map(function (_, n) {
-      return '<button class="dot" type="button" role="tab" aria-selected="' + (n === 0) +
-             '" aria-label="Review ' + (n + 1) + ' of ' + slides.length + '"></button>';
+      return '<button class="dot" type="button" aria-label="Review ' + (n + 1) + ' of ' + slides.length + '"></button>';
     }).join('');
+    list.parentNode.insertBefore(dots, list.nextSibling);
     var dotEls = $$('.dot', dots);
 
+    var i = 0, timer = null, held = false, onScreen = true;
     function show(n) {
       i = (n + slides.length) % slides.length;
-      slides.forEach(function (s, k) { s.classList.toggle('is-on', k === i); });
-      dotEls.forEach(function (d, k) { d.setAttribute('aria-selected', String(k === i)); });
+      slides.forEach(function (s, k) {
+        s.classList.toggle('is-on', k === i);
+        s.setAttribute('aria-hidden', String(k !== i));
+      });
+      dotEls.forEach(function (d, k) { d.setAttribute('aria-current', String(k === i)); });
     }
-    function play() { stop(); if (motionOff || !onScreen || held) return; timer = setInterval(function () { show(i + 1); }, CFG.reviewDwell); }
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
-    function hold() { held = true; stop(); }
+    function play() { stop(); if (motionOff || !onScreen || held) return; timer = setInterval(function () { show(i + 1); }, CFG.reviewDwell); }
 
-    dotEls.forEach(function (d, n) { d.addEventListener('click', function () { show(n); hold(); }); });
-    if (prev) prev.addEventListener('click', function () { show(i - 1); hold(); });
-    if (next) next.addEventListener('click', function () { show(i + 1); hold(); });
+    dotEls.forEach(function (d, n) { d.addEventListener('click', function () { held = true; stop(); show(n); }); });
+    [list, dots].forEach(function (el) {
+      el.addEventListener('mouseenter', stop);
+      el.addEventListener('mouseleave', play);
+      el.addEventListener('focusin', stop);
+      el.addEventListener('focusout', play);
+    });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { onScreen = en[0].isIntersecting; onScreen ? play() : stop(); }, { threshold: 0.2 }).observe(list);
+    }
+    show(0);
+    play();
+  })();
 
-    var slider = $('#reviewSlider');
-    slider.addEventListener('mouseenter', stop);
-    slider.addEventListener('mouseleave', function () { if (!held) play(); });
-    slider.addEventListener('focusin', stop);
-    slider.addEventListener('focusout', function () { if (!held) play(); });
-    slider.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowRight') { show(i + 1); hold(); }
-      if (e.key === 'ArrowLeft')  { show(i - 1); hold(); }
+  /* ===========================================================
+     10.  Guest reviews, live from Tripadvisor
+     Tripadvisor's own widget, so the reviews update by themselves
+     and nobody has to paste them in. The widget only renders when
+     its script is in a page from the start, so it lives in
+     /reviews-frame.html and that page is framed here. It is
+     third-party content: the frame is created after "Accept all",
+     or when the visitor presses the button, never before.
+     =========================================================== */
+  (function tripadvisor() {
+    var box = $('#taReviews');
+    if (!box) return;
+    var gate = $('#taGate', box), btn = $('#taLoad', box), frame = null;
+
+    function load() {
+      if (frame) return;
+      frame = document.createElement('iframe');
+      frame.className = 'tarev__frame';
+      frame.src = box.dataset.frame || '/web/reviews-frame.html';
+      frame.title = 'Guest reviews from Tripadvisor';
+      frame.setAttribute('scrolling', 'no');
+      frame.style.height = '240px';
+      if (gate) gate.hidden = true;
+      box.appendChild(frame);
+      box.classList.add('is-live');
+    }
+
+    /* the frame reports its own height as the widget arrives */
+    addEventListener('message', function (e) {
+      if (e.origin !== location.origin || !e.data || !e.data.cchReviewsHeight || !frame) return;
+      frame.style.height = Math.min(Math.max(e.data.cchReviewsHeight, 120), 1400) + 'px';
     });
 
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) {
-        onScreen = en[0].isIntersecting;
-        onScreen ? play() : stop();
-      }, { threshold: 0.2 }).observe(slider);
-    }
-    play();
+    if (btn) btn.addEventListener('click', load);
+    addEventListener('cch:consent', load);   /* fired by section 14 on "Accept all" */
   })();
 
   /* ===========================================================
@@ -698,9 +714,42 @@
     if (err) err.hidden = !on;
     input.setAttribute('aria-invalid', String(on));
   }
-  function prettyNumber(n) {
-    return '+' + n.replace(/(\d{2})(\d{2})(\d{3})(\d{4})/, '$1 $2 $3 $4');
+
+  /* One sender for every enquiry form on the site. payload carries
+     form, name, phone, email, details ([label, value] pairs), message
+     and the honeypot. done(true) means the hotel has the email. */
+  function sendEnquiry(payload, done) {
+    if (!CFG.enquiryEndpoint) { setTimeout(function () { done(true); }, 600); return; }
+    payload.page = location.pathname;
+    fetch(CFG.enquiryEndpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    }).then(function (r) { return r.ok ? r.json() : { ok: false }; })
+      .then(function (j) { done(!!(j && j.ok)); })
+      .catch(function () { done(false); });
   }
+  /* The same details as plain text, for the email fallback. */
+  function enquiryText(title, p) {
+    return title + ' from the Colombo Court website' +
+      '\n\nName: ' + p.name + '\nContact number: ' + p.phone + '\nEmail: ' + p.email + '\n\n' +
+      (p.details || []).filter(function (d) { return d[1]; }).map(function (d) { return d[0] + ': ' + d[1]; }).join('\n') +
+      (p.message ? '\n\n' + p.message : '');
+  }
+  function enquiryResult(ok, box, title, p) {
+    var first = p.name.split(' ')[0].replace(/[<>&"]/g, '');
+    box.hidden = false;
+    box.innerHTML = ok
+      ? '<p class="form-ok__t">Thank you, ' + first + '.</p>' +
+        '<p>Your enquiry has been sent to our team. We will reply by email within one working day.</p>'
+      : '<p class="form-ok__t">Sorry, ' + first + ', that did not send.</p>' +
+        '<p>Please send your enquiry by email instead. The button below opens it ready to send.</p>' +
+        '<div class="form-ok__acts"><a class="btn btn--line" href="mailto:' + CFG.enquiryEmail +
+          '?subject=' + encodeURIComponent(title + ' from ' + p.name) +
+          '&body=' + encodeURIComponent(enquiryText(title, p)) + '">Send by email</a></div>';
+    box.focus();
+  }
+  window.cchEnquiry = { send: sendEnquiry, result: enquiryResult };
 
   (function eventForm() {
     var form = $('#eventForm'), ok = $('#eventOk');
@@ -726,42 +775,22 @@
         message: $('#ef-msg').value.trim()
       };
 
-      var body =
-        'Event enquiry from the Colombo Court website' +
-        '\n\nName: ' + data.name +
-        '\nContact number: ' + data.phone +
-        '\nEmail: ' + data.email +
-        '\n\n' + data.message;
-      var enc = encodeURIComponent(body);
-      var first = CFG.eventsWhatsApp[0], second = CFG.eventsWhatsApp[1];
-
-      /* Opened inside the click, so it is never treated as a popup. */
-      window.open('https://wa.me/' + first + '?text=' + enc, '_blank', 'noopener');
-
-      /* [INTEGRATION] a copy to the inbox or CRM, if an endpoint is set */
-      if (CFG.eventEndpoint) {
-        fetch(CFG.eventEndpoint, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify(data)
-        }).catch(function () {});
-      }
-
-      var note = $('.form-card__note');
-      if (note) note.hidden = true;
-      form.hidden = true;
-      ok.hidden = false;
-      ok.innerHTML =
-        '<p class="form-ok__t">Thank you, ' + data.name.split(' ')[0].replace(/[<>&"]/g, '') + '.</p>' +
-        '<p>Your enquiry has opened as a WhatsApp message to our events team on ' +
-        prettyNumber(first) + '. Press send there and we will reply within one working day.</p>' +
-        '<div class="form-ok__acts">' +
-          '<a class="btn btn--wa" target="_blank" rel="noopener" href="https://wa.me/' + second + '?text=' + enc + '">Also send to ' + prettyNumber(second) + '</a>' +
-          '<a class="btn btn--line" href="mailto:' + CFG.reservationsEmail +
-            '?subject=' + encodeURIComponent('Event enquiry from ' + data.name) + '&body=' + enc + '">Send a copy by email</a>' +
-        '</div>';
-      ok.focus();
-      track('generate_lead', { form: 'events' });
+      var payload = {
+        form: 'events', name: data.name, phone: data.phone, email: data.email,
+        details: [
+          ['Guest rooms needed', $('#ef-rooms') ? $('#ef-rooms').value : '']
+        ],
+        message: data.message, company: ''
+      };
+      var btn = $('button[type="submit"]', form);
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending'; }
+      sendEnquiry(payload, function (sent) {
+        var note = $('.form-card__note');
+        if (note) note.hidden = true;
+        form.hidden = true;
+        enquiryResult(sent, ok, 'Event enquiry', payload);
+        if (sent) track('generate_lead', { form: 'events' });
+      });
     });
   })();
 
@@ -1082,7 +1111,7 @@
 
   /* ===========================================================
      15b. Arriving on a link to part of a page
-     A link such as /events/#sp-grape makes the browser jump before
+     A link such as /events/#faq makes the browser jump before
      the web fonts have arrived. When Playfair and Poppins swap in,
      every heading above the target changes height and the target
      drifts up under the fixed header. So once the fonts are ready,

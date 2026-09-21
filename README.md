@@ -114,3 +114,22 @@ Served locally at a `/web/` path and crawled end to end:
 - No JavaScript errors in the console
 - Mobile (375px) and desktop layouts both render
 - Total size 74.8 MB, largest single file 2.6 MB — inside GitHub's limits
+
+---
+
+## Rebuilt 21 September 2026 (owners' comments applied)
+
+This copy is now produced by one script, so it can be refreshed in a minute:
+
+    perl C:\Users\User\cch-tools\scripts\build-github-preview.pl "<Desktop\Claude\colombo-court>" "<Desktop\colombo-court-github>"
+    node C:\Users\User\cch-tools\scripts\check-preview.js "<Desktop\colombo-court-github>"
+
+Differences from the live copy, on top of the table above:
+
+- Google Analytics, Microsoft Clarity and Meta IDs are blanked, so reviewers'
+  visits never reach the hotel's real reports.
+- The enquiry forms show their "Thank you" message but send nothing (there is
+  no PHP on GitHub Pages).
+- Every page carries `noindex`, and `robots.txt` disallows everything.
+- Six film files that no page uses any more are left out.
+- The guest reviews on the homepage are demo wording for layout only.

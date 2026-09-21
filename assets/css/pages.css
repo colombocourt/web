@@ -269,6 +269,7 @@ html.lbx-open,body.lbx-open{overflow:hidden}
 .venue--dark{background:var(--espresso);color:#E9E2D8}
 .venue--dark .h2,.venue--dark .h4{color:#FFF}
 .venue--dark .stamp{color:rgba(255,255,255,.72)}
+.venue--dark .stamp__l,.venue--dark .stamp::before{color:#C6C6BC}
 .venue--dark .stamp__t{color:#FFF;border-right-color:rgba(255,255,255,.3)}
 .venue--dark .vhead__lede{color:#F1EAE1}
 .venue--dark p{color:#D9D1C6}
@@ -973,7 +974,9 @@ html.mnu-open,body.mnu-open{overflow:hidden}
 
 @media (min-width:760px){ .three{grid-template-columns:repeat(3,minmax(0,1fr))} }
 
-/* ---------- The six spaces ----------------------------------- */
+/* ---------- The five venues ---------------------------------- */
+/* Three lead venues full width, then the Loft and the library side
+   by side in two columns at every width from 900px up. */
 .spaces{display:grid;grid-template-columns:1fr;gap:clamp(2rem,4vw,3rem);margin-top:clamp(1.75rem,3.5vh,2.75rem)}
 .spaces>*{min-width:0}
 .space{display:grid;gap:clamp(1rem,2vw,1.5rem);align-content:start}
@@ -1001,10 +1004,6 @@ html.mnu-open,body.mnu-open{overflow:hidden}
   .spaces{grid-template-columns:repeat(2,minmax(0,1fr))}
   .space--lead{grid-column:1/-1;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:center;gap:clamp(2rem,4vw,3.5rem)}
   .space--lead .caps{grid-template-columns:repeat(4,minmax(0,1fr))}
-}
-@media (min-width:1200px){
-  .spaces{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .space--lead{grid-column:1/-1}
 }
 
 /* ---------- The reel wall ------------------------------------ */
@@ -1081,7 +1080,7 @@ html.mnu-open,body.mnu-open{overflow:hidden}
 .kind__o span{
   display:block;text-align:center;cursor:pointer;
   padding:.7rem .6rem;border:1px solid var(--rule);
-  font-size:.94rem;color:var(--ink-soft);
+  font-size:.94rem;color:var(--ink);
   transition:border-color .3s var(--e-out),background .3s var(--e-out),color .3s var(--e-out);
 }
 .kind__o input:checked + span{background:var(--ink);border-color:var(--ink);color:var(--cream)}
@@ -1185,77 +1184,6 @@ html.mnu-open,body.mnu-open{overflow:hidden}
   .docs__note{grid-column:1/-1;padding-top:1.4rem;border-top:1px solid var(--rule)}
 }
 
-/* ---------- The film player ---------------------------------- */
-/* One film at a time over the page, with the next and the previous
-   one a press away. The film is built when it is opened and thrown
-   away when it is closed, so nothing keeps downloading behind a
-   panel nobody is looking at. */
-.rplay{
-  position:fixed;inset:0;z-index:120;
-  display:grid;grid-template-rows:auto minmax(0,1fr) auto;
-  background:rgba(12,12,10,.94);
-  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
-}
-.rplay[hidden]{display:none}
-.rplay__bar{
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  padding:1rem clamp(1rem,4vw,2rem);
-  border-bottom:1px solid rgba(255,255,255,.14);
-}
-.rplay__t{
-  margin:0;font-family:var(--f-display);font-weight:400;
-  font-size:clamp(1.05rem,2vw,1.35rem);line-height:1.2;color:#FFF;
-}
-.rplay__x{
-  flex:none;width:2.5rem;height:2.5rem;border-radius:50%;cursor:pointer;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.3);
-  color:#FFF;font-size:1rem;line-height:1;
-  transition:background-color .3s var(--e-out),border-color .3s var(--e-out);
-}
-.rplay__x:hover{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.55)}
-/* the arrows sit either side of the film rather than under it, so it
-   is obvious from the first frame that there are five more behind it.
-   The middle column is auto, so it takes exactly the width the film
-   works out to at the height of the row, and the arrows land beside
-   the picture rather than out at the edges of the screen. */
-.rplay__mid{
-  display:grid;grid-template-columns:auto auto auto;
-  justify-content:center;align-items:stretch;
-  gap:clamp(.5rem,2vw,1.5rem);
-  min-height:0;padding-inline:clamp(.5rem,2vw,1.5rem);
-}
-.rplay__arw{
-  align-self:center;
-  width:clamp(2.5rem,4vw,3.25rem);height:clamp(2.5rem,4vw,3.25rem);
-  display:grid;place-items:center;border-radius:50%;cursor:pointer;
-  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.32);
-  color:#FFF;padding:0;
-  transition:background-color .3s var(--e-out),border-color .3s var(--e-out),transform .3s var(--e-out);
-}
-.rplay__arw svg{width:1.15rem;height:1.15rem;display:block}
-.rplay__arw:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.6)}
-.rplay__arw--prev:hover{transform:translateX(-2px)}
-.rplay__arw--next:hover{transform:translateX(2px)}
-.rplay__stage{
-  display:grid;place-items:center;height:100%;min-height:0;min-width:0;
-  padding-block:clamp(.5rem,1.5vw,1rem);
-}
-.rplay__stage video{
-  height:100%;width:auto;max-width:100%;max-height:100%;
-  aspect-ratio:9/16;object-fit:contain;background:#141412;display:block;
-}
-.rplay__nav{
-  display:flex;align-items:center;justify-content:center;
-  padding:.85rem clamp(1rem,4vw,2rem) calc(.9rem + env(safe-area-inset-bottom));
-  border-top:1px solid rgba(255,255,255,.14);
-}
-.rplay__n{
-  margin:0;text-align:center;
-  font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:#D9D9D0;
-  font-variant-numeric:lining-nums tabular-nums;
-}
-.rplay__x:focus-visible,
-.rplay__arw:focus-visible{outline:2px solid #FFF;outline-offset:3px}
 .reels__note{
   margin-top:clamp(1.5rem,3vw,2.25rem);padding-top:1.3rem;
   border-top:1px solid rgba(255,255,255,.16);
@@ -1284,11 +1212,11 @@ html.mnu-open,body.mnu-open{overflow:hidden}
 }
 
 /* ---------- The three smaller space cards -------------------- */
-/* The Loft, Grape Expectations and the library sit in one row, and
-   their paragraphs run to different lengths, so the capacity figures
-   used to land at three different heights. The body fills the card
-   and the paragraph takes the slack, which puts the figures on one
-   line across all three however the copy reflows. */
+/* The Loft and the library sit in one row, and their paragraphs run
+   to different lengths, so the capacity figures used to land at
+   different heights. The body fills the card and the paragraph takes
+   the slack, which puts the figures on one line however the copy
+   reflows. */
 .space:not(.space--lead){grid-template-rows:auto minmax(0,1fr);align-content:stretch}
 .space:not(.space--lead) .space__body{display:flex;flex-direction:column;height:100%}
 .space:not(.space--lead) .space__body>*+*{margin-top:.75rem}
@@ -1296,20 +1224,6 @@ html.mnu-open,body.mnu-open{overflow:hidden}
 .space:not(.space--lead) .caps{margin-top:1.25rem}
 
 
-/* On a phone the film is nearly the width of the screen, so there is
-   no room for arrows beside it. They go over its edges instead, where
-   they still clear the video's own controls at the bottom. */
-@media (max-width:639px){
-  .rplay__mid{position:relative;grid-template-columns:1fr;padding-inline:0}
-  .rplay__arw{
-    position:absolute;top:50%;transform:translateY(-50%);z-index:2;
-    background:rgba(12,12,10,.55);border-color:rgba(255,255,255,.4);
-  }
-  .rplay__arw--prev{left:.5rem}
-  .rplay__arw--next{right:.5rem}
-  .rplay__arw--prev:hover{transform:translateY(-50%) translateX(-2px)}
-  .rplay__arw--next:hover{transform:translateY(-50%) translateX(2px)}
-}
 
 /* ============================================================
    THE OUR STORY PAGE
@@ -1571,3 +1485,24 @@ html.mnu-open,body.mnu-open{overflow:hidden}
 .legal__table td:first-child{white-space:nowrap}
 .legal__table tr.legal__cat th{font-family:var(--f-display);font-weight:400;font-size:1rem;color:var(--ink);background:#FAF9F5}
 .clause code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.86em;color:var(--ink);background:var(--linen);padding:.1em .35em;border-radius:3px}
+
+/* Eat & Drink: the venue heading now sits at the top of the words column,
+   directly above the paragraphs, with the photographs beside both. */
+.vhead--in{margin-bottom:clamp(1rem,2vw,1.5rem)}
+.vhead--in .vhead__lede{margin-top:0}
+@media (min-width:901px){.page--eat .vgrid,.page--wellness .vgrid{align-items:center}}
+
+/* The cookie table on a phone: each cookie becomes its own small block,
+   label above value, so nothing scrolls sideways or gets cut off. */
+@media (max-width:700px){
+  .legal__table{overflow:visible;border:0;background:transparent}
+  .legal__table table{min-width:0;display:block}
+  .legal__table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .legal__table tbody,.legal__table tr,.legal__table td,.legal__table tr.legal__cat th{display:block;width:auto}
+  .legal__table tr{background:#FFF;border:1px solid var(--rule);margin-top:.75rem;padding:.35rem 0}
+  .legal__table tr.legal__cat{background:transparent;border:0;margin-top:1.5rem;padding:0}
+  .legal__table tr.legal__cat th{background:transparent;border:0;padding:0}
+  .legal__table td{border-top:0;padding:.4rem .9rem;overflow-wrap:anywhere}
+  .legal__table td:first-child{white-space:normal}
+  .legal__table td::before{content:attr(data-l);display:block;font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#5C5C55;margin-bottom:.1rem}
+}

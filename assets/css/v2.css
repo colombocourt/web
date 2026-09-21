@@ -103,9 +103,18 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .hero__scrim{
   background:
     linear-gradient(to bottom,rgba(12,12,10,.78) 0%,rgba(12,12,10,.5) 8%,rgba(12,12,10,.16) 18%,rgba(12,12,10,0) 30%),
-    linear-gradient(to top,rgba(12,12,10,.45) 0%,rgba(12,12,10,.1) 22%,rgba(12,12,10,0) 40%);
+    linear-gradient(to top,rgba(12,12,10,.62) 0%,rgba(12,12,10,.28) 22%,rgba(12,12,10,0) 40%);
 }
 .hero__down{color:#FFF}
+/* The tagline, the only words over the film. Letter-spaced capitals are the
+   hotel's own lock-up for this line, so they are kept here. */
+.hero__tag{
+  position:absolute;left:0;right:0;bottom:clamp(6.5rem,14vh,9rem);z-index:4;margin:0;padding-inline:1.25rem;
+  font-family:var(--f-display);font-size:clamp(1.15rem,2.6vw,2rem);font-weight:400;
+  letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:#FFF;text-align:center;
+  text-shadow:0 1px 18px rgba(12,12,10,.6),0 0 2px rgba(12,12,10,.5);
+}
+@media (max-width:720px){.hero__tag{bottom:3.25rem;letter-spacing:.24em;text-indent:.24em}}
 
 /* The stand-in film, scaled to cover the frame the way a background video
    would. [TEMPORARY] See the note in index.html: the whole block goes when
@@ -403,6 +412,9 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 /* ---- events ------------------------------------------------ */
 .sec--events .sechead--split .h2{max-width:none;white-space:nowrap}
 .form-card{background:#242422}
+/* the event-type options sit on the dark card, so they take light text */
+.form-card .kind__o span{color:#E9E2D8;border-color:rgba(255,255,255,.38)}
+.form-card .kind__o input:checked + span{background:#F7F4EF;border-color:#F7F4EF;color:#26221E}
 .form-card .field select option{background:#242422}
 
 /* ---- footer ------------------------------------------------ */
@@ -603,11 +615,6 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--wellness .faq{width:100%}
 
 /* ---- the pieces added after the first build ----------------- */
-/* the film player sits on the same charcoal as the band it opens
-   from, so pressing a tile does not change the temperature of the
-   page underneath it */
-.page--events .rplay{background:rgba(30,30,27,.95)}
-
 /* ---- the closing band --------------------------------------- */
 .page--wellness .book{min-height:100vh;min-height:100svh;display:grid;align-content:center}
 .page--wellness .book__scrim{
@@ -1086,7 +1093,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 /* ---- the hero, full screen like the others ------------------ */
 .page--story .phero{min-height:100vh;min-height:100svh}
 .page--story .phero__in{padding-block:clamp(8rem,18vh,12rem) clamp(4rem,9vh,6rem)}
-.page--story .phero__title{margin-bottom:1.3rem;max-width:16ch}
+.page--story .phero__title{margin-bottom:1.3rem;max-width:24ch}
 .page--story .phero__sub{max-width:62ch;margin-bottom:2.4rem;font-size:clamp(1.06rem,1.35vw,1.2rem)}
 .page--story .crumb{margin-bottom:1.8rem}
 /* the sculpture is shot against a bright skylight, so the wash has
@@ -1602,3 +1609,16 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .menu__list a[aria-current="page"]::before{content:"";display:inline-block;width:1.1rem;height:2px;margin-right:.75rem;vertical-align:.3em;background:currentColor}
 .foot__nav a[aria-current="page"],
 .foot__links a[aria-current="page"]{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.3em}
+
+/* =============================================================
+   Still photographs in place of the venue and events films.
+   One quiet movement when the pointer is over the card: the
+   photograph eases in a little. Nothing moves on touch screens
+   or when the visitor has asked for reduced motion.
+   ============================================================= */
+.vstill img{transition:transform 1.4s var(--e-out);transform-origin:50% 60%;will-change:transform}
+@media (hover:hover){
+  .vcard:hover .vstill img,.vstill:hover img{transform:scale(1.06)}
+}
+@media (prefers-reduced-motion:reduce){.vstill img{transition:none;transform:none !important}}
+body.motion-off .vstill img{transition:none;transform:none !important}
