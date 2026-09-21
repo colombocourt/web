@@ -944,3 +944,12 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
 }
 .form-card .field select{color:var(--cream);border-bottom-color:rgba(252,250,246,.3);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23FCFAF6' stroke-width='1.4'/%3E%3C/svg%3E")}
 .form-card .field select option{background:var(--espresso);color:var(--cream)}
+
+/* The navigation has six items and "Plan an Event" is a long one. Labels
+   never wrap, and between a tablet and a small laptop the Menu button takes
+   over rather than letting the row crowd the logo. */
+.nav a{white-space:nowrap}
+@media (max-width:1060px){
+  .nav{display:none}
+  .burger{display:inline-flex}
+}
