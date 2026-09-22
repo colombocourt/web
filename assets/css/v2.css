@@ -1665,3 +1665,4 @@ body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
 .page--stay .sec--which{padding-block:clamp(2.5rem,4.5vw,4rem)}
 .page--stay .sec--offers{padding-block:clamp(2.5rem,4.5vw,4rem)}
 .page--stay .pick{margin-top:clamp(1.25rem,2.5vh,2rem)}
+.page--stay .sec--intro,.page--stay .sec--every{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
