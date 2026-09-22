@@ -40,10 +40,10 @@
 <link rel="preload" as="image" href="assets/img/hero-demo-1280.jpg"
       imagesrcset="assets/img/hero-demo-760.jpg 760w, assets/img/hero-demo-1280.jpg 1280w"
       imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260922">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260922b">
 <!-- TRIAL, version two. Delete this line and the home-v2.js line at the
      foot of the page to return the homepage to version one. -->
-<link rel="stylesheet" href="assets/css/v2.css?v=20260922">
+<link rel="stylesheet" href="assets/css/v2.css?v=20260922b">
 
 <!-- ============================================================
      STRUCTURED DATA  ·  Hotel + venues + FAQ (GEO / AI answer ready)
@@ -126,7 +126,7 @@
       "@type": "Restaurant",
       "@id": "https://www.colombocourthotel.com/#amber-poolside",
       "name": "Amber Poolside",
-      "description": "A relaxed poolside restaurant at Colombo Court Hotel & Spa serving breakfast, lunch from 12:30, high tea and cocktails beside the lap pool.",
+      "description": "A relaxed poolside restaurant at Colombo Court Hotel & Spa serving breakfast, lunch from 12:00, high tea and cocktails beside the lap pool. Last orders at 17:30.",
       "servesCuisine": ["Sri Lankan", "Western", "Indian"],
       "acceptsReservations": true,
       "containedInPlace": { "@id": "https://www.colombocourthotel.com/#hotel" },
@@ -134,7 +134,7 @@
       "telephone": "+94114645333",
       "openingHoursSpecification": [
         { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "07:00", "closes": "10:30", "name": "Breakfast" },
-        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "12:30", "closes": "18:30", "name": "Lunch and high tea" }
+        { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "12:00", "closes": "18:30", "name": "Lunch and high tea (last orders 17:30)" }
       ]
     },
     {
@@ -236,7 +236,7 @@
           "name": "Does Colombo Court have an elevator and is the hotel wheelchair accessible?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "<p>The hotel has an elevator providing access to the rooftop restaurant. Guest rooms are accessed via the hotel&rsquo;s stairways rather than the elevator.</p> <p>The ground floor, garden and restaurant areas are step-free, and accessible arrangements can be discussed in advance. If you have specific mobility requirements, please let us know when making your reservation so our team can advise you on the most suitable arrangements for your stay.</p>"
+            "text": "<p>The hotel has an elevator providing access to the rooftop restaurant. Guest rooms are accessed via the stairways.</p> <p>The ground floor, garden and restaurant areas are step-free, and accessible arrangements can be discussed in advance. If you have specific mobility requirements, please let us know when making your reservation so our team can advise you on the most suitable arrangements for your stay.</p>"
           }
         },
         {
@@ -284,7 +284,7 @@
           "name": "What is your cancellation and payment policy?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "<p>Our cancellation and payment conditions vary depending on the time of year. To keep things simple, here is how they work:</p> <p><strong>Off season (1 April to 19 December)</strong><br>A 24-hour cancellation notice is required before arrival.<br>Cancellations made within the applicable period are refundable according to the booking terms.</p> <p><strong>Season (20 December to 31 March)</strong><br>A 14-day cancellation notice is required before arrival.<br>Cancellations made 14 days or more before arrival are refundable according to the booking terms.<br>Cancellations made within 14 days of arrival are non-refundable.</p> <p><strong>Payment</strong><br>Booking confirmation requires a 50% advance payment.<br>The remaining balance is payable according to the applicable booking terms and season.</p> <p>Your reservation confirmation will always state the specific cancellation and payment conditions applicable to your stay. If you have a question about your booking, ask our reception team.</p>"
+            "text": "<p>Our cancellation and payment conditions vary depending on the time of year. To keep things simple, here is how they work:</p> <p><strong>Off season (all other dates)</strong><br>A 24-hour cancellation notice is required before arrival.<br>Cancellations made within the applicable period are refundable according to the booking terms.</p> <p><strong>Season (20 December to 31 March, and July and August)</strong><br>A 14-day cancellation notice is required before arrival.<br>Cancellations made 14 days or more before arrival are refundable according to the booking terms.<br>Cancellations made within 14 days of arrival are non-refundable.</p> <p><strong>Payment</strong><br>Booking confirmation requires a 50% advance payment.<br>The remaining balance is payable according to the applicable booking terms and season.</p> <p>Your reservation confirmation will always state the specific cancellation and payment conditions applicable to your stay. If you have a question about your booking, ask our reception team.</p>"
           }
         },
         {
@@ -407,7 +407,7 @@
 
     <div class="story__in">
       <h1 class="h2" id="h-hotel">A quiet retreat in the<br>heart of Colombo.</h1>
-      <p>Hidden behind the energy of Colombo 3, Colombo Court Hotel &amp; Spa unfolds around a lush garden and pool, creating a rare sense of calm in the heart of the city. Just 31 rooms and suites give the hotel an intimate character, with individually considered spaces, Sri Lankan art, reclaimed timber and thoughtful details that make no two stays feel quite the same.</p>
+      <p>Hidden behind the energy of Colombo 3, Colombo Court Hotel &amp; Spa unfolds around a lush garden and pool, creating a rare sense of calm in the heart of the city. Rooms and Suites give the hotel an intimate character, with individually considered spaces, Sri Lankan art, reclaimed timber and thoughtful details that make no two stays feel quite the same.</p>
       <p>Spend the morning among the greenery, take a quiet moment by the pool, or step beyond the hotel to discover Colombo&rsquo;s restaurants, culture and coastline. Then return to a place that feels personal, peaceful and distinctly its own.</p>
       <div class="story__act">
         <a class="link" href="our-story/">Read our story</a>
@@ -464,7 +464,7 @@
         </span>
         <div>
           <h3 class="why__t">Culinary moments</h3>
-          <p>From relaxed breakfasts by the garden to rooftop evenings, enjoy thoughtful food, drinks and memorable culinary moments throughout your stay.</p>
+          <p>From relaxed breakfasts by the garden to rooftop evenings, enjoy thoughtful food, drinks and memorable moments throughout your stay.</p>
         </div>
       </li>
 
@@ -494,7 +494,7 @@
         </span>
         <div>
           <h3 class="why__t">Garden &amp; pool</h3>
-          <p>A lush garden and pool at the heart of Colombo 3, offering a peaceful escape from the energy of the city.</p>
+          <p>A lush garden and pool at the heart of Colombo 3, offering a peaceful escape from the energy of the city, only steps from your room.</p>
         </div>
       </li>
 
@@ -523,10 +523,10 @@
                  alt="A Luxury Junior Suite at Colombo Court with a four-poster bed, draped net and a deep plum wall.">
           </div>
           <div class="room__b">
-            <h3 class="h4">Suites</h3>
-            <p class="room__meta">From 44 m² · king · garden view or private garden</p>
-            <p class="room__copy">Spacious, individually designed Suites with four-poster king beds, distinctive character and enhanced comforts. Choose from the Luxury Junior Suites, the two-floor Luxury Duplex Suite or the Luxury Honeymoon Suite, with selected ground-floor Suites offering a private garden.</p>
-            <span class="room__cta">View suites</span>
+            <h3 class="h4">Luxury Suites</h3>
+            <p class="room__meta">From 44 m² · king · garden view or private courtyard</p>
+            <p class="room__copy">Spacious, individually designed Suites with four-poster king beds, distinctive character and enhanced comforts. Choose from the Luxury Junior Suites, the two-floor Luxury Duplex Suite or the Luxury Honeymoon Suite, with selected ground-floor Suites offering a private courtyard.</p>
+            <span class="room__cta">View luxury suites</span>
           </div>
         </a>
       </li>
@@ -585,10 +585,6 @@
 
       <!-- Amber Poolside: sunlit, easy, daytime -->
       <article class="vcard reveal" aria-labelledby="h-amber">
-        <div class="vcard__head">
-          <h3 class="h2 h2--sm" id="h-amber">Amber Poolside</h3>
-        </div>
-
         <div class="vfilm16 vstill">
           <img class="reel__still" src="assets/img/ev-poolside-700.jpg"
                srcset="assets/img/ev-poolside-700.jpg 700w, assets/img/ev-poolside-1200.jpg 1200w"
@@ -596,13 +592,16 @@
                alt="Tables under hanging greenery beside the lap pool at Amber Poolside.">
         </div>
 
+        <div class="vcard__head">
+          <h3 class="h2 h2--sm" id="h-amber">Amber Poolside</h3>
+        </div>
+
         <div class="vcard__body">
-          <p class="venue__lead">Slow mornings, leisurely afternoons and dining by the water.</p>
           <p>Surrounded by greenery and the gentle rhythm of the pool, Amber Poolside offers a relaxed setting for breakfast, lunch and afternoon high tea. Enjoy thoughtful cuisine, refreshing drinks and unhurried moments in a peaceful garden setting at the heart of Colombo.</p>
         </div>
         <ul class="tags">
           <li>Breakfast 07:00</li>
-          <li>Lunch 12:30</li>
+          <li>Lunch 12:00</li>
           <li>High tea</li>
           <li>Cocktails</li>
         </ul>
@@ -610,10 +609,6 @@
 
       <!-- Cloud Café: the roof, refurbished, open late -->
       <article class="vcard reveal" aria-labelledby="h-cloud">
-        <div class="vcard__head">
-          <h3 class="h2 h2--sm" id="h-cloud">Cloud Café &amp; Bar</h3>
-        </div>
-
         <div class="vfilm16 vstill">
           <img class="reel__still" src="assets/img/ev-cloud-700.jpg"
                srcset="assets/img/ev-cloud-700.jpg 700w, assets/img/ev-cloud-1200.jpg 1200w"
@@ -621,8 +616,11 @@
                alt="The rooftop bar at Cloud Café under its glass roof, with patterned tiles and city views.">
         </div>
 
+        <div class="vcard__head">
+          <h3 class="h2 h2--sm" id="h-cloud">Cloud Café &amp; Bar</h3>
+        </div>
+
         <div class="vcard__body">
-          <p class="venue__lead">Rooftop dining, cocktails and Colombo after dark.</p>
           <p>Set above the city beneath a distinctive glass roof, Cloud Caf&eacute; &amp; Bar brings together atmospheric surroundings, creative cocktails and a refined culinary experience. Settle in for sunset, linger over dinner or unwind into the evening as Colombo comes alive below.</p>
         </div>
         <ul class="tags">
@@ -676,11 +674,10 @@
     </div>
 
     <div class="events__copy">
-      <p>Some occasions deserve more than an ordinary venue. At Colombo Court, celebrations unfold in intimate spaces surrounded by greenery, thoughtful design and the character of a boutique city hotel. From private dinners and elegant receptions to birthdays, weddings and special gatherings, each occasion can be shaped around the people and experience that matter to you.</p>
-      <p>Choose the garden, poolside or rooftop for a setting that feels distinctly your own, or explore the possibility of exclusive use of the hotel for a truly private celebration. Our culinary team works with you to create menus suited to the occasion, while our team takes care of the details behind the scenes.</p>
-      <p>Whether it is an intimate gathering or a celebration shared with those closest to you, we create an atmosphere that feels personal, relaxed and memorable. Tell us what you are celebrating, and let us create an occasion around it.</p>
+      <p>Some occasions deserve more than an ordinary venue. At Colombo Court, celebrations unfold in intimate spaces surrounded by greenery, thoughtful design and the character of a boutique city hotel. From private dinners and receptions to birthdays, weddings and special gatherings, each occasion is shaped around the people who matter to you.</p>
+      <p>Choose the garden, poolside or rooftop, or take the whole hotel for a truly private celebration. Our culinary team creates menus to suit the occasion, while our team takes care of the details. Tell us what you are celebrating, and let us create an occasion around it.</p>
       <div class="events__act">
-        <a class="btn btn--line" href="/web/events/">Plan an event</a>
+        <a class="btn btn--line" href="/web/events/">Explore events</a>
       </div>
     </div>
   </div>
@@ -709,7 +706,7 @@
           <p class="err" id="ef-email-err" hidden>Please check the email address.</p>
         </div>
         <div class="field">
-          <label for="ef-stay">Would you prefer a changing room or an overnight stay?</label>
+          <label for="ef-stay">Do you need a changing room or an overnight stay?</label>
           <select id="ef-stay" name="stay">
             <option>No</option>
             <option>Yes</option>
@@ -739,8 +736,7 @@
      06  WELLNESS
      ============================================================ -->
 <section class="sec sec--spa" id="wellness" aria-labelledby="h-spa">
-  <!-- The spa runs on the same grid as Amber Poolside: photographs left,
-       words right, one container width for all three. -->
+  <!-- A smaller gallery on the left, the words at full width beside it. -->
   <article class="venue venue--spa reveal" aria-labelledby="h-spa">
     <div class="venue__media">
       <!-- MINI GALLERY. Advances on its own every few seconds; hovering,
@@ -769,8 +765,7 @@
     </div>
 
     <div class="venue__body">
-      <h2 class="h2" id="h-spa">Slow down.</h2>
-      <p class="venue__lead">A spa, two pools, a gym, and a rooftop made for sunrise yoga.</p>
+      <h2 class="h2" id="h-spa">Your wellbeing.</h2>
       <p>Wellness at Colombo Court is about having space to feel your best, in your own way. Begin the day with a refreshing swim, enjoy a treatment at The Court Spa, keep up your fitness routine or simply take time to enjoy the garden and its peaceful surroundings. Our Balinese therapists offer massages and facials using locally sourced ingredients, while the fitness room overlooks the greenery.</p>
       <p>For a more invigorating experience, take a dip in the pool or unwind in the plunge pool and jacuzzi. The rooftop at Cloud Caf&eacute; &amp; Bar offers a beautiful setting for yoga, particularly as the city begins to wake. Whether you want to recharge, stay active or simply make more time for yourself, wellness is naturally woven into your stay.</p>
       <a class="btn btn--line" href="/web/wellness/">Explore wellness</a>
@@ -997,7 +992,7 @@
       </details>
       <details class="qa">
         <summary><span>Is parking available at the hotel?</span></summary>
-        <div class="qa__a"><p>Yes. Complimentary on-site parking is available for hotel guests and guests dining with us. As parking spaces are limited, we recommend <a class="qlink" href="#" data-quickform="reception">informing us in advance</a> if you will be arriving with more than one vehicle so we can assist with arrangements.</p></div>
+        <div class="qa__a"><p>Yes. Complimentary on-site parking is available for hotel guests and guests dining with us. As parking spaces are limited, we recommend informing us in advance if you will be arriving with more than one vehicle so we can assist with arrangements.</p></div>
       </details>
       <details class="qa">
         <summary><span>Can I use the pool, gym and spa if I am not staying at the hotel?</span></summary>
@@ -1023,7 +1018,7 @@
       </details>
       <details class="qa">
         <summary><span>Does Colombo Court have an elevator and is the hotel wheelchair accessible?</span></summary>
-        <div class="qa__a"><p>The hotel has an elevator providing access to the rooftop restaurant. Guest rooms are accessed via the hotel&rsquo;s stairways rather than the elevator.</p>
+        <div class="qa__a"><p>The hotel has an elevator providing access to the rooftop restaurant. Guest rooms are accessed via the stairways.</p>
 <p>The ground floor, garden and restaurant areas are step-free, and accessible arrangements can be discussed in advance. If you have specific mobility requirements, please <a class="qlink" href="#" data-quickform="reception">let us know when making your reservation</a> so our team can advise you on the most suitable arrangements for your stay.</p></div>
       </details>
       <details class="qa">
@@ -1054,8 +1049,8 @@
       <details class="qa">
         <summary><span>What is your cancellation and payment policy?</span></summary>
         <div class="qa__a"><p>Our cancellation and payment conditions vary depending on the time of year. To keep things simple, here is how they work:</p>
-<p><strong>Off season (1 April to 19 December)</strong><br>A 24-hour cancellation notice is required before arrival.<br>Cancellations made within the applicable period are refundable according to the booking terms.</p>
-<p><strong>Season (20 December to 31 March)</strong><br>A 14-day cancellation notice is required before arrival.<br>Cancellations made 14 days or more before arrival are refundable according to the booking terms.<br>Cancellations made within 14 days of arrival are non-refundable.</p>
+<p><strong>Off season (all other dates)</strong><br>A 24-hour cancellation notice is required before arrival.<br>Cancellations made within the applicable period are refundable according to the booking terms.</p>
+<p><strong>Season (20 December to 31 March, and July and August)</strong><br>A 14-day cancellation notice is required before arrival.<br>Cancellations made 14 days or more before arrival are refundable according to the booking terms.<br>Cancellations made within 14 days of arrival are non-refundable.</p>
 <p><strong>Payment</strong><br>Booking confirmation requires a 50% advance payment.<br>The remaining balance is payable according to the applicable booking terms and season.</p>
 <p>Your reservation confirmation will always state the specific cancellation and payment conditions applicable to your stay. If you have a question about your booking, <a class="qlink" href="#" data-quickform="reception">ask our reception team</a>.</p></div>
       </details>
@@ -1249,7 +1244,7 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20260922" defer></script>
-<script src="assets/js/v2-home.js?v=20260922" defer></script>
+<script src="assets/js/main.js?v=20260922b" defer></script>
+<script src="assets/js/v2-home.js?v=20260922b" defer></script>
 </body>
 </html>

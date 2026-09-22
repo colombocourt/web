@@ -895,7 +895,7 @@
       var payload = {
         form: 'events', name: data.name, phone: data.phone, email: data.email,
         details: [
-          ['Changing room or overnight stay', $('#ef-stay') ? $('#ef-stay').value : '']
+          ['Changing room or overnight stay needed', $('#ef-stay') ? $('#ef-stay').value : '']
         ],
         message: data.message, company: ''
       };

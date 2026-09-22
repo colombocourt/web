@@ -1628,3 +1628,18 @@ body.motion-off .vstill img{transition:none;transform:none !important}
 .why__i{align-content:start}
 /* Events: the three paragraphs beside the photographs */
 .events__copy p + p{margin-top:.9em}
+
+/* Homepage round four (22 Sep): Eat & Drink on the same linen ground as the
+   spa, venue names under their photographs, full-width paragraphs; the spa
+   gallery smaller with the words at full width; one-line Colombo heading. */
+.sec--eat{background:var(--linen)}
+.sec--eat .vcard__body p,.sec--eat .venue__body p{max-width:none}
+.vcard .vfilm16 + .vcard__head{margin-top:1.1rem}
+.venue--spa .venue__body p{max-width:none}
+.venue--spa .gal__view{aspect-ratio:4/3}
+@media (min-width:861px){
+  .venue--spa{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr)}
+  .venue--spa .gal__view{aspect-ratio:1/1}
+}
+.sec--exp .sechead--split .h2{max-width:none;white-space:nowrap}
+@media (max-width:560px){.sec--exp .sechead--split .h2{white-space:normal}}
