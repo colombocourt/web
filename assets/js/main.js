@@ -623,8 +623,9 @@
      shows a message (the enquiry forms use it to confirm a send).
      cchModal.form(kind) opens a short form: "dining" reserves a
      table or a Dine & Dip day and goes to the sales executive,
-     "reception" asks the reception team a question. Any link with
-     data-quickform="dining|reception" opens one. Sent through
+     "reception" asks the reception team a question, "staycation" and
+     "daycation" ask about those offers (also to reception). Any link
+     or button with data-quickform="<kind>" opens one. Sent through
      api/enquiry.php like every other form.
      =========================================================== */
   var modal = null, lastFocus = null;
@@ -688,6 +689,31 @@
         ['email', 'Email', 'email', { required: true, autocomplete: 'email' }],
         ['arrival', 'Arrival date, if you have booked', 'date', {}],
         ['message', 'Your question', 'textarea', { required: true }]
+      ]
+    },
+    staycation: {
+      title: 'Ask about the Staycation', form: 'staycation', subject: 'Staycation enquiry',
+      note: 'Tell us your dates and our reception team will reply by email with availability and the rate.',
+      fields: [
+        ['name', 'Name', 'text', { required: true, autocomplete: 'name' }],
+        ['phone', 'Contact number', 'tel', { required: true, autocomplete: 'tel' }],
+        ['email', 'Email', 'email', { required: true, autocomplete: 'email' }],
+        ['guests', 'Guests', 'number', { min: 1, max: 6, value: 2 }],
+        ['checkin', 'Check-in', 'date', { required: true }],
+        ['checkout', 'Check-out', 'date', { required: true }],
+        ['message', 'Anything else', 'textarea', {}]
+      ]
+    },
+    daycation: {
+      title: 'Ask about the Daycation', form: 'daycation', subject: 'Daycation enquiry',
+      note: 'Tell us the day you have in mind and our reception team will reply by email with availability and the rate.',
+      fields: [
+        ['name', 'Name', 'text', { required: true, autocomplete: 'name' }],
+        ['phone', 'Contact number', 'tel', { required: true, autocomplete: 'tel' }],
+        ['email', 'Email', 'email', { required: true, autocomplete: 'email' }],
+        ['guests', 'Guests', 'number', { min: 1, max: 6, value: 2 }],
+        ['date', 'Date', 'date', { required: true }],
+        ['message', 'Anything else', 'textarea', {}]
       ]
     }
   };

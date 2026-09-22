@@ -1650,3 +1650,8 @@ body.motion-off .vstill img{transition:none;transform:none !important}
 .venue--spa .venue__body{max-width:none}
 .sec--exp{min-height:0}
 body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
+
+/* Stay page (22 Sep): the offers end in a button rather than a text link */
+.page--stay .offer .btn{margin-top:auto;align-self:flex-start;padding-top:.7rem;padding-bottom:.7rem}
+.page--stay .offer__body p{margin-bottom:1rem}
+.page--stay .offers{margin-top:clamp(1.5rem,3vw,2.25rem)}
