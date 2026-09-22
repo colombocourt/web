@@ -1666,3 +1666,8 @@ body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
 .page--stay .sec--offers{padding-block:clamp(2.5rem,4.5vw,4rem)}
 .page--stay .pick{margin-top:clamp(1.25rem,2.5vh,2rem)}
 .page--stay .sec--intro,.page--stay .sec--every{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
+
+/* Eat & Drink (22 Sep): no rates in the offers, a booking button on high
+   tea; the intro and clock bands no longer stretch to a screen. */
+.what__act{margin:0;align-self:end;padding-top:.9rem}
+.page--eat .sec--day,.page--eat .sec--clock{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}

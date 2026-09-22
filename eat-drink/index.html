@@ -36,10 +36,10 @@
 <link rel="preload" as="image" href="../assets/img/ed-hero-1400.jpg"
       imagesrcset="../assets/img/ed-hero-900.jpg 900w, ../assets/img/ed-hero-1400.jpg 1400w, ../assets/img/ed-hero-1900.jpg 1900w"
       imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260922f">
-<link rel="stylesheet" href="../assets/css/pages.css?v=20260922f">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260922g">
+<link rel="stylesheet" href="../assets/css/pages.css?v=20260922g">
 <!-- TRIAL, version two. Delete this line to return the page to version one. -->
-<link rel="stylesheet" href="../assets/css/v2.css?v=20260922f">
+<link rel="stylesheet" href="../assets/css/v2.css?v=20260922g">
 
 <!-- Both restaurants as their own entities, linked to the hotel. The opening
      hours here are the ones printed on the page: if you change one, change
@@ -80,8 +80,8 @@
       "image": "https://www.colombocourthotel.com/assets/img/ed-a-1-1300.jpg",
       "hasMenu": "https://www.colombocourthotel.com/assets/menus/amber-poolside-menu.pdf",
       "makesOffer": [
-        { "@type": "Offer", "name": "High tea", "description": "Savouries and sweets with a pot of tea, coffee or iced coffee, served 15:30 to 18:30. LKR 2,900 net per person or LKR 5,800 net per platter.", "price": "2900", "priceCurrency": "LKR", "availableAtOrFrom": { "@id": "https://www.colombocourthotel.com/#amber-poolside" } },
-        { "@type": "Offer", "name": "Dine and Dip", "description": "A day at the pool for visitors, with a minimum spend redeemed against food and drink at Amber Poolside.", "price": "3500", "priceCurrency": "LKR", "availableAtOrFrom": { "@id": "https://www.colombocourthotel.com/#amber-poolside" } }
+        { "@type": "Offer", "name": "High tea", "description": "Savouries and sweets with a pot of tea, coffee or iced coffee, served 15:30 to 18:30. LKR 2,900 net per person or LKR 5,800 net per platter.", "availableAtOrFrom": { "@id": "https://www.colombocourthotel.com/#amber-poolside" } },
+        { "@type": "Offer", "name": "Dine and Dip", "description": "A day at the pool for visitors, with a minimum spend redeemed against food and drink at Amber Poolside.", "availableAtOrFrom": { "@id": "https://www.colombocourthotel.com/#amber-poolside" } }
       ],
       "openingHoursSpecification": [
         { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "07:00", "closes": "10:30", "name": "Breakfast" },
@@ -104,7 +104,7 @@
       "hasMenu": "https://www.colombocourthotel.com/assets/menus/cloud-cafe-menu.pdf",
       "makesOffer": [
         { "@type": "Offer", "name": "Happy hour", "description": "Fifty per cent off selected drinks, daily 18:00 to 20:00. No happy hour on Poya days, when no alcohol is served in Sri Lanka.", "availableAtOrFrom": { "@id": "https://www.colombocourthotel.com/#cloud-cafe" } },
-        { "@type": "Offer", "name": "Sharing platter", "description": "Grilled meats, sausages, eggs and everything beside them on one board, built for a table to share.", "price": "9000", "priceCurrency": "LKR", "availableAtOrFrom": { "@id": "https://www.colombocourthotel.com/#cloud-cafe" } }
+        { "@type": "Offer", "name": "Sharing platter", "description": "Grilled meats, sausages, eggs and everything beside them on one board, built for a table to share.", "availableAtOrFrom": { "@id": "https://www.colombocourthotel.com/#cloud-cafe" } }
       ],
       "openingHoursSpecification": [
         { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "17:30", "closes": "23:30" }
@@ -114,28 +114,86 @@
       "@type": "FAQPage",
       "@id": "https://www.colombocourthotel.com/eat-drink/#faq",
       "mainEntity": [
-        { "@type": "Question", "name": "Do I have to be staying at the hotel?",
-          "acceptedAnswer": { "@type": "Answer", "text": "No. Both restaurants are open to everyone. Walk in for breakfast or lunch at the pool, or book a table for dinner and drinks on the roof." } },
-        { "@type": "Question", "name": "What time is breakfast, and how late is high tea?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Breakfast is served beside the pool from 07:00 to 10:30 every day. Lunch starts at 12:00, and high tea is served at Amber Poolside from 15:30 to 18:30. Non-residents are welcome." } },
-        { "@type": "Question", "name": "Where exactly are you, and what is nearby?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Colombo Court Hotel & Spa, 32 Alfred House Avenue, Colombo 3. We are a few minutes from Galle Face Green, Gangaramaya Temple and the shops on Duplication Road, and a short drive from Fort." } },
-        { "@type": "Question", "name": "Is there parking, and is the roof easy to reach?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Parking is free on site at 32 Alfred House Avenue, and there is a lift as well as stairs up to Cloud Café." } },
-        { "@type": "Question", "name": "Do you take walk-ins, or should I book?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, you can walk in to either restaurant. Weekends are busy and the tables along the rail are popular, so we recommend booking ahead with the table request form on this page." } },
-        { "@type": "Question", "name": "Is there a dress code?",
-          "acceptedAnswer": { "@type": "Answer", "text": "There is no formal dress code. Casual wear is fine at the pool, and smart casual suits the roof in the evening." } },
-        { "@type": "Question", "name": "Can you build a menu around what we want?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Our chef can create a menu for your table. Tell us what your guests like, what they avoid and what the occasion is, and the chef will plan a menu for you. A day or two of notice is usually enough, and we share the menu with you before you confirm." } },
-        { "@type": "Question", "name": "Can you work around allergies, and is there enough for vegetarians?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Both menus include vegetarian and vegan dishes. Please tell us about any allergies when you book, so the kitchen can prepare for you." } },
-        { "@type": "Question", "name": "Can you seat a larger group?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We can arrange set menus and sharing platters for larger tables in advance. For a gathering with a guest list, our events team will be happy to help." } },
-        { "@type": "Question", "name": "Can we take the roof for a private evening?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. We can reserve part or all of the roof, depending on the date and the size of your group. Send us the date and number of guests, and we will confirm what is possible. The chef will then plan a menu for your evening." } },
-        { "@type": "Question", "name": "Are children welcome?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes, children are very welcome. High chairs are available on request, and children usually enjoy being near the pool at Amber Poolside." } }
+        {
+          "@type": "Question",
+          "name": "Do I have to be staying at the hotel to dine at Colombo Court?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Not at all. Both Amber Poolside and Cloud Caf&eacute; &amp; Bar welcome non-resident guests. Whether you are joining us for breakfast, a relaxed lunch by the pool, afternoon high tea or an evening above the city, you are welcome to enjoy the dining experience without staying at the hotel.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What time is breakfast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Breakfast is served daily at Amber Poolside from 07:00 onwards. Start your morning surrounded by greenery with a relaxed breakfast before heading out to explore Colombo, or take your time and enjoy a slower start to the day.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where exactly are you, and what is nearby?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>We are located on Alfred House Avenue in Colombo 03, placing you close to some of Colombo&rsquo;s restaurants, shopping, business districts, attractions and the coastline. Our central location makes it easy to combine dining at Colombo Court with a day or evening exploring the city.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there parking, and is the rooftop easy to reach?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Yes. Complimentary on-site parking is available for guests dining at the hotel, subject to availability. Cloud Caf&eacute; &amp; Bar is located on the rooftop and can be reached via the hotel&rsquo;s elevator, making it easy to move from the hotel entrance to your evening above the city.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you take walk-ins, or should I book?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>We welcome both walk-ins and reservations, subject to availability. For weekends, special occasions and preferred seating, we recommend making a reservation in advance so we can prepare for your visit. We do not offer takeaway service, as our dining experiences are designed to be enjoyed in the setting of the hotel.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there a dress code?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>We keep things relaxed and comfortable, while asking guests to dress appropriately for the dining experience. Slippers and shorts are not permitted at either Amber Poolside or Cloud Caf&eacute; &amp; Bar. Smart casual attire is recommended, particularly for an evening at Cloud.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you build a menu around what we want?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Our culinary team is happy to discuss your preferences and, where possible, create or adapt dishes to suit your occasion and requirements. If you are planning a private dinner, celebration or special gathering, speak with our team in advance so our Chef can explore the possibilities with you.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can you work around allergies, and is there enough for vegetarians?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Yes. We are happy to discuss dietary preferences, allergies and specific requirements with our Chef. If you have particular needs, please let our team know upon arrival at the hotel, and we will work with the Chef to curate suitable options wherever possible. We also offer vegetarian choices across our dining experiences.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can we take the rooftop for a private evening?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Cloud Caf&eacute; &amp; Bar can be considered for private events and exclusive gatherings, subject to availability and the nature of your occasion. From intimate dinners and celebrations to special corporate evenings, our team can work with you to create an experience around your requirements. Contact us to discuss your preferred date and what you have in mind.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are children welcome?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Yes. Children are welcome at both Amber Poolside and Cloud Caf&eacute; &amp; Bar. Families can enjoy a relaxed meal by the pool at Amber, while Cloud offers a more atmospheric setting for an evening together. Our team will be happy to help you choose the setting that best suits your occasion.</p>"
+          }
+        }
       ]
     }
   ]
@@ -215,8 +273,8 @@
   </div>
   <div class="phero__in">
     <p class="crumb"><a href="/web/">Colombo Court</a> <span aria-hidden="true">/</span> Eat &amp; Drink</p>
-    <h1 class="phero__title">One kitchen.<br>Two different experiences.</h1>
-    <p class="phero__sub">Breakfast, lunch and high tea beside the pool. Dinner and drinks on the roof.</p>
+    <h1 class="phero__title">By the pool.<br>Above the city.</h1>
+    <p class="phero__sub">Two distinctive settings, bringing together relaxed dining, creative cocktails and flavours.</p>
     <div class="phero__cta">
       <a class="btn btn--solid btn--lg" href="#reserve">Reserve a table</a>
       <a class="btn btn--ghost btn--lg" href="#amber">See both</a>
@@ -234,8 +292,8 @@
   <div class="wrap day">
     <h2 class="h2" id="h-day">When to come, and where to sit.</h2>
     <div class="day__cols">
-      <p>Amber Poolside is our daytime restaurant, beside the pool in the shade of the trees. Cloud Café is our evening restaurant and bar on the rooftop, with a glass roof over part of it and views across the city. Both are open to everyone, not only hotel guests.</p>
-      <p>Our chefs are happy to cook to your taste: a favourite dish, a dietary need, a special table or a birthday cake. Tell us when you book and we will have it ready.</p>
+      <p>Choose your setting according to the mood. At Amber Poolside, enjoy relaxed dining surrounded by greenery, from breakfast and leisurely lunches to afternoon high tea, cocktails and poolside canap&eacute;s. At Cloud Caf&eacute; &amp; Bar, head upstairs as the city changes pace for sunset drinks, dinner and evenings beneath the stars.</p>
+      <p>Our menus bring together Sri Lankan, Indian, Chinese and Western influences, with our culinary team happy to accommodate dietary requirements and preferences wherever possible. Wherever you choose to dine, expect thoughtful food, attentive service and an atmosphere worth staying for.</p>
     </div>
   </div>
 </section>
@@ -250,7 +308,6 @@
   <div class="wrap">
     <header class="sechead sechead--split">
       <h2 class="h2" id="h-clock">A day here, in order.</h2>
-      <p class="lede">Both restaurants are open to everyone, seven days a week. You only need to book a table.</p>
     </header>
     <ol class="clock">
       <li><b>07:00</b> Breakfast opens beside the water</li>
@@ -271,12 +328,11 @@
     <div class="vgrid">
       <div class="vgrid__copy">
         <header class="vhead vhead--in">
-          <p class="stamp"><span class="stamp__t">07:00 → 18:30</span><span class="stamp__l">by the water</span></p>
           <h2 class="h2" id="h-amber">Amber Poolside</h2>
-          <p class="vhead__lede">Relaxed dining beside the pool, from breakfast until 18:30.</p>
+          <p class="vhead__lede">Dining among the greenery.</p>
         </header>
-        <p>Breakfast is served beside the pool, in the shade of the trees. Choose from Sri Lankan, Western, Indian or lighter platters, with fresh coffee.</p>
-        <p>Lunch starts at 12:00, with Sri Lankan and Western dishes and cocktails. High tea follows at 15:30, with savouries, sweets and a pot of tea or coffee.</p>
+        <p>In the heart of Colombo, Amber Poolside offers a refreshing escape surrounded by greenery and the gentle rhythm of the pool. Start the day with breakfast, settle in for a leisurely lunch or enjoy afternoon high tea in a relaxed setting.</p>
+        <p>Our menu brings together Sri Lankan, Indian, Chinese and Western favourites, alongside refreshing beverages, cocktails and poolside canap&eacute;s. Whether you are enjoying a long lunch beneath the trees or unwinding with a drink by the water, Amber Poolside brings a relaxed culinary experience to the centre of the city.</p>
         <ul class="tags">
           <li>Breakfast 07:00</li>
           <li>Lunch 12:00</li>
@@ -340,12 +396,11 @@
     <div class="vgrid vgrid--flip">
       <div class="vgrid__copy">
         <header class="vhead vhead--in">
-          <p class="stamp"><span class="stamp__t">17:30 → 23:30</span><span class="stamp__l">on the roof</span></p>
           <h2 class="h2" id="h-cloud">Cloud Café &amp; Bar</h2>
-          <p class="vhead__lede">A calm rooftop restaurant and bar with views across the city.</p>
+          <p class="vhead__lede">The sky is the limit.</p>
         </header>
-        <p>Our newly refurbished rooftop has a glass roof over part of it, trees in planters, a bar faced in old Ceylon cement tiles, and views across the city.</p>
-        <p>Open every evening from 17:30 to 23:30. Enjoy cocktails, a chosen wine list and a semi fine dining menu of pizza, pasta, salads, and Indian and Western dishes. For a special evening, our chef can create a menu for your table.</p>
+        <p>High above Colombo, Cloud Caf&eacute; &amp; Bar brings together distinctive surroundings, signature cocktails and a menu inspired by flavours from near and far. Settle in as the sun goes down, dine beneath the stars or linger over cocktails as the city lights begin to glow below.</p>
+        <p>From carefully crafted drinks to dishes designed to complement the evening, every element is considered to make the experience memorable. With its glass roof, open skies and views across Colombo, Cloud is a place to come for dinner and stay for the atmosphere.</p>
         <ul class="tags">
           <li>Rooftop</li>
           <li>Semi fine dining</li>
@@ -403,7 +458,6 @@
   <div class="wrap">
     <header class="sechead sechead--split">
       <h2 class="h2" id="h-whats">Standing offers.</h2>
-      <p class="lede">Regular offers at Amber Poolside and Cloud Café, every week.</p>
     </header>
 
     
@@ -414,7 +468,7 @@
           <p class="what__when">Every afternoon <span>Amber Poolside</span></p>
           <h3 class="h4">High tea</h3>
           <p>Savouries and sweets with a pot of tea or coffee, daily from 15:30 to 18:30.</p>
-          <p class="what__price">LKR 2,900 net per person.<br>LKR 5,800 net per platter.</p>
+          <p class="what__act"><button class="btn btn--line btn--sm" type="button" data-quickform="dining">Book a table</button></p>
         </div>
       </article>
 
@@ -424,7 +478,6 @@
           <p class="what__when">Every evening <span>Cloud Café</span></p>
           <h3 class="h4">Happy hour</h3>
           <p>Selected drinks at half price on the rooftop, as the sun sets.</p>
-          <p class="what__price">Daily, 18:00 to 20:00.<br>Not on Poya days.</p>
         </div>
       </article>
 
@@ -434,7 +487,6 @@
           <p class="what__when">Every day <span>Amber Poolside</span></p>
           <h3 class="h4">Dine and Dip</h3>
           <p>A day at the pool for visitors, with food and drinks from Amber Poolside.</p>
-          <p class="what__price">LKR 3,500 per person.<br>Redeemed against food and drink.</p>
         </div>
       </article>
 
@@ -444,12 +496,9 @@
           <p class="what__when">Every evening <span>Cloud Café</span></p>
           <h3 class="h4">The sharing platter</h3>
           <p>Grilled meats, sausages, eggs and sides on one board.</p>
-          <p class="what__price">LKR 9,000 net per board.<br>Made for a table to share.</p>
         </div>
       </article>
     </div>
-
-    <p class="whats__note">High tea and sharing platter prices are net. Menu prices are subject to service charge and government taxes. Message us on WhatsApp to check a date, a dietary need or table availability.</p>
   </div>
 </section>
 
@@ -539,55 +588,50 @@
 <section class="sec sec--faq" id="faq" aria-labelledby="h-know">
   <div class="wrap">
     <header class="sechead sechead--split">
-      <h2 class="h2" id="h-know">Before you come.</h2>
-      <p class="lede">Answers to the questions our restaurant team is asked most often.</p>
+      <h2 class="h2" id="h-know">Good to know.</h2>
     </header>
 
     <div class="qbox">
     <div class="faq__list">
       <details class="qa">
-        <summary><span>Do I have to be staying at the hotel?</span></summary>
-        <div class="qa__a"><p>No. Both restaurants are open to everyone. Walk in for breakfast or lunch at the pool, or book a table for dinner and drinks on the roof.</p></div>
+        <summary><span>Do I have to be staying at the hotel to dine at Colombo Court?</span></summary>
+        <div class="qa__a"><p>Not at all. Both Amber Poolside and Cloud Caf&eacute; &amp; Bar welcome non-resident guests. Whether you are joining us for breakfast, a relaxed lunch by the pool, afternoon high tea or an evening above the city, you are welcome to enjoy the dining experience without staying at the hotel.</p></div>
       </details>
       <details class="qa">
-        <summary><span>What time is breakfast, and how late is high tea?</span></summary>
-        <div class="qa__a"><p>Breakfast is served beside the pool from 07:00 to 10:30 every day. Lunch starts at 12:00, and high tea is served at Amber Poolside from 15:30 to 18:30. Non-residents are welcome.</p></div>
+        <summary><span>What time is breakfast?</span></summary>
+        <div class="qa__a"><p>Breakfast is served daily at Amber Poolside from 07:00 onwards. Start your morning surrounded by greenery with a relaxed breakfast before heading out to explore Colombo, or take your time and enjoy a slower start to the day.</p></div>
       </details>
       <details class="qa">
         <summary><span>Where exactly are you, and what is nearby?</span></summary>
-        <div class="qa__a"><p>Colombo Court Hotel &amp; Spa, 32 Alfred House Avenue, Colombo 3. We are a few minutes from Galle Face Green, Gangaramaya Temple and the shops on Duplication Road, and a short drive from Fort.</p></div>
+        <div class="qa__a"><p>We are located on Alfred House Avenue in Colombo 03, placing you close to some of Colombo&rsquo;s restaurants, shopping, business districts, attractions and the coastline. Our central location makes it easy to combine dining at Colombo Court with a day or evening exploring the city.</p></div>
       </details>
       <details class="qa">
-        <summary><span>Is there parking, and is the roof easy to reach?</span></summary>
-        <div class="qa__a"><p>Yes. Parking is free on site at 32 Alfred House Avenue, and there is a lift as well as stairs up to Cloud Café.</p></div>
+        <summary><span>Is there parking, and is the rooftop easy to reach?</span></summary>
+        <div class="qa__a"><p>Yes. Complimentary on-site parking is available for guests dining at the hotel, subject to availability. Cloud Caf&eacute; &amp; Bar is located on the rooftop and can be reached via the hotel&rsquo;s elevator, making it easy to move from the hotel entrance to your evening above the city.</p></div>
       </details>
       <details class="qa">
         <summary><span>Do you take walk-ins, or should I book?</span></summary>
-        <div class="qa__a"><p>Yes, you can walk in to either restaurant. Weekends are busy and the tables along the rail are popular, so we recommend booking ahead with the table request form on this page.</p></div>
+        <div class="qa__a"><p>We welcome both walk-ins and reservations, subject to availability. For weekends, special occasions and preferred seating, we recommend <a class="qlink" href="#" data-quickform="dining">making a reservation in advance</a> so we can prepare for your visit. We do not offer takeaway service, as our dining experiences are designed to be enjoyed in the setting of the hotel.</p></div>
       </details>
       <details class="qa">
         <summary><span>Is there a dress code?</span></summary>
-        <div class="qa__a"><p>There is no formal dress code. Casual wear is fine at the pool, and smart casual suits the roof in the evening.</p></div>
+        <div class="qa__a"><p>We keep things relaxed and comfortable, while asking guests to dress appropriately for the dining experience. Slippers and shorts are not permitted at either Amber Poolside or Cloud Caf&eacute; &amp; Bar. Smart casual attire is recommended, particularly for an evening at Cloud.</p></div>
       </details>
       <details class="qa">
         <summary><span>Can you build a menu around what we want?</span></summary>
-        <div class="qa__a"><p>Yes. Our chef can create a menu for your table. Tell us what your guests like, what they avoid and what the occasion is, and the chef will plan a menu for you. A day or two of notice is usually enough, and we share the menu with you before you confirm.</p></div>
+        <div class="qa__a"><p>Our culinary team is happy to discuss your preferences and, where possible, create or adapt dishes to suit your occasion and requirements. If you are planning a private dinner, celebration or special gathering, <a class="qlink" href="#" data-quickform="dining">speak with our team in advance</a> so our Chef can explore the possibilities with you.</p></div>
       </details>
       <details class="qa">
         <summary><span>Can you work around allergies, and is there enough for vegetarians?</span></summary>
-        <div class="qa__a"><p>Yes. Both menus include vegetarian and vegan dishes. Please tell us about any allergies when you book, so the kitchen can prepare for you.</p></div>
+        <div class="qa__a"><p>Yes. We are happy to discuss dietary preferences, allergies and specific requirements with our Chef. If you have particular needs, please let our team know upon arrival at the hotel, and we will work with the Chef to curate suitable options wherever possible. We also offer vegetarian choices across our dining experiences.</p></div>
       </details>
       <details class="qa">
-        <summary><span>Can you seat a larger group?</span></summary>
-        <div class="qa__a"><p>Yes. We can arrange set menus and sharing platters for larger tables in advance. For a gathering with a guest list, our events team will be happy to help.</p></div>
-      </details>
-      <details class="qa">
-        <summary><span>Can we take the roof for a private evening?</span></summary>
-        <div class="qa__a"><p>Yes. We can reserve part or all of the roof, depending on the date and the size of your group. Send us the date and number of guests, and we will confirm what is possible. The chef will then plan a menu for your evening.</p></div>
+        <summary><span>Can we take the rooftop for a private evening?</span></summary>
+        <div class="qa__a"><p>Cloud Caf&eacute; &amp; Bar can be considered for private events and exclusive gatherings, subject to availability and the nature of your occasion. From intimate dinners and celebrations to special corporate evenings, our team can work with you to create an experience around your requirements. <a class="qlink" href="#" data-quickform="dining">Contact us</a> to discuss your preferred date and what you have in mind.</p></div>
       </details>
       <details class="qa">
         <summary><span>Are children welcome?</span></summary>
-        <div class="qa__a"><p>Yes, children are very welcome. High chairs are available on request, and children usually enjoy being near the pool at Amber Poolside.</p></div>
+        <div class="qa__a"><p>Yes. Children are welcome at both Amber Poolside and Cloud Caf&eacute; &amp; Bar. Families can enjoy a relaxed meal by the pool at Amber, while Cloud offers a more atmospheric setting for an evening together. Our team will be happy to help you choose the setting that best suits your occasion.</p></div>
       </details>
     </div>
 
@@ -612,8 +656,8 @@
     <span class="book__scrim"></span>
   </div>
   <div class="wrap book__in">
-    <h2 class="h2 h2--big" id="h-book">We look forward to welcoming you.</h2>
-    <p class="book__lead">Downstairs beside the pool, or upstairs on the roof with views of the city.</p>
+    <h2 class="h2 h2--big" id="h-book">An evening awaits.</h2>
+    <p class="book__lead">Choose your table and let the food, drinks and atmosphere take care of the rest.</p>
     <div class="book__cta">
       <a class="btn btn--ghost btn--lg" href="#reserve">Reserve a table</a>
       <a class="btn btn--ghost btn--lg" href="https://wa.me/94766680971?text=Hello%20Colombo%20Court%2C%20I%27d%20like%20to%20book%20a%20table." target="_blank" rel="noopener">
@@ -621,11 +665,6 @@
         WhatsApp us
       </a>
     </div>
-    <ul class="book__perks">
-      <li>Open to everyone</li>
-      <li>Free parking</li>
-      <li>Rooftop bar</li>
-    </ul>
   </div>
 </section>
 
@@ -791,7 +830,7 @@
   </div>
 </div>
 
-<script src="../assets/js/main.js?v=20260922f" defer></script>
-<script src="../assets/js/pages.js?v=20260922f" defer></script>
+<script src="../assets/js/main.js?v=20260922g" defer></script>
+<script src="../assets/js/pages.js?v=20260922g" defer></script>
 </body>
 </html>
