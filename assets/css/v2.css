@@ -1643,3 +1643,10 @@ body.motion-off .vstill img{transition:none;transform:none !important}
 }
 .sec--exp .sechead--split .h2{max-width:none;white-space:nowrap}
 @media (max-width:560px){.sec--exp .sechead--split .h2{white-space:normal}}
+
+/* Round five (22 Sep): the wellbeing words use the full column; the Colombo
+   and closing sections no longer stretch to the full screen height, on
+   every page. */
+.venue--spa .venue__body{max-width:none}
+.sec--exp{min-height:0}
+body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
