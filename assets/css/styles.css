@@ -953,3 +953,55 @@ body.paused *,body.paused *::before,body.paused *::after{animation-play-state:pa
   .nav{display:none}
   .burger{display:inline-flex}
 }
+
+/* ---------- The site's own pop-up: a notice, or a short form ---------- */
+.modal{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:1rem}
+.modal[hidden]{display:none}
+.modal__scrim{position:absolute;inset:0;background:rgba(12,12,10,.62)}
+.modal__panel{position:relative;width:min(100%,42rem);max-height:calc(100vh - 2rem);overflow:auto;padding:clamp(1.5rem,3.2vw,2.35rem);padding-top:clamp(2.6rem,4vw,3rem)}
+.modal__close{position:absolute;top:.85rem;right:.85rem;width:2.4rem;height:2.4rem;border:1px solid rgba(252,250,246,.35);background:transparent;color:var(--cream);border-radius:50%;cursor:pointer;display:grid;place-items:center;font-size:1.4rem;line-height:1;padding:0}
+.modal__close:hover{background:rgba(252,250,246,.12)}
+.modal__p{color:var(--stone-l);max-width:44ch}
+.modal__acts{margin-top:1.4rem;display:flex;gap:.7rem;flex-wrap:wrap}
+body.modal-open{overflow:hidden}
+.modal .form-ok{padding-top:0}
+.eform--modal{gap:1rem}
+@media (min-width:600px){
+  .eform--modal{grid-template-columns:1fr 1fr;gap:1rem 1.25rem}
+  .eform--modal .f-msg,.eform--modal .f-send,.eform--modal .form-card__legal{grid-column:1/-1}
+}
+.form-card .field input[type="date"],.form-card .field input[type="time"]{color-scheme:dark}
+.qa__a .qlink{color:var(--crimson);text-decoration:underline;text-underline-offset:.2em;text-decoration-thickness:1px}
+.qa__a p + p{margin-top:.75em}
+
+/* The wide enquiry form, the same layout as the Plan an Event page (pages.css
+   has the same rules; the homepage only loads this file). */
+.form-card--wide{margin-top:clamp(2rem,4vw,3rem)}
+.eform--wide{gap:1.15rem}
+@media (min-width:760px){
+  .eform--wide{grid-template-columns:repeat(2,minmax(0,1fr));gap:1.2rem 1.5rem}
+  .eform--wide .f-msg,.eform--wide .f-send,.eform--wide .form-card__legal,.eform--wide .hp{grid-column:1/-1}
+}
+@media (min-width:1100px){
+  .eform--wide{grid-template-columns:repeat(4,minmax(0,1fr));gap:1.35rem 1.75rem}
+  .eform--wide .f-msg{grid-column:span 3}
+  .eform--wide .f-send{grid-column:span 1;align-self:end}
+  .eform--wide .form-card__legal{grid-column:1/-1;margin-top:.3rem}
+}
+
+/* Events photographs: three frames that change together */
+.msplit--slides .msplit__film,.msplit--slides .frame{position:relative}
+.msplit--slides .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity 1.1s var(--e-out),transform 6s linear}
+.msplit--slides .slide.is-on{opacity:1;transform:scale(1)}
+@media (prefers-reduced-motion:reduce){.msplit--slides .slide{transition:none;transform:none}}
+body.motion-off .msplit--slides .slide{transition:none;transform:none}
+
+/* Reviews from several platforms: the guest, then the platform and the month */
+.quote__src{margin:0;display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;font-size:.8rem;color:var(--stone)}
+.plat{display:inline-block;padding:.24rem .65rem;border-radius:999px;font-size:.72rem;font-weight:500;letter-spacing:.04em;line-height:1.2;background:#E8E4DC;color:var(--ink)}
+.plat--tripadvisor{background:#34E0A1;color:#0E1F17}
+.plat--google{background:#FFF;border:1px solid var(--rule);color:#1A73E8}
+.plat--bookingcom{background:#003580;color:#FFF}
+.plat--facebook{background:#1877F2;color:#FFF}
+.plat--agoda{background:#5C2D91;color:#FFF}
+.plat--expedia{background:#FFC94D;color:#191E3B}

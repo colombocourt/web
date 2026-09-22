@@ -618,40 +618,157 @@
   })();
 
   /* ===========================================================
-     10.  Guest reviews, live from Tripadvisor
-     Tripadvisor's own widget, so the reviews update by themselves
-     and nobody has to paste them in. The widget only renders when
-     its script is in a page from the start, so it lives in
-     /reviews-frame.html and that page is framed here. It is
-     third-party content: the frame is created after "Accept all",
-     or when the visitor presses the button, never before.
+     10.  The site's own pop-up, and the quick forms
+     One dialog for the whole site. cchModal.notice(title, text)
+     shows a message (the enquiry forms use it to confirm a send).
+     cchModal.form(kind) opens a short form: "dining" reserves a
+     table or a Dine & Dip day and goes to the sales executive,
+     "reception" asks the reception team a question. Any link with
+     data-quickform="dining|reception" opens one. Sent through
+     api/enquiry.php like every other form.
      =========================================================== */
-  (function tripadvisor() {
-    var box = $('#taReviews');
-    if (!box) return;
-    var gate = $('#taGate', box), btn = $('#taLoad', box), frame = null;
+  var modal = null, lastFocus = null;
+  function modalEl() {
+    if (modal) return modal;
+    modal = document.createElement('div');
+    modal.className = 'modal';
+    modal.hidden = true;
+    modal.innerHTML =
+      '<div class="modal__scrim" data-close></div>' +
+      '<div class="modal__panel form-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">' +
+        '<button class="modal__close" type="button" data-close aria-label="Close">&times;</button>' +
+        '<div class="modal__body" id="modalBody"></div>' +
+      '</div>';
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function (e) { if (e.target.closest('[data-close]')) closeModal(); });
+    addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal && !modal.hidden) closeModal(); });
+    return modal;
+  }
+  function openModal(html) {
+    var m = modalEl(), body = $('#modalBody', m);
+    body.innerHTML = html;
+    lastFocus = document.activeElement;
+    m.hidden = false;
+    document.body.classList.add('modal-open');
+    var first = $('input, select, textarea', body) || $('.modal__panel', m);
+    setTimeout(function () { first.focus(); }, 30);
+  }
+  function closeModal() {
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    document.body.classList.remove('modal-open');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  function notice(title, text) {
+    openModal('<p class="form-ok__t" id="modalTitle">' + title + '</p><p class="modal__p">' + text + '</p>' +
+      '<div class="modal__acts"><button class="btn btn--line" type="button" data-close>Close</button></div>');
+  }
 
-    function load() {
-      if (frame) return;
-      frame = document.createElement('iframe');
-      frame.className = 'tarev__frame';
-      frame.src = box.dataset.frame || '/web/reviews-frame.html';
-      frame.title = 'Guest reviews from Tripadvisor';
-      frame.setAttribute('scrolling', 'no');
-      frame.style.height = '240px';
-      if (gate) gate.hidden = true;
-      box.appendChild(frame);
-      box.classList.add('is-live');
+  var QUICK = {
+    dining: {
+      title: 'Reserve a table', form: 'dining', subject: 'Table reservation',
+      note: 'Tell us when you would like to come and our team will confirm by email.',
+      fields: [
+        ['name', 'Name', 'text', { required: true, autocomplete: 'name' }],
+        ['phone', 'Contact number', 'tel', { required: true, autocomplete: 'tel' }],
+        ['email', 'Email', 'email', { required: true, autocomplete: 'email' }],
+        ['outlet', 'Where', 'select', { options: ['Amber Poolside', 'Cloud Café & Bar', 'Dine & Dip (a day at the pool)'] }],
+        ['date', 'Date', 'date', { required: true }],
+        ['time', 'Time', 'time', {}],
+        ['guests', 'Guests', 'number', { min: 1, max: 40, value: 2 }],
+        ['message', 'Occasion or details', 'textarea', {}]
+      ]
+    },
+    reception: {
+      title: 'Ask our reception team', form: 'reception', subject: 'Guest enquiry',
+      note: 'Send us your question and our reception team will reply by email.',
+      fields: [
+        ['name', 'Name', 'text', { required: true, autocomplete: 'name' }],
+        ['phone', 'Contact number', 'tel', { required: true, autocomplete: 'tel' }],
+        ['email', 'Email', 'email', { required: true, autocomplete: 'email' }],
+        ['arrival', 'Arrival date, if you have booked', 'date', {}],
+        ['message', 'Your question', 'textarea', { required: true }]
+      ]
     }
-
-    /* the frame reports its own height as the widget arrives */
-    addEventListener('message', function (e) {
-      if (e.origin !== location.origin || !e.data || !e.data.cchReviewsHeight || !frame) return;
-      frame.style.height = Math.min(Math.max(e.data.cchReviewsHeight, 120), 1400) + 'px';
+  };
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function fieldHtml(f) {
+    var id = 'qf-' + f[0], o = f[3], attrs = ' id="' + id + '" name="' + f[0] + '"' + (o.required ? ' required' : '') +
+      (o.autocomplete ? ' autocomplete="' + o.autocomplete + '"' : '') + (o.min != null ? ' min="' + o.min + '"' : '') +
+      (o.max != null ? ' max="' + o.max + '"' : '') + (o.value != null ? ' value="' + o.value + '"' : '');
+    var ctl;
+    if (f[2] === 'select') ctl = '<select' + attrs + '>' + o.options.map(function (v) { return '<option>' + esc(v) + '</option>'; }).join('') + '</select>';
+    else if (f[2] === 'textarea') ctl = '<textarea' + attrs + ' rows="3"></textarea>';
+    else ctl = '<input type="' + f[2] + '"' + attrs + (f[2] === 'tel' ? ' inputmode="tel"' : '') + '>';
+    return '<div class="field' + (f[2] === 'textarea' ? ' f-msg' : '') + '"><label for="' + id + '">' + esc(f[1]) + '</label>' + ctl +
+      '<p class="err" hidden>Please complete this.</p></div>';
+  }
+  function openQuick(kind) {
+    var cfg = QUICK[kind]; if (!cfg) return;
+    openModal('<h3 class="h3" id="modalTitle">' + cfg.title + '</h3><p class="form-card__note">' + cfg.note + '</p>' +
+      '<form class="eform eform--modal" novalidate>' + cfg.fields.map(fieldHtml).join('') +
+      '<div class="hp" aria-hidden="true"><label for="qf-company">Company</label><input type="text" id="qf-company" name="company" tabindex="-1" autocomplete="off"></div>' +
+      '<div class="f-send"><button class="btn btn--solid btn--full" type="submit">Send</button></div>' +
+      '<p class="form-card__legal">We use your details to answer this enquiry and nothing else. <a href="/privacy-policy/">Privacy Policy</a>.</p></form>');
+    var form = $('form', modal);
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (form.company.value) return;
+      var bad = null;
+      cfg.fields.forEach(function (f) {
+        var el = form[f[0]], v = el.value.trim();
+        var wrong = (f[3].required && !v) || (f[2] === 'email' && v && !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(v));
+        fieldError(el, wrong);
+        if (wrong && !bad) bad = el;
+      });
+      if (bad) { bad.focus(); return; }
+      var payload = { form: cfg.form, name: form.name.value.trim(), phone: form.phone.value.trim(), email: form.email.value.trim(), details: [], message: form.message.value.trim(), company: '' };
+      cfg.fields.forEach(function (f) {
+        if (['name', 'phone', 'email', 'message'].indexOf(f[0]) > -1) return;
+        payload.details.push([f[1], form[f[0]].value]);
+      });
+      var btn = $('button[type="submit"]', form);
+      btn.disabled = true; btn.textContent = 'Sending';
+      sendEnquiry(payload, function (sent) {
+        var body = $('#modalBody', modal);
+        body.innerHTML = '';
+        enquiryResult(sent, body, cfg.subject, payload);
+        body.insertAdjacentHTML('beforeend', '<div class="modal__acts"><button class="btn btn--line" type="button" data-close>Close</button></div>');
+        if (sent) track('generate_lead', { form: kind });
+      });
     });
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('[data-quickform]');
+    if (!a) return;
+    e.preventDefault();
+    openQuick(a.getAttribute('data-quickform'));
+  });
+  window.cchModal = { notice: notice, form: openQuick, close: closeModal };
 
-    if (btn) btn.addEventListener('click', load);
-    addEventListener('cch:consent', load);   /* fired by section 14 on "Accept all" */
+  /* ===========================================================
+     10b.  Events photographs
+     Three frames, each holding a few photographs. All three change
+     at the same moment with a slow crossfade, so the trio reads as
+     one picture. Stops off screen and under reduced motion.
+     =========================================================== */
+  (function eventSlides() {
+    var box = $('.msplit--slides'); if (!box) return;
+    var frames = $$('[data-slides]', box).map(function (f) { return $$('.slide', f); });
+    var n = Math.min.apply(null, frames.map(function (f) { return f.length; }));
+    if (!frames.length || n < 2) return;
+    var i = 0, timer = null, on = true;
+    function show(k) {
+      i = k % n;
+      frames.forEach(function (f) { f.forEach(function (img, j) { img.classList.toggle('is-on', j === i); }); });
+    }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function play() { stop(); if (motionOff || !on) return; timer = setInterval(function () { show(i + 1); }, 5200); }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { on = en[0].isIntersecting; on ? play() : stop(); }, { threshold: 0.2 }).observe(box);
+    }
+    show(0);
+    play();
   })();
 
   /* ===========================================================
@@ -741,7 +858,7 @@
     box.hidden = false;
     box.innerHTML = ok
       ? '<p class="form-ok__t">Thank you, ' + first + '.</p>' +
-        '<p>Your enquiry has been sent to our team. We will reply by email within one working day.</p>'
+        '<p>We have received your message. Our team will reply by email within one working day.</p>'
       : '<p class="form-ok__t">Sorry, ' + first + ', that did not send.</p>' +
         '<p>Please send your enquiry by email instead. The button below opens it ready to send.</p>' +
         '<div class="form-ok__acts"><a class="btn btn--line" href="mailto:' + CFG.enquiryEmail +
@@ -778,18 +895,25 @@
       var payload = {
         form: 'events', name: data.name, phone: data.phone, email: data.email,
         details: [
-          ['Guest rooms needed', $('#ef-rooms') ? $('#ef-rooms').value : '']
+          ['Changing room or overnight stay', $('#ef-stay') ? $('#ef-stay').value : '']
         ],
         message: data.message, company: ''
       };
       var btn = $('button[type="submit"]', form);
       if (btn) { btn.disabled = true; btn.textContent = 'Sending'; }
       sendEnquiry(payload, function (sent) {
-        var note = $('.form-card__note');
-        if (note) note.hidden = true;
-        form.hidden = true;
-        enquiryResult(sent, ok, 'Event enquiry', payload);
-        if (sent) track('generate_lead', { form: 'events' });
+        if (btn) { btn.disabled = false; btn.textContent = 'Plan your event'; }
+        if (sent) {
+          form.reset();
+          notice('Thank you, ' + data.name.split(' ')[0].replace(/[<>&"]/g, '') + '.',
+            'We have received your message. Our events team will reply by email within one working day.');
+          track('generate_lead', { form: 'events' });
+        } else {
+          var note = $('.form-card__note');
+          if (note) note.hidden = true;
+          form.hidden = true;
+          enquiryResult(sent, ok, 'Event enquiry', payload);
+        }
       });
     });
   })();

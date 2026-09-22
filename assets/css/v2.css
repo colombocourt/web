@@ -1622,3 +1622,9 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 }
 @media (prefers-reduced-motion:reduce){.vstill img{transition:none;transform:none !important}}
 body.motion-off .vstill img{transition:none;transform:none !important}
+
+/* Why: five items start at the same height whatever their length */
+.why__list{align-items:start}
+.why__i{align-content:start}
+/* Events: the three paragraphs beside the photographs */
+.events__copy p + p{margin-top:.9em}
