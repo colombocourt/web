@@ -1655,3 +1655,13 @@ body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
 .page--stay .offer .btn{margin-top:auto;align-self:flex-start;padding-top:.7rem;padding-bottom:.7rem}
 .page--stay .offer__body p{margin-bottom:1rem}
 .page--stay .offers{margin-top:clamp(1.5rem,3vw,2.25rem)}
+
+/* Stay page tidy (22 Sep): the Junior Suite words sit level with the
+   photographs with more air under the heading; "Which room" and the offers
+   no longer stretch to a full screen. */
+.page--stay .room--lead .room2__body .h2{margin-bottom:1.4rem}
+@media (min-width:900px){.page--stay .room--lead .room2{align-items:center}}
+.page--stay .sec--which,.page--stay .sec--offers{min-height:0}
+.page--stay .sec--which{padding-block:clamp(2.5rem,4.5vw,4rem)}
+.page--stay .sec--offers{padding-block:clamp(2.5rem,4.5vw,4rem)}
+.page--stay .pick{margin-top:clamp(1.25rem,2.5vh,2rem)}
