@@ -36,10 +36,10 @@
 <link rel="preload" as="image" href="../assets/img/wl-hero-1400.jpg"
       imagesrcset="../assets/img/wl-hero-900.jpg 900w, ../assets/img/wl-hero-1400.jpg 1400w, ../assets/img/wl-hero-1900.jpg 1900w"
       imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20260922g">
-<link rel="stylesheet" href="../assets/css/pages.css?v=20260922g">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20260922i">
+<link rel="stylesheet" href="../assets/css/pages.css?v=20260922i">
 <!-- TRIAL, version two. Delete this line to return the page to version one. -->
-<link rel="stylesheet" href="../assets/css/v2.css?v=20260922g">
+<link rel="stylesheet" href="../assets/css/v2.css?v=20260922i">
 
 <!-- The spa as its own business, linked to the hotel, plus the four
      questions the spa team answers most. The FAQ answers below are the ones
@@ -88,11 +88,10 @@
         { "@type": "LocationFeatureSpecification", "name": "Fitness room", "value": true }
       ],
       "makesOffer": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Balinese massage" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Swedish massage" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Balinese Massage" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Signature Massage" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Warm Stones Heaven Massage" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Sri Lankan Healing" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Natural Coconut Body Scrub" } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Natural Asian Facial" } }
       ]
     },
@@ -100,20 +99,62 @@
       "@type": "FAQPage",
       "@id": "https://www.colombocourthotel.com/wellness/#faq",
       "mainEntity": [
-        { "@type": "Question", "name": "Can I use the spa if I am not staying at the hotel?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Court Spa is open to everyone, from 9am to 9pm daily. Visitors can also enjoy the lap pool with our Dine and Dip promotion. Message us to check availability." } },
-        { "@type": "Question", "name": "How far ahead should I book?",
-          "acceptedAnswer": { "@type": "Answer", "text": "One day ahead is usually enough on a weekday. Weekends and evenings are busier, so please book two or three days ahead if you can." } },
-        { "@type": "Question", "name": "What should I bring?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Nothing. We provide robes, slippers and everything else you need. Please arrive 10 minutes early and tell us about any injuries, allergies or medication." } },
-        { "@type": "Question", "name": "Can two people be treated at the same time?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. One of our two treatment rooms is designed for couples, with two beds side by side. It is popular, so please ask for it when you book." } },
-        { "@type": "Question", "name": "How long is a treatment, and how early should I arrive?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Treatments run from 30 to 120 minutes, and most full body massages take 60 or 90 minutes. Please arrive 10 minutes early, so there is time to talk with your therapist before you begin." } },
-        { "@type": "Question", "name": "What do I wear, and what happens to my clothes?",
-          "acceptedAnswer": { "@type": "Answer", "text": "A robe and slippers are ready for you in the room, and there is a locker for your belongings. Disposable underwear is available if you prefer, and you stay covered with a towel throughout." } },
-        { "@type": "Question", "name": "Is there anywhere to sit afterwards?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Yes. After your treatment, you are welcome to relax in the poolside garden with a cup of tea, and to use the plunge pool and jacuzzi. Take as much time as you like." } }
+        {
+          "@type": "Question",
+          "name": "Can I use the spa if I am not staying at the hotel?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Yes. The Court Spa welcomes both hotel guests and visitors from 9am to 9pm daily. Non-residents can also enjoy the pool through our Dine &amp; Dip experience. Please contact us to check availability.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How far ahead should I book?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>A day ahead is generally enough on weekdays. Weekends and evenings can be busier, so we recommend booking two or three days ahead whenever possible, particularly if you have a preferred treatment or time.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I bring?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Nothing special. Robes, slippers and everything you need for your treatment are provided. Please arrive 10 minutes early and let your therapist know about any injuries, allergies or medication before your treatment begins.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can two people be treated at the same time?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Yes. Our double treatment room has two beds side by side, allowing couples or friends to enjoy their treatments together. As this room is popular, we recommend requesting it when making your reservation.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long is a treatment, and how early should I arrive?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Treatments range from 30 to 120 minutes, with most full-body massages taking 60 or 90 minutes. Please arrive 10 minutes before your appointment so you have time to settle in and speak with your therapist.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What do I wear?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>A robe and slippers will be ready for you in the treatment room. You will also have access to a locker for your personal belongings, so you can settle into your treatment comfortably without needing to bring anything with you.</p>"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is there anywhere to sit afterwards?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "<p>Yes. Take your time after your treatment and relax in the poolside garden with a cup of tea. You are also welcome to enjoy the plunge pool and jacuzzi, giving you space to stay in that relaxed state for a little longer.</p>"
+          }
+        }
       ]
     }
   ]
@@ -193,8 +234,8 @@
   </div>
   <div class="phero__in">
     <p class="crumb"><a href="/web/">Colombo Court</a> <span aria-hidden="true">/</span> Wellness</p>
-    <h1 class="phero__title">The Court Spa.<br>Where Colombo goes quiet.</h1>
-    <p class="phero__sub">Balinese therapists, natural oils, and a plunge pool a few steps from the treatment room. Open 9am to 9pm daily.</p>
+    <h1 class="phero__title">Restore &amp; reconnect.</h1>
+    <p class="phero__sub">Thoughtful treatments, quiet spaces and simple ways to feel more like yourself.</p>
     <div class="phero__cta">
       <a class="btn btn--solid btn--lg" href="#book-spa">Book a treatment</a>
       <button class="btn btn--ghost btn--lg" type="button" data-menu="spa">See the spa menu</button>
@@ -212,29 +253,28 @@
   <div class="wrap">
     <header class="sechead sechead--split">
       <h2 class="h2" id="h-ritual">What to expect.</h2>
-      <p class="lede">If this is your first spa visit, here is what happens, step by step.</p>
     </header>
 
     <ol class="ritual">
       <li class="step">
         <figure class="step__img"><img src="../assets/img/wl-s1-380.jpg" srcset="../assets/img/wl-s1-380.jpg 380w, ../assets/img/wl-s1-540.jpg 540w" sizes="(max-width: 760px) 44vw, 22vw" width="380" height="380" loading="lazy" decoding="async" alt="A therapist in a spa uniform warming massage oil in the palm of one hand."></figure>
         <h3 class="step__t">You arrive</h3>
-        <p>Your Balinese therapist meets you first. They ask where you feel tension, about any injuries, and how much pressure you prefer. This short conversation shapes your whole treatment.</p>
+        <p>Your Balinese therapist welcomes you and takes a moment to understand how you are feeling. Tell them where you feel tension, any injuries or sensitivities, and the level of pressure you prefer. This helps shape the treatment around you.</p>
       </li>
       <li class="step">
         <figure class="step__img"><img src="../assets/img/wl-s2-380.jpg" srcset="../assets/img/wl-s2-380.jpg 380w, ../assets/img/wl-s2-538.jpg 538w" sizes="(max-width: 760px) 44vw, 22vw" width="380" height="380" loading="lazy" decoding="async" alt="Massage oils, hot stones and frangipani laid out on a timber table at The Court Spa."></figure>
         <h3 class="step__t">What suits you</h3>
-        <p>Choose a Balinese, Swedish or warm stone massage, a body scrub or a facial. Your therapist will recommend the treatment and length that best suit your needs.</p>
+        <p>Choose from Balinese or warm stone massages, body scrubs and facials, with treatments ranging from 30 to 120 minutes. Your therapist can guide you towards the treatment and duration that best suit how you are feeling that day.</p>
       </li>
       <li class="step">
         <figure class="step__img"><img src="../assets/img/wl-s3-380.jpg" srcset="../assets/img/wl-s3-380.jpg 380w, ../assets/img/wl-s3-543.jpg 543w" sizes="(max-width: 760px) 44vw, 22vw" width="380" height="380" loading="lazy" decoding="async" alt="A therapist working through a head and scalp massage at The Court Spa."></figure>
         <h3 class="step__t">The treatment</h3>
-        <p>It begins with a foot ritual, with warm water, salt and a warm drink. Your therapist then stays with you for the whole treatment, using the pressure you agreed.</p>
+        <p>Your treatment begins with a moment to settle in before your therapist gets to work. Throughout the experience, they stay attentive to your comfort, adjusting the pressure and technique to what you discussed together at the beginning.</p>
       </li>
       <li class="step">
         <figure class="step__img"><img src="../assets/img/wl-s4-380.jpg" srcset="../assets/img/wl-s4-380.jpg 380w, ../assets/img/wl-s4-720.jpg 720w" sizes="(max-width: 760px) 44vw, 22vw" width="380" height="380" loading="lazy" decoding="async" alt="The jacuzzi at The Court Spa lit by candles, petals on the water."></figure>
         <h3 class="step__t">Afterwards</h3>
-        <p>The plunge pool and jacuzzi are a few steps from the door, and you are welcome to use both. Try the cold water first, then the warm. Ten minutes helps your body relax further after the treatment.</p>
+        <p>When your treatment is complete, take your time before returning to the day. The plunge pool and jacuzzi are just steps away, offering a chance to move between cool and warm water and let the feeling of relaxation continue a little longer.</p>
       </li>
     </ol>
   </div>
@@ -248,12 +288,10 @@
     <div class="vgrid">
       <div class="vgrid__copy">
         <header class="vhead vhead--in">
-          <p class="stamp"><span class="stamp__t">09:00 → 21:00</span><span class="stamp__l">The Court Spa</span></p>
           <h2 class="h2" id="h-spa">Our treatment rooms and oils.</h2>
-          <p class="vhead__lede">Two treatment rooms, one designed for couples. Open 9am to 9pm daily.</p>
         </header>
-        <p>Our double room has two beds side by side, for couples and friends who want to be treated together. It is popular at weekends. The second room is for single treatments. Both rooms have timber, stone and soft lighting, with the sound of water outside.</p>
-        <p>Our massages use natural oils, including pure virgin coconut oil from Sri Lanka and blends of essential oils chosen for your treatment. Our facials use natural ingredients such as honey and cucumber.</p>
+        <p>Our double treatment room has two beds side by side, making it ideal for couples or friends who would like to experience a treatment together. A second room is available for individual treatments. Both spaces combine natural timber, stone and soft lighting, with the gentle sound of water creating a calm atmosphere.</p>
+        <p>Our treatments use natural oils, including pure virgin coconut oil from Sri Lanka and carefully selected essential oil blends. Facials incorporate natural ingredients such as honey and cucumber, chosen to complement the treatment and leave your skin feeling refreshed.</p>
         <ul class="tags">
           <li>Balinese therapists</li>
           <li>Sri Lankan coconut oil rituals</li>
@@ -288,7 +326,6 @@
   <div class="wrap">
     <header class="sechead sechead--split">
       <h2 class="h2" id="h-after">And the rest of it.</h2>
-      <p class="lede">Included for hotel guests. Visitors can enjoy the lap pool with our Dine and Dip promotion.</p>
     </header>
 
     <div class="afters">
@@ -296,15 +333,15 @@
         <figure class="after__img"><img src="../assets/img/wl-after-1-520.jpg" srcset="../assets/img/wl-after-1-520.jpg 520w, ../assets/img/wl-after-1-900.jpg 900w" sizes="(max-width: 760px) 92vw, 30vw" width="520" height="347" loading="lazy" decoding="async" alt="The plunge pool at The Court Spa beneath a carved metal screen, palms on both sides."></figure>
         <div class="after__body">
           <h3 class="h4">The plunge pool and jacuzzi</h3>
-          <p>Cold water first, then warm. Ten minutes after a treatment helps you relax even more, in the quietest part of the hotel garden.</p>
+          <p>Move between cool and warm water after your treatment and give yourself a little more time to unwind. Set quietly within the garden, the plunge pool and jacuzzi offer a peaceful place to pause before returning to your day.</p>
         </div>
       </article>
 
       <article class="after">
         <figure class="after__img"><img src="../assets/img/wl-after-2-520.jpg" srcset="../assets/img/wl-after-2-520.jpg 520w, ../assets/img/wl-after-2-900.jpg 900w" sizes="(max-width: 760px) 92vw, 30vw" width="520" height="347" loading="lazy" decoding="async" alt="The lap pool at Colombo Court running the length of the poolside garden."></figure>
         <div class="after__body">
-          <h3 class="h4">The lap pool</h3>
-          <p>It runs the length of the garden, so there is room to swim proper lengths. There are loungers on one side, trees on the other, and lunch from Amber Poolside close by.</p>
+          <h3 class="h4">The pool</h3>
+          <p>Stretch out with a proper swim along the length of the garden pool, then settle into a lounger beneath the trees. When hunger calls, Amber Poolside is close by for something to eat, a refreshing drink or a relaxed lunch.</p>
         </div>
       </article>
 
@@ -312,7 +349,7 @@
         <figure class="after__img"><img src="../assets/img/wl-after-3-520.jpg" srcset="../assets/img/wl-after-3-520.jpg 520w, ../assets/img/wl-after-3-900.jpg 900w" sizes="(max-width: 760px) 92vw, 30vw" width="520" height="347" loading="lazy" decoding="async" alt="The fitness room at Colombo Court, free weights, a bench and cardio machines."></figure>
         <div class="after__body">
           <h3 class="h4">The fitness room</h3>
-          <p>Free weights, a bench and cardio machines that face the garden. It is small, well kept and rarely busy.</p>
+          <p>Keep your routine going with free weights, a bench and cardio equipment overlooking the garden. It is a compact, well-kept space designed for simple workouts, with a peaceful view and an atmosphere that rarely feels crowded.</p>
         </div>
       </article>
 
@@ -325,7 +362,7 @@
         <figure class="after__img"><img src="../assets/img/wl-after-4-520.jpg" srcset="../assets/img/wl-after-4-520.jpg 520w, ../assets/img/wl-after-4-900.jpg 900w" sizes="(max-width: 760px) 92vw, 30vw" width="520" height="347" loading="lazy" decoding="async" alt="A guest holding a standing yoga pose against a wall of palms and ferns at Colombo Court."></figure>
         <div class="after__body">
           <h3 class="h4">A rooftop for sunrise yoga</h3>
-          <p>The Cloud Café roof is an ideal place for yoga as the sun rises. Tell us what you need and we will look at the options for you.</p>
+          <p>As the city begins to wake, the rooftop at Cloud Caf&eacute; &amp; Bar offers an open-air setting for an early morning yoga session. Speak with our team about what you need, and we will explore the arrangements available for your stay.</p>
         </div>
       </article>
     </div>
@@ -343,7 +380,8 @@
 
     <!-- SPA REQUEST FORM
          Same behaviour as the table request on /eat-drink/: one press emails
-         the request to the hotel through api/enquiry.php. Nothing goes to WhatsApp. -->
+         the request to reception, with a copy to info, through api/enquiry.php.
+         Nothing goes to WhatsApp. -->
     <div class="form-card" id="spaForm">
       <h3 class="h3">Treatment request</h3>
 
@@ -367,15 +405,12 @@
           <label for="sf-package">Treatment</label>
           <!-- Treatment names follow /assets/menus/court-spa-menu.pdf. -->
           <select id="sf-package" name="package">
-            <option>Balinese massage</option>
-            <option>Swedish massage</option>
-            <option>Warm stones massage</option>
-            <option>Signature massage</option>
-            <option>Sri Lankan Healing</option>
-            <option>Body scrub</option>
-            <option>Facial</option>
-            <option>Couples treatment</option>
-            <option>Not sure yet, please advise</option>
+            <option>Balinese Massage (60 or 90 minutes)</option>
+            <option>Signature Massage (90 minutes)</option>
+            <option>Warm Stones Heaven Massage (90 minutes)</option>
+            <option>Sri Lankan Healing (120 minutes)</option>
+            <option>Natural Asian Facial (60 minutes)</option>
+            <option>Something else, please advise</option>
           </select>
         </div>
         <div class="field">
@@ -423,42 +458,38 @@
 <section class="sec sec--faq" id="faq" aria-labelledby="h-faq">
   <div class="wrap">
     <header class="sechead sechead--split">
-      <h2 class="h2" id="h-faq">Good to know.</h2>
-      <p class="lede">Answers to the questions our spa team is asked most often.</p>
+      <h2 class="h2" id="h-faq">Wellness, answered.</h2>
     </header>
 
     <div class="qbox">
     <div class="faq__list">
       <details class="qa">
         <summary><span>Can I use the spa if I am not staying at the hotel?</span></summary>
-        <div class="qa__a"><p>Yes. The Court Spa is open to everyone, from 9am to 9pm daily. Visitors can also enjoy the lap pool with our Dine and Dip promotion. Message us to check availability.</p></div>
+        <div class="qa__a"><p>Yes. The Court Spa welcomes both hotel guests and visitors from 9am to 9pm daily. Non-residents can also enjoy the pool through our Dine &amp; Dip experience. Please <a class="qlink" href="#book-spa">contact us</a> to check availability.</p></div>
       </details>
       <details class="qa">
         <summary><span>How far ahead should I book?</span></summary>
-        <div class="qa__a"><p>One day ahead is usually enough on a weekday. Weekends and evenings are busier, so please book two or three days ahead if you can.</p></div>
+        <div class="qa__a"><p>A day ahead is generally enough on weekdays. Weekends and evenings can be busier, so we recommend booking two or three days ahead whenever possible, particularly if you have a preferred treatment or time.</p></div>
       </details>
       <details class="qa">
         <summary><span>What should I bring?</span></summary>
-        <div class="qa__a"><p>Nothing. We provide robes, slippers and everything else you need. Please arrive 10 minutes early and tell us about any injuries, allergies or medication.</p></div>
+        <div class="qa__a"><p>Nothing special. Robes, slippers and everything you need for your treatment are provided. Please arrive 10 minutes early and let your therapist know about any injuries, allergies or medication before your treatment begins.</p></div>
       </details>
       <details class="qa">
         <summary><span>Can two people be treated at the same time?</span></summary>
-        <div class="qa__a"><p>Yes. One of our two treatment rooms is designed for couples, with two beds side by side. It is popular, so please ask for it when you book.</p></div>
+        <div class="qa__a"><p>Yes. Our double treatment room has two beds side by side, allowing couples or friends to enjoy their treatments together. As this room is popular, we recommend requesting it when <a class="qlink" href="#book-spa">making your reservation</a>.</p></div>
       </details>
-
       <details class="qa">
         <summary><span>How long is a treatment, and how early should I arrive?</span></summary>
-        <div class="qa__a"><p>Treatments run from 30 to 120 minutes, and most full body massages take 60 or 90 minutes. Please arrive 10 minutes early, so there is time to talk with your therapist before you begin.</p></div>
+        <div class="qa__a"><p>Treatments range from 30 to 120 minutes, with most full-body massages taking 60 or 90 minutes. Please arrive 10 minutes before your appointment so you have time to settle in and speak with your therapist.</p></div>
       </details>
-
       <details class="qa">
-        <summary><span>What do I wear, and what happens to my clothes?</span></summary>
-        <div class="qa__a"><p>A robe and slippers are ready for you in the room, and there is a locker for your belongings. Disposable underwear is available if you prefer, and you stay covered with a towel throughout.</p></div>
+        <summary><span>What do I wear?</span></summary>
+        <div class="qa__a"><p>A robe and slippers will be ready for you in the treatment room. You will also have access to a locker for your personal belongings, so you can settle into your treatment comfortably without needing to bring anything with you.</p></div>
       </details>
-
       <details class="qa">
         <summary><span>Is there anywhere to sit afterwards?</span></summary>
-        <div class="qa__a"><p>Yes. After your treatment, you are welcome to relax in the poolside garden with a cup of tea, and to use the plunge pool and jacuzzi. Take as much time as you like.</p></div>
+        <div class="qa__a"><p>Yes. Take your time after your treatment and relax in the poolside garden with a cup of tea. You are also welcome to enjoy the plunge pool and jacuzzi, giving you space to stay in that relaxed state for a little longer.</p></div>
       </details>
     </div>
 
@@ -483,8 +514,8 @@
     <span class="book__scrim"></span>
   </div>
   <div class="wrap book__in">
-    <h2 class="h2 h2--big" id="h-book">Take time to relax.</h2>
-    <p class="book__lead">Enjoy a treatment, then the plunge pool and jacuzzi. Open 9am to 9pm daily.</p>
+    <h2 class="h2 h2--big" id="h-book">Take time for yourself.</h2>
+    <p class="book__lead">Step away from the pace of the city and make a little time for yourself.</p>
     <div class="book__cta">
       <a class="btn btn--ghost btn--lg" href="#book-spa">Book a treatment</a>
       <a class="btn btn--ghost btn--lg" href="https://wa.me/94766680971?text=Hello%20Colombo%20Court%2C%20I%27d%20like%20to%20book%20a%20treatment%20at%20The%20Court%20Spa." target="_blank" rel="noopener">
@@ -492,11 +523,6 @@
         WhatsApp us
       </a>
     </div>
-    <ul class="book__perks">
-      <li>Open to non-residents</li>
-      <li>Balinese therapists</li>
-      <li>Plunge pool and jacuzzi after</li>
-    </ul>
   </div>
 </section>
 
@@ -660,7 +686,7 @@
   </div>
 </div>
 
-<script src="../assets/js/main.js?v=20260922g" defer></script>
-<script src="../assets/js/pages.js?v=20260922g" defer></script>
+<script src="../assets/js/main.js?v=20260922i" defer></script>
+<script src="../assets/js/pages.js?v=20260922i" defer></script>
 </body>
 </html>
