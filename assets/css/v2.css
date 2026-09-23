@@ -1714,9 +1714,9 @@ html{scroll-padding-top:4.5rem}
 /* Our Story: text on the left, the film on the right */
 @media (min-width:900px){
   .page--story .sec--before .chap{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:clamp(2rem,4vw,4rem);align-items:center}
-  .page--story .sec--before .chap__mark,.page--story .sec--before .h2,.page--story .sec--before .chap__cols{grid-column:1}
+  .page--story .sec--before .chap__text{grid-column:1}
   .page--story .sec--before .chap__cols{grid-template-columns:1fr}
-  .page--story .sec--before .film{grid-column:2;grid-row:1/4;margin:0;max-width:none;width:100%}
+  .page--story .sec--before .film{grid-column:2;grid-row:1;margin:0;max-width:none;width:100%}
 }
 /* Headings that should sit on one line on monitors */
 .page--story #h-made,.page--facilities #h-kit{max-width:none}
@@ -1732,3 +1732,4 @@ html{scroll-padding-top:4.5rem}
 .page--xp .sec--dark .picks li{border-top:0;border-bottom:0;padding-block:.35rem}
 .page--story .sec--made .sechead--split,.page--facilities .sec--kit .sechead--split{grid-template-columns:1fr}
 @media (min-width:900px){.page--story #h-made,.page--facilities #h-kit{white-space:nowrap}}
+.page--story .sec--before .chap__text .h2{margin-bottom:1.2rem}
