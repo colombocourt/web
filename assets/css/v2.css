@@ -1694,3 +1694,7 @@ body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
 .film__frame{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:4px;background:#000}
 .film figcaption{margin-top:.75rem;font-size:.92rem;color:var(--ink-soft)}
 .page--story .sec--before,.page--story .sec--made,.page--story .sec--art,.page--story .sec--now{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
+
+/* ---- Facilities round (23 Sep 2026): icon grid spacing, content sections sit closer ---- */
+.page--facilities .amen{margin-top:clamp(1.5rem,3vw,2.5rem)}
+.page--facilities .sec--arrive,.page--facilities .sec--room,.page--facilities .sec--water,.page--facilities .sec--library,.page--facilities .sec--kit{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
