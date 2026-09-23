@@ -1682,3 +1682,15 @@ body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
 
 /* ---- Experiences round (23 Sep 2026): content sections sit closer, like the other pages ---- */
 .page--xp .sec--ways,.page--xp .sec--days,.page--xp .sec--eat,.page--xp .sec--art,.page--xp .sec--shop,.page--xp .sec--dark,.page--xp .sec--hidden{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
+
+/* ---- Our Story round (23 Sep 2026): the film, and content sections sit closer ---- */
+.film{grid-column:1/-1;margin:clamp(1.5rem,3vw,2.5rem) auto 0;width:100%;max-width:62rem}
+.film__play{position:relative;display:block;width:100%;aspect-ratio:16/9;padding:0;border:0;background:#111;cursor:pointer;overflow:hidden;border-radius:4px}
+.film__play img{display:block;width:100%;height:100%;object-fit:cover;opacity:.92;transition:opacity .3s}
+.film__play:hover img,.film__play:focus-visible img{opacity:1}
+.film__play:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.film__btn{position:absolute;inset:0;margin:auto;width:5rem;height:5rem;border-radius:50%;background:var(--red);color:#FFF;display:grid;place-items:center;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.film__btn svg{width:1.7rem;height:1.7rem;margin-left:.25rem}
+.film__frame{display:block;width:100%;aspect-ratio:16/9;border:0;border-radius:4px;background:#000}
+.film figcaption{margin-top:.75rem;font-size:.92rem;color:var(--ink-soft)}
+.page--story .sec--before,.page--story .sec--made,.page--story .sec--art,.page--story .sec--now{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}

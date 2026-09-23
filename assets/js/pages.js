@@ -553,5 +553,30 @@
     else { addEventListener('cch:consent', mount); }
   })();
 
+
+  /* ===========================================================
+     9.  A click-to-play film (Our Story)
+     Nothing from YouTube loads until the visitor presses play. The
+     poster is a still; the press swaps it for the privacy-enhanced
+     player (youtube-nocookie.com) with sound and controls. Motion
+     preferences do not matter here, because the visitor asked for it.
+     =========================================================== */
+  $$('[data-video]').forEach(function (box) {
+    var btn = $('.film__play', box);
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + box.dataset.video + '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+      f.title = btn.getAttribute('aria-label') || 'Film';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.setAttribute('allowfullscreen', '');
+      f.className = 'film__frame';
+      btn.replaceWith(f);
+      f.focus();
+      if (typeof track === 'function') track('video_start', { video: box.dataset.video });
+    });
+  });
+
+
   void motionOff;
 })();
