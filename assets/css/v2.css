@@ -1679,3 +1679,6 @@ body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
 
 /* ---- Wellness round (22 Sep 2026): content sections sit closer, like the other pages ---- */
 .page--wellness .sec--ritual,.page--wellness .sec--spa,.page--wellness .sec--after{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
+
+/* ---- Experiences round (23 Sep 2026): content sections sit closer, like the other pages ---- */
+.page--xp .sec--ways,.page--xp .sec--days,.page--xp .sec--eat,.page--xp .sec--art,.page--xp .sec--shop,.page--xp .sec--dark,.page--xp .sec--hidden{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
