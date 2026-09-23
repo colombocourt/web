@@ -1698,3 +1698,7 @@ body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
 /* ---- Facilities round (23 Sep 2026): icon grid spacing, content sections sit closer ---- */
 .page--facilities .amen{margin-top:clamp(1.5rem,3vw,2.5rem)}
 .page--facilities .sec--arrive,.page--facilities .sec--room,.page--facilities .sec--water,.page--facilities .sec--library,.page--facilities .sec--kit{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
+
+/* ---- Sustainability round (23 Sep 2026): closing line in the gate band, content sections sit closer ---- */
+.page--sust .sec--gate .gate__close{margin:clamp(1.5rem,3vw,2.5rem) 0 0;max-width:62ch;color:#D5DCC6}
+.page--sust .sec--measure,.page--sust .sec--kept,.page--sust .sec--water,.page--sust .sec--waste,.page--sust .sec--gate{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
