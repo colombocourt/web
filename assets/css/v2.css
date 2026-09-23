@@ -1702,3 +1702,33 @@ body .book,.page .book{min-height:0;padding-block:clamp(4rem,9vw,6.5rem)}
 /* ---- Sustainability round (23 Sep 2026): closing line in the gate band, content sections sit closer ---- */
 .page--sust .sec--gate .gate__close{margin:clamp(1.5rem,3vw,2.5rem) 0 0;max-width:62ch;color:#D5DCC6}
 .page--sust .sec--measure,.page--sust .sec--kept,.page--sust .sec--water,.page--sust .sec--waste,.page--sust .sec--gate{min-height:0;padding-block:clamp(2.5rem,4.5vw,4rem)}
+
+/* ---- Alignment round (23 Sep 2026) ---------------------------------------- */
+/* Anchor landings: the header is about 4.5rem tall, and a section carries its own
+   top padding, so land the section a little above the header rather than 6.5rem
+   below it. Room cards have no padding, so they keep a small gap. */
+html{scroll-padding-top:4.5rem}
+.sec[id]{scroll-margin-top:-2.4rem}
+.rcard[id],.rband[id]{scroll-margin-top:1.25rem}
+@media (max-width:899px){.sec[id]{scroll-margin-top:-1rem}}
+/* Our Story: text on the left, the film on the right */
+@media (min-width:900px){
+  .page--story .sec--before .chap{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);column-gap:clamp(2rem,4vw,4rem);align-items:center}
+  .page--story .sec--before .chap__mark,.page--story .sec--before .h2,.page--story .sec--before .chap__cols{grid-column:1}
+  .page--story .sec--before .chap__cols{grid-template-columns:1fr}
+  .page--story .sec--before .film{grid-column:2;grid-row:1/4;margin:0;max-width:none;width:100%}
+}
+/* Headings that should sit on one line on monitors */
+.page--story #h-made,.page--facilities #h-kit{max-width:none}
+.page--sust .phero__title{max-width:none}
+.page .book__lead{max-width:62ch}
+/* Facilities: the room paragraphs run the full width, the icons in two rows */
+.page--facilities .sec--room .chap__cols{grid-template-columns:1fr;max-width:none}
+.page--facilities .sec--room .chap__cols p{max-width:none}
+@media (min-width:1100px){.page--facilities .amen{grid-template-columns:repeat(6,minmax(0,1fr))}}
+/* Sustainability: the closing line of the gate band runs the full width */
+.page--sust .sec--gate .gate__close{max-width:none}
+/* Experiences: no rules around the single Cloud entry in the evening list */
+.page--xp .sec--dark .picks li{border-top:0;border-bottom:0;padding-block:.35rem}
+.page--story .sec--made .sechead--split,.page--facilities .sec--kit .sechead--split{grid-template-columns:1fr}
+@media (min-width:900px){.page--story #h-made,.page--facilities #h-kit{white-space:nowrap}}
