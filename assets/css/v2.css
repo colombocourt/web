@@ -1733,3 +1733,20 @@ html{scroll-padding-top:4.5rem}
 .page--story .sec--made .sechead--split,.page--facilities .sec--kit .sechead--split{grid-template-columns:1fr}
 @media (min-width:900px){.page--story #h-made,.page--facilities #h-kit{white-space:nowrap}}
 .page--story .sec--before .chap__text .h2{margin-bottom:1.2rem}
+
+/* ---- Mobile round (25 Sep 2026) ------------------------------------------- */
+@media (max-width:699px){
+  /* footer: Discover spans the row and runs in two columns, column-wise */
+  .foot__nav>div:nth-child(3){grid-column:1/-1}
+  .foot__nav>div:nth-child(3) ul{display:grid;grid-template-rows:repeat(3,auto);grid-auto-flow:column;gap:.35rem clamp(2rem,8vw,4rem)}
+  .foot__nav>div:nth-child(3) li,.foot__nav>div:nth-child(3) li+li{margin-top:0}
+  /* Stay: the facts strip two per line, the room specs on one line */
+  .page--stay .intro__facts{grid-template-columns:repeat(2,1fr)}
+  .page--stay .specs{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem}
+  .page--stay .specs b{display:inline;margin-right:.3em}
+  /* the icon grids two per line */
+  .amen{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* Plan an Event: the venue capacities on one line */
+  .page--events .caps{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
+  .page--events .caps b{display:inline;margin-right:.3em}
+}

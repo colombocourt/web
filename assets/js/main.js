@@ -1217,8 +1217,9 @@
     var v = $('#heroVideo');
     if (!v || motionOff) return;
     if (hero && hero.dataset.yt) return;   /* a stand-in film is in charge */
+    /* Only a genuinely slow connection skips it; the phone cut is 1.2 MB. */
     var conn = navigator.connection || {};
-    if (conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '')) return;
+    if (/(^|-)2g$/.test(conn.effectiveType || '')) return;
 
     /* innerWidth can read 0 inside some embedded previews, so fall back
        rather than serving every desktop the phone cut. */
@@ -1231,9 +1232,17 @@
     /* No HEAD probe: some hosts and CDNs refuse it. Point the element at the
        file and let its own error event decide. If the file is missing the
        still simply stays, which is the designed fallback anyway. */
-    v.addEventListener('canplay', function () {
-      v.play().then(function () { hero.classList.add('video-on'); }).catch(function () {});
-    }, { once: true });
+    function tryPlay() {
+      var p = v.play();
+      if (p && p.then) p.then(function () { hero.classList.add('video-on'); }).catch(function () {});
+    }
+    v.addEventListener('canplay', tryPlay, { once: true });
+    v.addEventListener('playing', function () { hero.classList.add('video-on'); });
+    /* Phones in a low-power mode refuse autoplay until the visitor touches
+       the page; the first touch or scroll asks again. */
+    ['touchstart', 'scroll', 'click'].forEach(function (t) {
+      addEventListener(t, function () { if (v.src && v.paused && !(window.scrollY > (hero.offsetHeight || 600))) tryPlay(); }, { passive: true });
+    });
     v.addEventListener('error', function () { hero.classList.remove('video-on'); }, { once: true });
 
     /* The still wins the bandwidth race by design: the film only starts
@@ -1242,8 +1251,11 @@
     function startFilm() {
       if (started) return;
       started = true;
+      v.preload = 'auto';
       v.src = src;
       v.load();
+      /* Some builds never reach canplay from load() alone under preload=none. */
+      setTimeout(function () { if (v.paused) tryPlay(); }, 1500);
     }
     var img = $('#heroImg');
     if (img && img.complete) startFilm();
