@@ -1742,8 +1742,8 @@ html{scroll-padding-top:4.5rem}
   .foot__nav>div:nth-child(3) li,.foot__nav>div:nth-child(3) li+li{margin-top:0}
   /* Stay: the facts strip two per line, the room specs on one line */
   .page--stay .intro__facts{grid-template-columns:repeat(2,1fr)}
-  .page--stay .specs{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem}
-  .page--stay .specs b{display:inline;margin-right:.3em}
+  .page--stay .specs,.page--stay .rcard .specs,.page--stay .room--lead .specs{grid-template-columns:repeat(3,minmax(0,1fr));gap:.9rem .6rem;font-size:.8rem}
+  .page--stay .specs:has(li:nth-child(4)),.page--stay .rcard .specs:has(li:nth-child(4)){grid-template-columns:repeat(4,minmax(0,1fr))}
   /* the icon grids two per line */
   .amen{grid-template-columns:repeat(2,minmax(0,1fr))}
   /* Plan an Event: the venue capacities on one line */
