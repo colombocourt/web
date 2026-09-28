@@ -1750,3 +1750,51 @@ html{scroll-padding-top:4.5rem}
   .page--events .caps{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem}
   .page--events .caps b{display:inline;margin-right:.3em}
 }
+
+/* ---- Amendments round (28 Sep 2026) ---------------------------------------- */
+/* sub-page heroes: the photograph settles from a slight zoom */
+.phero{overflow:hidden}
+.phero__img{transform:scale(1.08);transform-origin:50% 50%;animation:phero-settle 22s cubic-bezier(.2,.6,.2,1) both}
+@keyframes phero-settle{to{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.phero__img{animation:none;transform:none}}
+body.motion-off .phero__img{animation:none;transform:none}
+
+/* Eat & Drink: Amber Poolside on the deep green of the Sustainability band */
+.page--eat .venue--green{
+  color:#D5DCC6;
+  background-color:#18211A;
+  background-image:
+    radial-gradient(ellipse 38% 30% at 16% 20%,rgba(176,204,124,.10) 0%,rgba(176,204,124,0) 70%),
+    radial-gradient(ellipse 30% 26% at 84% 28%,rgba(176,204,124,.08) 0%,rgba(176,204,124,0) 70%);
+}
+.page--eat .venue--green .h2,.page--eat .venue--green .vhead__lede,.page--eat .venue--green h3{color:#F3F5EC}
+.page--eat .venue--green p{color:#D5DCC6}
+.page--eat .venue--green .tags li{color:#E4E9D8;border-color:rgba(228,233,216,.28)}
+.page--eat .venue--green .btn--line{--fg:#F3F5EC;--bd:rgba(243,245,236,.5)}
+.page--eat .venue--green .btn--line:hover{--bg:#F3F5EC;--fg:#18211A;--bd:#F3F5EC}
+.page--eat .venue--green .stamp,.page--eat .venue--green .stamp__l{color:#C5D69A}
+.page--eat .venue--green a{color:inherit}
+
+/* the restaurant logos beside their headings */
+.h2--logo{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.h2__logo{display:block;height:auto;object-fit:contain}
+.h2__logo--amber{width:clamp(7rem,10vw,9rem)}
+.h2__logo--cloud{width:clamp(9rem,14vw,13rem)}
+@media (max-width:699px){.h2--logo{gap:.7rem}.h2__logo--amber{width:6rem}.h2__logo--cloud{width:8rem}}
+
+/* Plan an Event: a quiet pattern over the linen Why choose band */
+.page--events .why{
+  background-color:var(--linen);
+  background-image:
+    radial-gradient(ellipse 34% 28% at 12% 18%,rgba(196,120,46,.08) 0%,rgba(196,120,46,0) 70%),
+    radial-gradient(ellipse 30% 26% at 88% 82%,rgba(196,120,46,.07) 0%,rgba(196,120,46,0) 70%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'><g fill='none' stroke='%23000' stroke-opacity='.06' stroke-width='1'><path d='M28 6c8 8 8 24 0 32M28 6c-8 8-8 24 0 32'/><circle cx='28' cy='46' r='2.5'/></g></svg>");
+  background-size:auto,auto,56px 56px;
+}
+
+/* homepage wellbeing in the events layout */
+.events--spa .msplit__film{aspect-ratio:9/16}
+.h2--logo{flex-wrap:nowrap;max-width:none}
+.h2--logo>span{min-width:0}
+@media (max-width:699px){.h2--logo{flex-wrap:wrap}}
+@media (min-width:700px){.h2--logo>span{white-space:nowrap}}

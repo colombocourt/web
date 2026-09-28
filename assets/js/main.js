@@ -778,8 +778,7 @@
      at the same moment with a slow crossfade, so the trio reads as
      one picture. Stops off screen and under reduced motion.
      =========================================================== */
-  (function eventSlides() {
-    var box = $('.msplit--slides'); if (!box) return;
+  $$('.msplit--slides').forEach(function eventSlides(box) {
     var frames = $$('[data-slides]', box).map(function (f) { return $$('.slide', f); });
     var n = Math.min.apply(null, frames.map(function (f) { return f.length; }));
     if (!frames.length || n < 2) return;
@@ -795,7 +794,7 @@
     }
     show(0);
     play();
-  })();
+  });
 
   /* ===========================================================
      11.  Good to know: one question open at a time
