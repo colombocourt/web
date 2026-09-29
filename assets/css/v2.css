@@ -1792,9 +1792,15 @@ body.motion-off .phero__img{animation:none;transform:none}
   background-size:auto,auto,56px 56px;
 }
 
-/* homepage wellbeing in the events layout */
-.events--spa .msplit__film{aspect-ratio:9/16}
-.h2--logo{flex-wrap:nowrap;max-width:none}
+/* homepage wellbeing in the events layout: the film keeps the events rules
+   (portrait on phones, filling the height of the stacked pair on desktop) */
+
+/* Eat & Drink: logo, heading and sub-heading centred as one block */
+.h2--logo{flex-direction:column;align-items:center;justify-content:center;gap:.9rem;max-width:none;text-align:center}
 .h2--logo>span{min-width:0}
-@media (max-width:699px){.h2--logo{flex-wrap:wrap}}
+.h2__logo--amber{width:clamp(9rem,14vw,12rem)}
+.h2__logo--cloud{width:clamp(11rem,18vw,16rem)}
+@media (max-width:699px){.h2--logo{gap:.7rem}.h2__logo--amber{width:8rem}.h2__logo--cloud{width:10rem}}
+.page--eat .vhead--in{text-align:center;margin-inline:auto}
+.page--eat .vhead--in .vhead__lede{margin-inline:auto}
 @media (min-width:700px){.h2--logo>span{white-space:nowrap}}
