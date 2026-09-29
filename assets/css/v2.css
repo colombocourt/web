@@ -1804,3 +1804,9 @@ body.motion-off .phero__img{animation:none;transform:none}
 .page--eat .vhead--in{text-align:center;margin-inline:auto}
 .page--eat .vhead--in .vhead__lede{margin-inline:auto}
 @media (min-width:700px){.h2--logo>span{white-space:nowrap}}
+
+/* Under the tagline, one small line saying what the hotel is: for readers
+   arriving cold, and for search engines and answer engines reading the hero. */
+.hero__tag>span{display:block}
+.hero__tagsub{margin-top:.8rem;font-family:var(--f-body);font-size:clamp(.72rem,1.05vw,.88rem);font-weight:400;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;opacity:.94}
+@media (max-width:720px){.hero__tagsub{margin-top:.55rem;font-size:.68rem;letter-spacing:.14em;text-indent:.14em}}
