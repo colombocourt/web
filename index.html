@@ -40,10 +40,10 @@
 <link rel="preload" as="image" href="assets/img/hero-demo-1280.jpg"
       imagesrcset="assets/img/hero-demo-760.jpg 760w, assets/img/hero-demo-1280.jpg 1280w"
       imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="assets/css/styles.css?v=20260929b">
+<link rel="stylesheet" href="assets/css/styles.css?v=20260930a">
 <!-- TRIAL, version two. Delete this line and the home-v2.js line at the
      foot of the page to return the homepage to version one. -->
-<link rel="stylesheet" href="assets/css/v2.css?v=20260929b">
+<link rel="stylesheet" href="assets/css/v2.css?v=20260930a">
 
 <!-- ============================================================
      STRUCTURED DATA  ·  Hotel + venues + FAQ (GEO / AI answer ready)
@@ -85,6 +85,7 @@
       "checkinTime": "14:00",
       "checkoutTime": "12:00",
       "priceRange": "$$",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.5", "bestRating": "5", "worstRating": "1", "ratingCount": "1555", "reviewCount": "1555" },
       "currenciesAccepted": "LKR, USD, GBP, AUD, EUR",
       "paymentAccepted": "Cash, American Express, Visa, Mastercard",
       "amenityFeature": [
@@ -839,6 +840,7 @@
   <div class="wrap">
     <header class="sechead sechead--centre">
       <!-- REVIEWS:STAMP rewritten by the hub's Guest reviews tab, do not edit between the markers -->
+      <p class="stamp"><span class="stamp__t">4.5 / 5 on Tripadvisor</span><span class="stamp__t">8.6 / 10 on Booking.com</span><span class="stamp__t">8.8 / 10 on Expedia</span></p>
       <!-- /REVIEWS:STAMP -->
       <h2 class="h2" id="h-rev">What our guests say.</h2>
     </header>
@@ -847,45 +849,99 @@
          shown one at a time (main.js section 10a). Each names the guest, the
          platform and the month. -->
     <!-- REVIEWS:QUOTES rewritten by the hub's Guest reviews tab, do not edit between the markers -->
-    <!-- DEMO REVIEWS. Placeholder wording so the owners can see the finished look.
-         They are NOT real guest reviews and must be replaced from the Hub's
-         Guest reviews tab before the site goes live. -->
+    <!-- Real guest reviews chosen by the hotel on 30 September 2026 from
+         Tripadvisor, Booking.com and Expedia, in a mixed order. Tripadvisor
+         reviews are 5-bubble; Booking.com and Expedia show the guest's score. -->
     <ul class="quotes">
       <li class="quote">
         <p class="quote__stars" role="img" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-        <blockquote class="quote__text"><p>&ldquo;A calm garden hotel in the middle of Colombo. The suite was spacious, the pool was quiet and the team remembered our names from the first morning.&rdquo;</p></blockquote>
-        <p class="quote__by">Helena R, United Kingdom</p>
+        <blockquote class="quote__text"><p>&ldquo;A very well managed and immaculately clean hotel. Every member of staff just wants to do everything to make your stay perfect, from the moment you arrive. The food at dinner and breakfast is outstanding. A great first stay for our trip to Sri Lanka.&rdquo;</p></blockquote>
+        <p class="quote__by">Helen, United Kingdom</p>
+        <p class="quote__src"><span class="plat plat--tripadvisor">Tripadvisor</span><span>Reviewed on Tripadvisor, September 2026</span></p>
+      </li>
+      <li class="quote">
+        <p class="quote__stars" role="img" aria-label="Scored 10 out of 10">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <blockquote class="quote__text"><p>&ldquo;So glad we stayed here! A boutique hotel with so much charm was far better than the large hotels in the heart of Colombo. All staff, from reception to the pool bar and housekeeping, were exceptionally pleasant and helpful. Highly recommend a stay here.&rdquo;</p></blockquote>
+        <p class="quote__by">Antoinette, Australia</p>
+        <p class="quote__src"><span class="plat plat--bookingcom">Booking.com</span><span>Scored 10 out of 10 on Booking.com, September 2026</span></p>
+      </li>
+      <li class="quote">
+        <p class="quote__stars" role="img" aria-label="Scored 10 out of 10">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <blockquote class="quote__text"><p>&ldquo;Small boutique hotel in the heart of Colombo, walking distance to caf&eacute;s and restaurants. Service is friendly, personal and non-intrusive. Third time staying, will be back!&rdquo;</p></blockquote>
+        <p class="quote__by">Rashmee</p>
+        <p class="quote__src"><span class="plat plat--expedia">Expedia</span><span>Scored 10 out of 10 on Expedia, July 2026</span></p>
+      </li>
+      <li class="quote">
+        <p class="quote__stars quote__stars--score" role="img" aria-label="Scored 9 out of 10">9.0 / 10</p>
+        <blockquote class="quote__text"><p>&ldquo;A great calm sanctuary in Colombo. Beautiful pool and attentive staff.&rdquo;</p></blockquote>
+        <p class="quote__by">Jo, Australia</p>
+        <p class="quote__src"><span class="plat plat--bookingcom">Booking.com</span><span>Scored 9.0 out of 10 on Booking.com, September 2026</span></p>
+      </li>
+      <li class="quote">
+        <p class="quote__stars" role="img" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <blockquote class="quote__text"><p>&ldquo;The hotel is very clean and well maintained, with a friendly and attentive staff. The food is also delicious, with great quality and variety. A very pleasant experience, highly recommended!&rdquo;</p></blockquote>
+        <p class="quote__by">Jorge, travelling with family</p>
         <p class="quote__src"><span class="plat plat--tripadvisor">Tripadvisor</span><span>Reviewed on Tripadvisor, August 2026</span></p>
       </li>
       <li class="quote">
-        <p class="quote__stars" role="img" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-        <blockquote class="quote__text"><p>&ldquo;We stayed at the start and end of our Sri Lanka trip. Lovely rooftop dinner, a very good spa and an easy drive to the airport.&rdquo;</p></blockquote>
-        <p class="quote__by">Markus and Lena, Germany</p>
-        <p class="quote__src"><span class="plat plat--bookingcom">Booking.com</span><span>Reviewed on Booking.com, July 2026</span></p>
+        <p class="quote__stars" role="img" aria-label="Scored 10 out of 10">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <blockquote class="quote__text"><p>&ldquo;The Sri Lankan breakfast was great, rich with spice. Staff were friendly and helped us find a good tour guide. I also loved the design, with the stair around a tree, and how old things have been given a modern use.&rdquo;</p></blockquote>
+        <p class="quote__by">Chiou-han, Taiwan</p>
+        <p class="quote__src"><span class="plat plat--bookingcom">Booking.com</span><span>Scored 10 out of 10 on Booking.com, August 2026</span></p>
       </li>
       <li class="quote">
         <p class="quote__stars" role="img" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-        <blockquote class="quote__text"><p>&ldquo;Beautiful design, friendly service and a great breakfast beside the pool. It felt like a hideaway, yet everything was a short ride away.&rdquo;</p></blockquote>
-        <p class="quote__by">Priya S, Australia</p>
-        <p class="quote__src"><span class="plat plat--google">Google</span><span>Reviewed on Google, June 2026</span></p>
+        <blockquote class="quote__text"><p>&ldquo;Very welcoming and warm staff, quality service, and we really enjoyed the pool. Thanks to the whole team!&rdquo;</p></blockquote>
+        <p class="quote__by">Marieme R, travelling with family</p>
+        <p class="quote__src"><span class="plat plat--tripadvisor">Tripadvisor</span><span>Reviewed on Tripadvisor, August 2026</span></p>
+      </li>
+      <li class="quote">
+        <p class="quote__stars quote__stars--score" role="img" aria-label="Scored 9 out of 10">9.0 / 10</p>
+        <blockquote class="quote__text"><p>&ldquo;An excellent hotel in a perfect location in Colombo. A very comfortable bed, a great position and a lovely pool.&rdquo;</p></blockquote>
+        <p class="quote__by">Fabrizio, Italy</p>
+        <p class="quote__src"><span class="plat plat--bookingcom">Booking.com</span><span>Scored 9.0 out of 10 on Booking.com, August 2026, translated from Italian</span></p>
       </li>
       <li class="quote">
         <p class="quote__stars" role="img" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-        <blockquote class="quote__text"><p>&ldquo;Perfect for a business trip. Quiet room, fast Wi-Fi, and Cloud Caf&eacute; &amp; Bar on the roof is the best place in Colombo 3 for a drink after work.&rdquo;</p></blockquote>
-        <p class="quote__by">Arjun M, India</p>
-        <p class="quote__src"><span class="plat plat--facebook">Facebook</span><span>Reviewed on Facebook, May 2026</span></p>
+        <blockquote class="quote__text"><p>&ldquo;The place was very calming and well furnished. Our room was lovely, with strong air-conditioning, which is needed in Colombo. The staff are very helpful and accommodating. Overall great, highly recommend.&rdquo;</p></blockquote>
+        <p class="quote__by">Maryam S, travelling with friends</p>
+        <p class="quote__src"><span class="plat plat--tripadvisor">Tripadvisor</span><span>Reviewed on Tripadvisor, August 2026</span></p>
+      </li>
+      <li class="quote">
+        <p class="quote__stars" role="img" aria-label="Scored 10 out of 10">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <blockquote class="quote__text"><p>&ldquo;Very nice and helpful staff, very nice and clean room and facilities. Would be our first choice if we visited Colombo again.&rdquo;</p></blockquote>
+        <p class="quote__by">Richard, travelling as a couple</p>
+        <p class="quote__src"><span class="plat plat--expedia">Expedia</span><span>Scored 10 out of 10 on Expedia, March 2026</span></p>
+      </li>
+      <li class="quote">
+        <p class="quote__stars quote__stars--score" role="img" aria-label="Scored 9 out of 10">9.0 / 10</p>
+        <blockquote class="quote__text"><p>&ldquo;A great place to stay while you get your bearings in Colombo. An easy walk to a supermarket, restaurants and a train station, and great to have tea and coffee making facilities in the room.&rdquo;</p></blockquote>
+        <p class="quote__by">Janelle, New Zealand</p>
+        <p class="quote__src"><span class="plat plat--bookingcom">Booking.com</span><span>Scored 9.0 out of 10 on Booking.com, August 2026</span></p>
       </li>
       <li class="quote">
         <p class="quote__stars" role="img" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-        <blockquote class="quote__text"><p>&ldquo;We booked the Daycation for a Saturday and never wanted to leave. Lunch by the pool, a swim, a treatment at the spa. Wonderful.&rdquo;</p></blockquote>
-        <p class="quote__by">Dilani F, Sri Lanka</p>
-        <p class="quote__src"><span class="plat plat--tripadvisor">Tripadvisor</span><span>Reviewed on Tripadvisor, April 2026</span></p>
+        <blockquote class="quote__text"><p>&ldquo;The hotel has a nice atmosphere and the staff are really nice and attentive. The food is just awesome, and the prices are still good. The rooms have a lot of space and were really tidy.&rdquo;</p></blockquote>
+        <p class="quote__by">Eden V, travelling as a couple</p>
+        <p class="quote__src"><span class="plat plat--tripadvisor">Tripadvisor</span><span>Reviewed on Tripadvisor, August 2026</span></p>
+      </li>
+      <li class="quote">
+        <p class="quote__stars quote__stars--score" role="img" aria-label="Scored 9 out of 10">9.0 / 10</p>
+        <blockquote class="quote__text"><p>&ldquo;The room was clean and perfect. The staff are very accommodating and helpful, and the location is great. Overall an excellent stay. Would recommend.&rdquo;</p></blockquote>
+        <p class="quote__by">Mariam, Lebanon</p>
+        <p class="quote__src"><span class="plat plat--bookingcom">Booking.com</span><span>Scored 9.0 out of 10 on Booking.com, August 2026</span></p>
       </li>
       <li class="quote">
         <p class="quote__stars" role="img" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</p>
-        <blockquote class="quote__text"><p>&ldquo;A boutique hotel with real character: Sri Lankan art everywhere, a garden full of birds and staff who could not do enough for us.&rdquo;</p></blockquote>
-        <p class="quote__by">Sophie V, Netherlands</p>
-        <p class="quote__src"><span class="plat plat--agoda">Agoda</span><span>Reviewed on Agoda, March 2026</span></p>
+        <blockquote class="quote__text"><p>&ldquo;Wonderful stay. The room was comfortable and clean, close to everything, and room service was amazing. Thank you, team.&rdquo;</p></blockquote>
+        <p class="quote__by">Tia P, travelling as a couple</p>
+        <p class="quote__src"><span class="plat plat--tripadvisor">Tripadvisor</span><span>Reviewed on Tripadvisor, September 2026</span></p>
+      </li>
+      <li class="quote">
+        <p class="quote__stars quote__stars--score" role="img" aria-label="Scored 8 out of 10">8.0 / 10</p>
+        <blockquote class="quote__text"><p>&ldquo;A clean hotel with a swimming pool to cool off in. Breakfast was fabulous.&rdquo;</p></blockquote>
+        <p class="quote__by">Alison, Australia</p>
+        <p class="quote__src"><span class="plat plat--bookingcom">Booking.com</span><span>Scored 8.0 out of 10 on Booking.com, September 2026</span></p>
       </li>
     </ul>
     <!-- /REVIEWS:QUOTES -->  </div>
@@ -1131,7 +1187,7 @@
   </div>
 </div>
 
-<script src="assets/js/main.js?v=20260929b" defer></script>
-<script src="assets/js/v2-home.js?v=20260929b" defer></script>
+<script src="assets/js/main.js?v=20260930a" defer></script>
+<script src="assets/js/v2-home.js?v=20260930a" defer></script>
 </body>
 </html>
