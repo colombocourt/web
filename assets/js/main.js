@@ -43,7 +43,12 @@
                       described in api/meta-capi.php, never in this file
          linkDomains  the booking engine's domain once SiteMinder is live, so
                       GA4 follows a guest from this site into the booking,
-                      e.g. ['book-directonline.com'] (check the live link) */
+                      e.g. ['book-directonline.com'] (check the live link)
+       liveHosts    the only addresses the tools run on. A preview copy on a
+                      temporary address, a test server or the GitHub review
+                      site loads none of them, so test visits never reach the
+                      reports. Add a host here only if it is the real website. */
+    liveHosts: ['colombocourthotel.com', 'www.colombocourthotel.com'],
     tags: {
       ga4Id: '',
       clarityId: '',
@@ -883,7 +888,7 @@
     box.hidden = false;
     box.innerHTML = ok
       ? '<p class="form-ok__t">Thank you, ' + first + '.</p>' +
-        '<p>We have received your message. Our team will reply by email within one working day.</p>'
+        '<p>Your message has reached us, and one of our team will be in touch with you as soon as possible. We look forward to welcoming you to Colombo Court.</p>'
       : '<p class="form-ok__t">Sorry, ' + first + ', that did not send.</p>' +
         '<p>Please send your enquiry by email instead. The button below opens it ready to send.</p>' +
         '<div class="form-ok__acts"><a class="btn btn--line" href="mailto:' + CFG.enquiryEmail +
@@ -931,7 +936,7 @@
         if (sent) {
           form.reset();
           notice('Thank you, ' + data.name.split(' ')[0].replace(/[<>&"]/g, '') + '.',
-            'We have received your message. Our events team will reply by email within one working day.');
+            'Your enquiry has reached our events team, who will be in touch with you as soon as possible. We look forward to planning something special with you.');
           track('generate_lead', { form: 'events' });
         } else {
           var note = $('.form-card__note');
@@ -1013,7 +1018,11 @@
     sign_up:          { meta: 'CompleteRegistration' }
   };
 
-  var TAGS = CFG.tags || {};
+  /* On any address that is not the live website (a preview copy, a test
+     server, the review site) there are no tags at all: the banner still
+     works, but nothing is loaded and nothing is reported. */
+  var liveHost = (CFG.liveHosts || []).indexOf(location.hostname.toLowerCase()) !== -1;
+  var TAGS = liveHost ? (CFG.tags || {}) : {};
   var loaded = {};
 
   function isId(v) { return typeof v === 'string' && /^[A-Za-z0-9-]{4,40}$/.test(v) && !/XXXX/i.test(v); }

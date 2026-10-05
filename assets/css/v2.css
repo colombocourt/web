@@ -1813,3 +1813,8 @@ body.motion-off .phero__img{animation:none;transform:none}
 
 /* a numeric review score sits in the stars line without the star spacing */
 .quote__stars--score{letter-spacing:.06em;font-weight:500;font-variant-numeric:tabular-nums}
+
+/* the mobile dock's WhatsApp button in a quiet neutral, so Book now is the one
+   that stands out (5 October 2026; the desktop WhatsApp circle stays green) */
+.dockbar__wa{background:var(--sand);color:var(--ink);border:1px solid var(--rule)}
+.dockbar__wa:hover,.dockbar__wa:active{background:#D7D3C8;color:var(--ink)}

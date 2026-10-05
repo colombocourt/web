@@ -1,0 +1,4 @@
+# This is the preview copy of the Colombo Court website, not the real one.
+# Nothing here should be indexed. The live site is www.colombocourthotel.com.
+User-agent: *
+Disallow: /
