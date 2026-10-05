@@ -623,8 +623,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--wellness .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
 
 /* ---- the red carried across from the homepage --------------- */
-.page--wellness .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--wellness .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 .page--wellness .step__t{border-top-color:var(--rule)}
 
 @media (max-width:899px){
@@ -688,8 +687,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--eat .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
 
 /* ---- the red carried across from the homepage --------------- */
-.page--eat .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--eat .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 
 @media (min-width:900px){
   /* three across and two down, which is the shape that fills a screen */
@@ -805,8 +803,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--stay .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
 
 /* ---- the red carried across from the homepage --------------- */
-.page--stay .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--stay .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 .page--stay .intro__n{color:var(--brass-ink)}
 
 @media (max-width:899px){
@@ -962,10 +959,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--post .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
 
 /* ---- the red carried across from the homepage --------------- */
-.page--journal .btn--solid,
-.page--post .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--journal .btn--solid:hover,
-.page--post .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 
 @media (max-width:899px){
   .page--journal .phero--short{min-height:0}
@@ -1060,8 +1054,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--events .book__in{text-shadow:0 1px 2px rgba(0,0,0,.5),0 6px 26px rgba(0,0,0,.36)}
 
 /* ---- the red carried across from the homepage --------------- */
-.page--events .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--events .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 .page--events .why__n{color:var(--brass-ink)}
 
 @media (min-width:1100px){
@@ -1146,8 +1139,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--story .made__i p{max-width:none}
 
 /* ---- the red carried across from the homepage --------------- */
-.page--story .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--story .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 .page--story .chap__num{color:var(--brass-ink)}
 .page--story .sec--art .chap__num{color:#FFF}
 
@@ -1258,8 +1250,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--facilities .svc__p{max-width:none}
 
 /* ---- the red carried across from the homepage --------------- */
-.page--facilities .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--facilities .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 .page--facilities .chap__num{color:var(--brass-ink)}
 .page--facilities .sec--kit .chap__note{margin-top:clamp(1.5rem,3vw,2.25rem)}
 
@@ -1373,8 +1364,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--sust .svc__p{max-width:none}
 
 /* ---- the red carried across from the homepage --------------- */
-.page--sust .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--sust .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 .page--sust .chap__num{color:var(--brass-ink)}
 
 /* ---- the closing band --------------------------------------- */
@@ -1477,8 +1467,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 .page--xp .split__text p a{color:inherit;text-underline-offset:.22em}
 
 /* ---- the red carried across from the homepage --------------- */
-.page--xp .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--xp .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 
 /* ---- the closing band --------------------------------------- */
 .page--xp .book__scrim{
@@ -1523,8 +1512,7 @@ body{background:var(--linen);font-size:1.125rem;line-height:1.7}
 }
 
 /* ---- the red carried across from the homepage --------------- */
-.page--legal .btn--solid{--bg:var(--red);--fg:#FFF;--bd:var(--red)}
-.page--legal .btn--solid:hover{--bg:var(--red-d);--bd:var(--red-d)}
+/* solid buttons here are black, as on the homepage (5 October 2026) */
 
 /* ---- the facts and the contents ----------------------------- */
 .page--legal .sec--contents{background:var(--linen);padding-block:clamp(3rem,6vw,5rem)}
