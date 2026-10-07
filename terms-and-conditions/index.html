@@ -36,10 +36,10 @@
 <link rel="preload" as="image" href="../assets/img/lg-terms-hero-1400.jpg"
       imagesrcset="../assets/img/lg-terms-hero-900.jpg 900w, ../assets/img/lg-terms-hero-1400.jpg 1400w, ../assets/img/lg-terms-hero-1900.jpg 1900w"
       imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20261005b">
-<link rel="stylesheet" href="../assets/css/pages.css?v=20261005b">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20261007b">
+<link rel="stylesheet" href="../assets/css/pages.css?v=20261007b">
 <!-- TRIAL, version two. Delete this line to return the page to version one. -->
-<link rel="stylesheet" href="../assets/css/v2.css?v=20261005b">
+<link rel="stylesheet" href="../assets/css/v2.css?v=20261007b">
 
 <script type="application/ld+json">
 {
@@ -56,7 +56,7 @@
       "publisher": { "@id": "https://www.colombocourthotel.com/#hotel" },
       "primaryImageOfPage": { "@type": "ImageObject", "url": "https://www.colombocourthotel.com/assets/img/lg-terms-hero-1900.jpg", "width": 1900, "height": 1187 },
       "breadcrumb": { "@id": "https://www.colombocourthotel.com/terms-and-conditions/#breadcrumb" },
-      "dateModified": "2026-10-06",
+      "dateModified": "2026-10-07",
       "inLanguage": "en"
     },
     {
@@ -151,7 +151,7 @@
   <div class="wrap doc__top">
     <dl class="doc__facts">
       <div><dt>Applies to</dt><dd>Bookings and stays at Colombo Court Hotel &amp; Spa, 32 Alfred House Avenue, Colombo 3</dd></div>
-      <div><dt>Last updated</dt><dd><time datetime="2026-10-06">6 October 2026</time></dd></div>
+      <div><dt>Last updated</dt><dd><time datetime="2026-10-07">7 October 2026</time></dd></div>
       <div><dt>Questions</dt><dd><a href="mailto:info@colombocourthotel.com">info@colombocourthotel.com</a> or <a href="tel:+94114645333">+94&nbsp;11&nbsp;464&nbsp;5333</a></dd></div>
     </dl>
     <nav class="doc__toc" aria-labelledby="toc-h">
@@ -201,7 +201,7 @@
       <div class="clause__txt">
         <ul class="ticks">
           <li>Check-in time is 14.00 hrs on the day of arrival.</li>
-          <li>Booked rooms will be held for check-in until 9.00 hrs on the day following the scheduled check-in date, after which the booking will be deemed a no-show and Colombo Court Hotel &amp; Spa shall be entitled to release the booked rooms.</li>
+          <li>Booked rooms will be held for check-in until 9.00 hrs on the day following the scheduled check-in date, after which the booking will be deemed a no-show and Colombo Court Hotel &amp; Spa shall be entitled to release the booked rooms. No refund will be given for a booking released in this way.</li>
           <li>Early check-in is subject to availability and is chargeable.</li>
           <li>Early check-in between 8.00 hrs and 14.00 hrs is charged at 50% of the room rate. Early check-in at or before 8.00 hrs is charged at the full night rate on a room-only basis.</li>
         </ul>
@@ -215,6 +215,7 @@
       <div class="clause__txt">
         <ul class="ticks">
           <li>Check-out time is 12.00 hrs on the day of departure. Late check-out is subject to availability and is chargeable.</li>
+          <li>If a room is not vacated by the agreed check-out time, Colombo Court Hotel &amp; Spa reserves the right to move your belongings to the luggage storage facility (luggage storage charges may apply) and to make the room available to the next guest. Colombo Court Hotel &amp; Spa shall not be liable for any loss of or damage to belongings resulting from such action.</li>
           <li>Late check-out between 14.00 hrs and 18.00 hrs is charged at 50% of the room rate. Late check-out at or after 18.00 hrs is charged at the full night rate on a room-only basis.</li>
         </ul>
       </div>
@@ -326,25 +327,21 @@
 </main>
 <footer class="foot">
   <div class="wrap foot__top">
-    <!-- NEWSLETTER
-         [INTEGRATION] Brevo. Either point action= at the Brevo hosted form URL
-         (Brevo > Contacts > Forms > share URL) or keep this markup and post to
-         the Brevo API v3 from a small serverless function. Field names below
-         match Brevo defaults: EMAIL, plus OPT_IN for the consent checkbox.
-         Double opt-in must stay ON for EU visitors. -->
+    <!-- NEWSLETTER: the form posts to the Sales & Marketing Hub on this
+         server (/hub/signup.php), which keeps the contact and tells the team. -->
     <div class="news">
       <h2 class="h3">News from Colombo Court</h2>
       <p>A short email every few weeks with new rooftop menus, what is on in Colombo, and offers we only send to subscribers.</p>
-      <form class="news__form" id="newsForm" novalidate action="[PLACEHOLDER-BREVO-FORM-URL]" method="post">
+      <form class="news__form" id="newsForm" novalidate action="#" method="post">
         <div class="news__row">
           <div class="field">
             <label for="nl-email">Email address</label>
-            <input type="email" id="nl-email" name="EMAIL" autocomplete="email" required placeholder="you@example.com">
+            <input type="email" id="nl-email" name="email" autocomplete="email" required placeholder="you@example.com">
           </div>
           <button class="btn btn--line" type="submit">Subscribe</button>
         </div>
         <label class="check">
-          <input type="checkbox" name="OPT_IN" value="1" required>
+          <input type="checkbox" name="consent" value="1" required>
           <span>Yes, email me. I can unsubscribe from any message. <a href="/web/privacy-policy/">Privacy Policy</a>.</span>
         </label>
         <p class="form-ok" id="newsOk" hidden role="status"></p>
@@ -468,7 +465,7 @@
   </div>
 </div>
 
-<script src="../assets/js/main.js?v=20261005b" defer></script>
-<script src="../assets/js/pages.js?v=20261005b" defer></script>
+<script src="../assets/js/main.js?v=20261007b" defer></script>
+<script src="../assets/js/pages.js?v=20261007b" defer></script>
 </body>
 </html>

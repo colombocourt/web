@@ -36,10 +36,10 @@
 <link rel="preload" as="image" href="../assets/img/fac-hero-1400.jpg"
       imagesrcset="../assets/img/fac-hero-900.jpg 900w, ../assets/img/fac-hero-1400.jpg 1400w, ../assets/img/fac-hero-1900.jpg 1900w"
       imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="../assets/css/styles.css?v=20261005b">
-<link rel="stylesheet" href="../assets/css/pages.css?v=20261005b">
+<link rel="stylesheet" href="../assets/css/styles.css?v=20261007b">
+<link rel="stylesheet" href="../assets/css/pages.css?v=20261007b">
 <!-- TRIAL, version two. Delete this line to return the page to version one. -->
-<link rel="stylesheet" href="../assets/css/v2.css?v=20261005b">
+<link rel="stylesheet" href="../assets/css/v2.css?v=20261007b">
 
 <!-- The hotel's facilities as amenityFeature, with opening hours where the
      2026 fact sheet gives them, plus the questions below word for word.
@@ -514,25 +514,21 @@
 </main>
 <footer class="foot">
   <div class="wrap foot__top">
-    <!-- NEWSLETTER
-         [INTEGRATION] Brevo. Either point action= at the Brevo hosted form URL
-         (Brevo > Contacts > Forms > share URL) or keep this markup and post to
-         the Brevo API v3 from a small serverless function. Field names below
-         match Brevo defaults: EMAIL, plus OPT_IN for the consent checkbox.
-         Double opt-in must stay ON for EU visitors. -->
+    <!-- NEWSLETTER: the form posts to the Sales & Marketing Hub on this
+         server (/hub/signup.php), which keeps the contact and tells the team. -->
     <div class="news">
       <h2 class="h3">News from Colombo Court</h2>
       <p>A short email every few weeks with new rooftop menus, what is on in Colombo, and offers we only send to subscribers.</p>
-      <form class="news__form" id="newsForm" novalidate action="[PLACEHOLDER-BREVO-FORM-URL]" method="post">
+      <form class="news__form" id="newsForm" novalidate action="#" method="post">
         <div class="news__row">
           <div class="field">
             <label for="nl-email">Email address</label>
-            <input type="email" id="nl-email" name="EMAIL" autocomplete="email" required placeholder="you@example.com">
+            <input type="email" id="nl-email" name="email" autocomplete="email" required placeholder="you@example.com">
           </div>
           <button class="btn btn--line" type="submit">Subscribe</button>
         </div>
         <label class="check">
-          <input type="checkbox" name="OPT_IN" value="1" required>
+          <input type="checkbox" name="consent" value="1" required>
           <span>Yes, email me. I can unsubscribe from any message. <a href="/web/privacy-policy/">Privacy Policy</a>.</span>
         </label>
         <p class="form-ok" id="newsOk" hidden role="status"></p>
@@ -656,7 +652,7 @@
   </div>
 </div>
 
-<script src="../assets/js/main.js?v=20261005b" defer></script>
-<script src="../assets/js/pages.js?v=20261005b" defer></script>
+<script src="../assets/js/main.js?v=20261007b" defer></script>
+<script src="../assets/js/pages.js?v=20261007b" defer></script>
 </body>
 </html>

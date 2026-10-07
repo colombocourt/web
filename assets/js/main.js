@@ -29,8 +29,11 @@
     enquiryEndpoint: '',
     enquiryEmail: 'info@colombocourthotel.com',
 
-    /* [PLACEHOLDER] Brevo. Leave empty to keep the honest local success state. */
-    brevoEndpoint: '',
+    /* The newsletter sign-up goes to the Sales & Marketing Hub on this same
+       server (Contacts, tagged newsletter, plus a note to the team). Empty
+       on a copy of the site that has no Hub, and the form shows a plain
+       success state without sending anything. */
+    newsletterEndpoint: '',
 
     /* [PLACEHOLDER] Measurement. The IDs go here and nowhere else. Each
        tool stays off while its ID is empty, and none of them loads until
@@ -952,22 +955,32 @@
     var form = $('#newsForm'), ok = $('#newsOk');
     if (!form) return;
     form.addEventListener('submit', function (e) {
-      var email = $('#nl-email'), consent = $('input[name="OPT_IN"]', form);
+      var email = $('#nl-email'), consent = $('input[name="consent"]', form);
       var invalid = !/^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/.test(email.value);
       fieldError(email, invalid);
       if (invalid) { e.preventDefault(); email.focus(); return; }
       if (!consent.checked) { e.preventDefault(); consent.focus(); return; }
 
-      /* [INTEGRATION] With a Brevo endpoint set, post to it. Without one,
-         keep the form from pretending it sent anything to a server. */
-      if (!CFG.brevoEndpoint) {
-        e.preventDefault();
-        form.querySelector('.news__row').hidden = true;
-        form.querySelector('.check').hidden = true;
+      e.preventDefault();
+      var done = function (sent, why) {
         ok.hidden = false;
-        ok.textContent = 'Almost there. Confirm the subscription in the email we have sent, and you are on the list.';
-        track('sign_up', { list: 'newsletter' });
-      }
+        if (sent) {
+          form.querySelector('.news__row').hidden = true;
+          form.querySelector('.check').hidden = true;
+          ok.textContent = 'Thank you, you are on the list. The next letter from Colombo Court will come to ' + email.value.trim() + '.';
+          track('sign_up', { list: 'newsletter' });
+        } else {
+          ok.textContent = why || 'Sorry, that did not go through. Please try again in a moment, or email ' + CFG.enquiryEmail + ' and we will add you.';
+        }
+      };
+      if (!CFG.newsletterEndpoint) { done(true); return; }
+      var btn = form.querySelector('button[type="submit"]');
+      btn.disabled = true;
+      var body = new URLSearchParams({ site: '1', email: email.value.trim(), consent: '1', s: 'Website form', d: 'footer ' + location.pathname });
+      fetch(CFG.newsletterEndpoint, { method: 'POST', body: body, credentials: 'same-origin', headers: { 'Accept': 'application/json' } })
+        .then(function (r) { return r.json(); })
+        .then(function (j) { btn.disabled = false; done(!!(j && j.ok), j && j.error); })
+        .catch(function () { btn.disabled = false; done(false); });
     });
   })();
 
@@ -1021,7 +1034,10 @@
   /* On any address that is not the live website (a preview copy, a test
      server, the review site) there are no tags at all: the banner still
      works, but nothing is loaded and nothing is reported. */
-  var liveHost = (CFG.liveHosts || []).indexOf(location.hostname.toLowerCase()) !== -1;
+  /* window.cchTestLive is set only by the automated browser tests, which
+     block every third party, so the tag code can be exercised off the live
+     address without a single hit reaching the reports. */
+  var liveHost = (CFG.liveHosts || []).indexOf(location.hostname.toLowerCase()) !== -1 || window.cchTestLive === true;
   var TAGS = liveHost ? (CFG.tags || {}) : {};
   var loaded = {};
 

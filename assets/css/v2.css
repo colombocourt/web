@@ -1806,3 +1806,13 @@ body.motion-off .phero__img{animation:none;transform:none}
    that stands out (5 October 2026; the desktop WhatsApp circle stays green) */
 .dockbar__wa{background:var(--sand);color:var(--ink);border:1px solid var(--rule)}
 .dockbar__wa:hover,.dockbar__wa:active{background:#D7D3C8;color:var(--ink)}
+
+/* the review dots: the button itself is a 24px target (Lighthouse and WCAG
+   2.5.8), the small dot is drawn inside it (7 October 2026) */
+.quotes__dots{gap:.1rem}
+.quotes__dots .dot{width:1.6rem;height:1.6rem;border:0;background:transparent;border-radius:50%}
+.quotes__dots .dot::after{content:none}
+.quotes__dots .dot::before{content:"";position:absolute;left:50%;top:50%;width:.5rem;height:.5rem;margin:-.25rem 0 0 -.25rem;border:1px solid var(--stone);border-radius:50%;background:transparent;transition:background-color .35s,border-color .35s}
+.quotes__dots .dot[aria-current="true"]{background:transparent;border-color:transparent}
+.quotes__dots .dot[aria-current="true"]::before{background:var(--crimson);border-color:var(--crimson)}
+.quotes__dots .dot:focus-visible{outline:2px solid var(--crimson);outline-offset:2px}
