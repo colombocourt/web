@@ -54,6 +54,10 @@
     liveHosts: ['colombocourthotel.com', 'www.colombocourthotel.com'],
     tags: {
       ga4Id: '',
+      /* the hotel-owned property (account 410332250) receives the same hits
+         as the original one above, so the history keeps building there
+         whatever happens to the old account */
+      ga4Extra: [],
       clarityId: '',
       metaPixelId: '',
       capiEndpoint: '',
@@ -1091,7 +1095,9 @@
         loaded.ga4 = true;
         window.gtag('consent', 'default', granted);
         window.gtag('js', new Date());
-        window.gtag('config', TAGS.ga4Id, TAGS.linkDomains && TAGS.linkDomains.length ? { linker: { domains: TAGS.linkDomains } } : {});
+        var ga4Opts = TAGS.linkDomains && TAGS.linkDomains.length ? { linker: { domains: TAGS.linkDomains } } : {};
+        window.gtag('config', TAGS.ga4Id, ga4Opts);
+        (TAGS.ga4Extra || []).forEach(function (id) { if (isId(id)) window.gtag('config', id, ga4Opts); });
         addScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(TAGS.ga4Id));
       } else {
         window.gtag('consent', 'update', granted);
